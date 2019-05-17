@@ -14,7 +14,6 @@ conf = configuration_data()
 pkgdatadir = join_paths([ get_option('prefix'),
                           get_option('datadir'),
                           'com.github.lainsce.reganam' ])
-
 conf.set_quoted('PKGDATADIR', pkgdatadir)
 
 # Other configs

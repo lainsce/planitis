@@ -45,5 +45,10 @@
 			<summary>Level of lab</summary>
 			<description>The level of the session research lab</description>
 		</key>
+		<key name="planet-name" type="s">
+			<default>""</default>
+			<summary>Planet Name</summary>
+			<description>The name of the playing Planet</description>
+		</key>
 	</schema>
 </schemalist>

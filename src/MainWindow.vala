@@ -19,21 +19,22 @@
 
 namespace Reganam {
     public class MainWindow : Gtk.Window {
-        public double m_res = 0.0;
-        public double c_res = 0.0;
-        public double h_res = 0.0;
-        public double l_res = 0.0;
+        public double m_res;
+        public double c_res;
+        public double h_res;
+        public double l_res;
         public double m_total = 1000.0;
         public double c_total = 1000.0;
         public double h_total = 1000.0;
-        public double m_mine_level = 0.0;
+        public double m_mine_level;
         public double m_total_mine = 100.0;
-        public double c_mine_level = 0.0;
+        public double c_mine_level;
         public double c_total_mine = 100.0;
-        public double h_mine_level = 0.0;
+        public double h_mine_level;
         public double h_total_mine = 100.0;
-        public double l_level = 0.0;
+        public double l_level;
         public double l_total = 12.0;
+        public string planet_name;
         public Gtk.ProgressBar mpb;
         public Gtk.ProgressBar cpb;
         public Gtk.ProgressBar hpb;
@@ -47,32 +48,6 @@ namespace Reganam {
                          width_request: 800,
                          title: "Reganam"
             );
-            this.get_style_context().add_class("rounded");
-
-            var settings = AppSettings.get_default ();
-            if (settings.metal == 0.0 &&
-                settings.crystal == 0.0 &&
-                settings.hydrogen == 0.0 &&
-                settings.metal_mine == 0.0 &&
-                settings.crystal_mine == 0.0 &&
-                settings.hydrogen_mine == 0.0 &&
-                settings.lab_level == 0.0) {
-                    m_res = 100.0;
-                    c_res = 100.0;
-                    h_res = 0.0;
-                    m_mine_level = 0.0;
-                    c_mine_level = 0.0;
-                    h_mine_level = 0.0;
-                    l_level = 0.0;
-            } else {
-                m_res = settings.metal;
-                c_res = settings.crystal;
-                h_res = settings.hydrogen;
-                m_mine_level = settings.metal_mine;
-                c_mine_level = settings.crystal_mine;
-                h_mine_level = settings.hydrogen_mine;
-                l_level = settings.lab_level;
-            }
         }
 
         private Gtk.Widget get_info_grid () {
@@ -85,7 +60,7 @@ namespace Reganam {
             sep.hexpand = true;
             sep.margin_start = 12;
 
-            var header_planet = new Granite.HeaderLabel (_("PlanetName"));
+            var header_planet = new Granite.HeaderLabel (_(planet_name));
             var type_of_planet = new Label (_("Type: Warm Terra"));
             var type_of_atm = new Label (_("Atmosphere: Nitrogen & Oxygen"));
             var mineral_label = new Label (_("Mineral:"));
@@ -260,6 +235,74 @@ namespace Reganam {
         }
 
         construct {
+            var settings = AppSettings.get_default ();
+            if (settings.metal == 0.0 &&
+                settings.crystal == 0.0 &&
+                settings.hydrogen == 0.0 &&
+                settings.metal_mine == 0.0 &&
+                settings.crystal_mine == 0.0 &&
+                settings.hydrogen_mine == 0.0 &&
+                settings.lab_level == 0.0 &&
+                settings.planet_name == "") {
+                    planet_name_gen ();
+                    m_res = 100.0;
+                    c_res = 100.0;
+                    h_res = 0.0;
+                    m_mine_level = 0.0;
+                    c_mine_level = 0.0;
+                    h_mine_level = 0.0;
+                    l_level = 0.0;
+                    planet_name = "Terra";
+            } else {
+                    m_res = settings.metal;
+                    c_res = settings.crystal;
+                    h_res = settings.hydrogen;
+                    m_mine_level = settings.metal_mine;
+                    c_mine_level = settings.crystal_mine;
+                    h_mine_level = settings.hydrogen_mine;
+                    l_level = settings.lab_level;
+                    planet_name = settings.planet_name;
+            }
+
+             var provider = new Gtk.CssProvider ();
+             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+             string css = """
+                 @define-color colorPrimary #111111;
+                 @define-color textColorPrimary #FAFAFA;
+                 window.background {
+                 	background-color: #111;
+                 }
+                 button {
+                 	background-color: #333;
+                 }
+                 button:checked {
+                 	background-color: #222;
+                 }
+                 button:active {
+                 	background-color: #222;
+                 }
+                 .titlebutton {
+                 	background-color: #111;
+                 }
+                 label.h4 {
+                 	font-size: 1.9em;
+                 	color: #8DD6EF;
+                 	font-weight: 500;
+                 }
+                 progressbar trough {
+                 	background-color: #111;
+                 	box-shadow: none;
+                 	border: 1px solid #333;
+                 }
+             """;
+             try {
+                provider.load_from_data(css, -1);
+             } catch (GLib.Error e) {
+                warning ("Failed to parse css style : %s", e.message);
+             }
+             Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),provider,
+                                                                  Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+             this.get_style_context().add_class("rounded");
              var header = new Gtk.HeaderBar();
              header.has_subtitle = false;
              header.set_show_close_button (true);
@@ -293,6 +336,17 @@ namespace Reganam {
              Timeout.add_seconds (10, () => {
                 update_base_values ();
              });
+        }
+
+        string planet_name_gen(int length = 8, string charset = "abcdefghijklmnopqrstuvwxyz"){
+            string random = "";
+            for(int i=0;i<length;i++){
+                int random_index = Random.int_range(0,charset.length);
+                string ch = charset.get_char(charset.index_of_nth_char(random_index)).to_string();
+                random += ch;
+            }
+            planet_name = random;
+            return planet_name;
         }
 
         public void update_base_values () {
@@ -342,6 +396,7 @@ namespace Reganam {
             settings.crystal_mine = c_mine_level;
             settings.hydrogen_mine = h_mine_level;
             settings.lab_level = l_level;
+            settings.planet_name = planet_name;
             return false;
         }
     }
