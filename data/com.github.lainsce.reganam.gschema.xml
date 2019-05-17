@@ -1,0 +1,49 @@
+<schemalist>
+	<schema id="com.github.lainsce.reganam" path="/com/github/lainsce/reganam/">
+		<key name="window-x" type="i">
+			<default>-1</default>
+			<summary>Window position</summary>
+			<description>The x axis of window position</description>
+		</key>
+		<key name="window-y" type="i">
+			<default>-1</default>
+			<summary>Window position</summary>
+			<description>The y axis of window position</description>
+		</key>
+		<key name="metal" type="d">
+			<default>0.0</default>
+			<summary>Amount of metal</summary>
+			<description>Amount of metal produced</description>
+		</key>
+		<key name="crystal" type="d">
+			<default>0.0</default>
+			<summary>Amount of crystal</summary>
+			<description>Amount of crystal produced</description>
+		</key>
+		<key name="hydrogen" type="d">
+			<default>0.0</default>
+			<summary>Amount of hydrogen</summary>
+			<description>Amount of hydrogen produced</description>
+		</key>
+		<key name="metal-mine" type="d">
+			<default>0.0</default>
+			<summary>Level of metal mine</summary>
+			<description>The level of the session metal mine</description>
+		</key>
+		<key name="crystal-mine" type="d">
+			<default>0.0</default>
+			<summary>Level of crystal mine</summary>
+			<description>The level of the session crystal mine</description>
+		</key>
+		<key name="hydrogen-mine" type="d">
+			<default>0.0</default>
+			<summary>Level of hydrogen mine</summary>
+			<description>The level of the session hydrogen mine</description>
+		</key>
+		<key name="lab-level" type="d">
+			<default>0.0</default>
+			<summary>Level of lab</summary>
+			<description>The level of the session research lab</description>
+		</key>
+	</schema>
+</schemalist>

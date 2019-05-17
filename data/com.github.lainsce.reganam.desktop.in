@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Reganam
+Comment=Resource Management game set in space
+Exec=com.github.lainsce.reganam
+Icon=com.github.lainsce.reganam
+Keywords=Resource Management;Game;
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GTK;Game;
