@@ -50,5 +50,15 @@
 			<summary>Planet Name</summary>
 			<description>The name of the playing Planet</description>
 		</key>
+		<key name="planet-type" type="s">
+			<default>""</default>
+			<summary>Planetary Type</summary>
+			<description>The type of formation of the playing Planet</description>
+		</key>
+		<key name="planet-atm" type="s">
+			<default>""</default>
+			<summary>Planet Atmosphere</summary>
+			<description>The type of atmosphere of the playing Planet</description>
+		</key>
 	</schema>
 </schemalist>

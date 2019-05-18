@@ -28,6 +28,8 @@ namespace Reganam {
         public double hydrogen_mine { get; set; }
         public double lab_level { get; set; }
         public string planet_name { get; set; }
+        public string planet_type { get; set; }
+        public string planet_atm { get; set; }
 
         public static unowned AppSettings get_default () {
             if (instance == null) {

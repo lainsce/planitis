@@ -34,12 +34,13 @@ namespace Reganam {
         public double h_total_mine = 100.0;
         public double l_level;
         public double l_total = 12.0;
-        public string planet_name;
+        public string planet_name = "";
+        public string planet_type = "";
+        public string planet_atm = "";
         public Gtk.ProgressBar mpb;
         public Gtk.ProgressBar cpb;
         public Gtk.ProgressBar hpb;
         public Gtk.ProgressBar lpm;
-        public Gtk.Separator sep;
         public MainWindow (Gtk.Application app) {
             GLib.Object (
                          application: app,
@@ -51,18 +52,23 @@ namespace Reganam {
         }
 
         private Gtk.Widget get_info_grid () {
-            var textstyle_grid = new Gtk.Grid ();
-            textstyle_grid.expand = true;
-            textstyle_grid.row_spacing = 6;
-            textstyle_grid.column_spacing = 12;
+            var grid = new Gtk.Grid ();
+            grid.expand = true;
+            grid.row_spacing = 6;
+            grid.column_spacing = 12;
 
-            sep = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-            sep.hexpand = true;
-            sep.margin_start = 12;
+            var sep = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
+            sep.margin_bottom = 12;
 
-            var header_planet = new Granite.HeaderLabel (_(planet_name));
-            var type_of_planet = new Label (_("Type: Warm Terra"));
-            var type_of_atm = new Label (_("Atmosphere: Nitrogen & Oxygen"));
+            var header = new Granite.HeaderLabel (_(planet_name));
+            var type_of_planet = new Label (_("Type:"));
+            var type_of_planet_desc = new Gtk.Label ("");
+            type_of_planet_desc.label = planet_type;
+            type_of_planet_desc.halign = Gtk.Align.START;
+            var type_of_atm = new Label (_("Atmosphere:"));
+            var type_of_atm_desc = new Gtk.Label ("");
+            type_of_atm_desc.label = planet_atm;
+            type_of_atm_desc.halign = Gtk.Align.START;
             var mineral_label = new Label (_("Mineral:"));
             var crystal_label = new Label (_("Crystal:"));
             var h_label = new Label (_("Hydrogen:"));
@@ -85,31 +91,33 @@ namespace Reganam {
             hpb.set_show_text (true);
             hpb.set_text ("""%.2f/%.2f""".printf(h_res, h_total));
 
-            textstyle_grid.attach (header_planet, 0, 0, 5, 1);
-            textstyle_grid.attach (type_of_planet, 0, 2, 3, 1);
-            textstyle_grid.attach (type_of_atm, 0, 3, 3, 1);
-            textstyle_grid.attach (sep, 0, 4, 5, 1);
-            textstyle_grid.attach (mineral_label, 0, 5, 3, 1);
-            textstyle_grid.attach (mpb, 1, 5, 4, 1);
-            textstyle_grid.attach (crystal_label, 0, 6, 3, 1);
-            textstyle_grid.attach (cpb, 1, 6, 4, 1);
-            textstyle_grid.attach (h_label, 0, 7, 3, 1);
-            textstyle_grid.attach (hpb, 1, 7, 4, 1);
+            grid.attach (header, 0, 0, 5, 1);
+            grid.attach (sep, 0, 1, 5, 1);
+            grid.attach (type_of_planet, 0, 2, 1, 1);
+            grid.attach (type_of_planet_desc, 1, 2, 1, 1);
+            grid.attach (type_of_atm, 0, 3, 1, 1);
+            grid.attach (type_of_atm_desc, 1, 3, 1, 1);
+            grid.attach (sep, 0, 4, 5, 1);
+            grid.attach (mineral_label, 0, 5, 1, 1);
+            grid.attach (mpb, 1, 5, 4, 1);
+            grid.attach (crystal_label, 0, 6, 1, 1);
+            grid.attach (cpb, 1, 6, 4, 1);
+            grid.attach (h_label, 0, 7, 1, 1);
+            grid.attach (hpb, 1, 7, 4, 1);
 
-            return textstyle_grid;
+            return grid;
         }
 
         private Gtk.Widget get_mine_grid () {
-            var textstyle_grid = new Gtk.Grid ();
-            textstyle_grid.expand = true;
-            textstyle_grid.row_spacing = 6;
-            textstyle_grid.column_spacing = 12;
+            var grid = new Gtk.Grid ();
+            grid.expand = true;
+            grid.row_spacing = 6;
+            grid.column_spacing = 12;
 
-            sep = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-            sep.hexpand = true;
-            sep.margin_start = 12;
+            var sep = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
+            sep.margin_bottom = 12;
 
-            var header_planet = new Granite.HeaderLabel (_("Mines & Storage"));
+            var header = new Granite.HeaderLabel (_("Mines & Storage"));
             var mineral_label = new Label (_("Mineral Mine:"));
             var crystal_label = new Label (_("Crystal Mine:"));
             var h_label = new Label (_("Hydrogen Mine:"));
@@ -137,7 +145,7 @@ namespace Reganam {
             var button_h = new Gtk.Button.with_label (_("Build!"));
 
             button_m.clicked.connect (() => {
-                if (m_res >= (50 * m_mine_level) && c_res >= (20 * m_mine_level)) {
+                if (m_res >= (50 * (m_mine_level + 1)) && c_res >= (20 * (m_mine_level + 1))) {
                     m_mine_level += 1;
                     m_res -= 50;
                     c_res -= 30;
@@ -150,7 +158,7 @@ namespace Reganam {
             });
 
             button_c.clicked.connect (() => {
-                if (m_res >= (20 * c_mine_level) && c_res >= (50 * c_mine_level)) {
+                if (m_res >= (20 * (c_mine_level + 1)) && c_res >= (50 * (c_mine_level + 1))) {
                     c_mine_level += 1;
                     m_res -= 20;
                     c_res -= 50;
@@ -163,7 +171,7 @@ namespace Reganam {
             });
 
             button_h.clicked.connect (() => {
-                if (m_res >= (150 * m_mine_level) && c_res >= (150 * m_mine_level)) {
+                if (m_res >= (150 * (h_mine_level + 1)) && c_res >= (150 * (h_mine_level + 1))) {
                     h_mine_level += 1;
                     m_res -= 150;
                     c_res -= 150;
@@ -175,32 +183,31 @@ namespace Reganam {
                 }
             });
 
-            textstyle_grid.attach (header_planet, 0, 0, 5, 1);
-            textstyle_grid.attach (sep, 0, 1, 5, 1);
-            textstyle_grid.attach (mineral_label, 0, 2, 1, 1);
-            textstyle_grid.attach (mpm, 1, 2, 3, 1);
-            textstyle_grid.attach (button_m, 4, 2, 1, 1);
-            textstyle_grid.attach (crystal_label, 0, 3, 1, 1);
-            textstyle_grid.attach (cpm, 1, 3, 3, 1);
-            textstyle_grid.attach (button_c, 4, 3, 1, 1);
-            textstyle_grid.attach (h_label, 0, 4, 1, 1);
-            textstyle_grid.attach (hpm, 1, 4, 3, 1);
-            textstyle_grid.attach (button_h, 4, 4, 1, 1);
+            grid.attach (header, 0, 0, 5, 1);
+            grid.attach (sep, 0, 1, 5, 1);
+            grid.attach (mineral_label, 0, 2, 1, 1);
+            grid.attach (mpm, 1, 2, 3, 1);
+            grid.attach (button_m, 4, 2, 1, 1);
+            grid.attach (crystal_label, 0, 3, 1, 1);
+            grid.attach (cpm, 1, 3, 3, 1);
+            grid.attach (button_c, 4, 3, 1, 1);
+            grid.attach (h_label, 0, 4, 1, 1);
+            grid.attach (hpm, 1, 4, 3, 1);
+            grid.attach (button_h, 4, 4, 1, 1);
 
-            return textstyle_grid;
+            return grid;
         }
 
         private Gtk.Widget get_lab_grid () {
-            var textstyle_grid = new Gtk.Grid ();
-            textstyle_grid.expand = true;
-            textstyle_grid.row_spacing = 6;
-            textstyle_grid.column_spacing = 12;
+            var grid = new Gtk.Grid ();
+            grid.expand = true;
+            grid.row_spacing = 6;
+            grid.column_spacing = 12;
 
-            sep = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-            sep.hexpand = true;
-            sep.margin_start = 12;
+            var sep = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
+            sep.margin_bottom = 12;
 
-            var header_planet = new Granite.HeaderLabel (_("Research Lab & Technologies"));
+            var header = new Granite.HeaderLabel (_("Research Lab & Technologies"));
             var lab_label = new Label (_("Research Lab:"));
 
             lpm = new Gtk.ProgressBar ();
@@ -212,7 +219,7 @@ namespace Reganam {
             var button_l = new Gtk.Button.with_label (_("Build!"));
 
             button_l.clicked.connect (() => {
-                if (m_res >= (200 * l_level) && c_res >= (200 * l_level) && h_res >= (100 * l_level)) {
+                if (m_res >= (200 * (l_level + 1)) && c_res >= (200 * (l_level + 1)) && h_res >= (100 * (l_level + 1))) {
                     l_level += 1;
                     m_res -= 200;
                     c_res -= 200;
@@ -221,17 +228,19 @@ namespace Reganam {
                     lpm.set_fraction (l_level/l_total);
                     update_m_value ();
                     update_c_value ();
+                    update_h_value ();
                     update_base_values ();
                 }
             });
 
-            textstyle_grid.attach (header_planet, 0, 0, 5, 1);
-            textstyle_grid.attach (lab_label, 0, 2, 1, 1);
-            textstyle_grid.attach (lpm, 1, 2, 3, 1);
-            textstyle_grid.attach (button_l, 4, 2, 1, 1);
-            textstyle_grid.attach (sep, 0, 4, 5, 1);
+            grid.attach (header, 0, 0, 5, 1);
+            grid.attach (sep, 0, 1, 5, 1);
+            grid.attach (lab_label, 0, 2, 1, 1);
+            grid.attach (lpm, 1, 2, 3, 1);
+            grid.attach (button_l, 4, 2, 1, 1);
+            grid.attach (sep, 0, 4, 5, 1);
 
-            return textstyle_grid;
+            return grid;
         }
 
         construct {
@@ -243,8 +252,9 @@ namespace Reganam {
                 settings.crystal_mine == 0.0 &&
                 settings.hydrogen_mine == 0.0 &&
                 settings.lab_level == 0.0 &&
-                settings.planet_name == "") {
-                    planet_name_gen ();
+                settings.planet_name == "" &&
+                settings.planet_type == "" &&
+                settings.planet_atm == "") {
                     m_res = 100.0;
                     c_res = 100.0;
                     h_res = 0.0;
@@ -252,7 +262,9 @@ namespace Reganam {
                     c_mine_level = 0.0;
                     h_mine_level = 0.0;
                     l_level = 0.0;
-                    planet_name = "Terra";
+                    planet_name = planet_name_gen ();
+                    planet_type = planet_type_gen ();
+                    planet_atm = planet_atm_gen ();
             } else {
                     m_res = settings.metal;
                     c_res = settings.crystal;
@@ -262,6 +274,8 @@ namespace Reganam {
                     h_mine_level = settings.hydrogen_mine;
                     l_level = settings.lab_level;
                     planet_name = settings.planet_name;
+                    planet_type = settings.planet_type;
+                    planet_atm = settings.planet_atm;
             }
 
              var provider = new Gtk.CssProvider ();
@@ -289,6 +303,9 @@ namespace Reganam {
                  	color: #8DD6EF;
                  	font-weight: 500;
                  }
+                 progressbar .left {
+                     background: linear-gradient(90deg, #99DA64, #8DD6EF)
+                 }
                  progressbar trough {
                  	background-color: #111;
                  	box-shadow: none;
@@ -303,6 +320,7 @@ namespace Reganam {
              Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),provider,
                                                                   Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
              this.get_style_context().add_class("rounded");
+             this.get_style_context().add_class("flat");
              var header = new Gtk.HeaderBar();
              header.has_subtitle = false;
              header.set_show_close_button (true);
@@ -338,15 +356,40 @@ namespace Reganam {
              });
         }
 
-        string planet_name_gen(int length = 8, string charset = "abcdefghijklmnopqrstuvwxyz"){
-            string random = "";
+        string planet_name_gen () {
+            int length = 7; // Planet names are only 8 characters long
+            string charset = "abcdefghijklmnopqrstuvwxyz";
             for(int i=0;i<length;i++){
                 int random_index = Random.int_range(0,charset.length);
                 string ch = charset.get_char(charset.index_of_nth_char(random_index)).to_string();
-                random += ch;
+                string ch_1 = ch.get_char(0).toupper ().to_string ();
+                if (planet_name == "") {
+                    planet_name = ch_1;
+                }
+
+                planet_name += ch;
             }
-            planet_name = random;
             return planet_name;
+        }
+
+        string planet_type_gen () {
+            string[] types = { "Warm Terra", "Cold Terra", "Hot Terra",
+                               "Warm Gas Giant", "Cold Gas Giant", "Hot Gas Giant",
+                               "Warm Planetoid", "Cold Planetoid", "Hot Planetoid" };
+            int random_index = Random.int_range(0,8);
+            string planet_type = types[random_index];
+
+            return planet_type;
+        }
+
+        string planet_atm_gen () {
+            string[] types = { "Nitrogenic", "Nitrogen & Oxygen", "Sulfuric",
+                               "Methane", "Beryllic", "Carbon Dioxide",
+                               "Argonic", "Helium", "Hydrogenic" };
+            int random_index = Random.int_range(0,8);
+            string planet_atm = types[random_index];
+
+            return planet_atm;
         }
 
         public void update_base_values () {
@@ -397,6 +440,8 @@ namespace Reganam {
             settings.hydrogen_mine = h_mine_level;
             settings.lab_level = l_level;
             settings.planet_name = planet_name;
+            settings.planet_type = planet_type;
+            settings.planet_atm = planet_atm;
             return false;
         }
     }
@@ -404,7 +449,7 @@ namespace Reganam {
     private class Label : Gtk.Label {
         public Label (string text) {
             label = text;
-            halign = Gtk.Align.START;
+            halign = Gtk.Align.END;
             margin_start = 12;
         }
     }
