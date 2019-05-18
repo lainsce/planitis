@@ -34,9 +34,11 @@ namespace Reganam {
         public double h_total_mine = 100.0;
         public double l_level;
         public double l_total = 12.0;
+        public double diameter;
         public string planet_name = "";
         public string planet_type = "";
         public string planet_atm = "";
+        public string planet_diameter = "";
         public Gtk.ProgressBar mpb;
         public Gtk.ProgressBar cpb;
         public Gtk.ProgressBar hpb;
@@ -69,6 +71,10 @@ namespace Reganam {
             var type_of_atm_desc = new Gtk.Label ("");
             type_of_atm_desc.label = planet_atm;
             type_of_atm_desc.halign = Gtk.Align.START;
+            var size_diameter = new Label (_("Diameter:"));
+            var size_diameter_desc = new Gtk.Label ("");
+            size_diameter_desc.label = planet_diameter;
+            size_diameter_desc.halign = Gtk.Align.START;
             var mineral_label = new Label (_("Mineral:"));
             var crystal_label = new Label (_("Crystal:"));
             var h_label = new Label (_("Hydrogen:"));
@@ -97,13 +103,15 @@ namespace Reganam {
             grid.attach (type_of_planet_desc, 1, 2, 1, 1);
             grid.attach (type_of_atm, 0, 3, 1, 1);
             grid.attach (type_of_atm_desc, 1, 3, 1, 1);
-            grid.attach (sep, 0, 4, 5, 1);
-            grid.attach (mineral_label, 0, 5, 1, 1);
-            grid.attach (mpb, 1, 5, 4, 1);
-            grid.attach (crystal_label, 0, 6, 1, 1);
-            grid.attach (cpb, 1, 6, 4, 1);
-            grid.attach (h_label, 0, 7, 1, 1);
-            grid.attach (hpb, 1, 7, 4, 1);
+            grid.attach (size_diameter, 0, 4, 1, 1);
+            grid.attach (size_diameter_desc, 1, 4, 1, 1);
+            grid.attach (sep, 0, 5, 5, 1);
+            grid.attach (mineral_label, 0, 6, 1, 1);
+            grid.attach (mpb, 1, 6, 4, 1);
+            grid.attach (crystal_label, 0, 7, 1, 1);
+            grid.attach (cpb, 1, 7, 4, 1);
+            grid.attach (h_label, 0, 8, 1, 1);
+            grid.attach (hpb, 1, 8, 4, 1);
 
             return grid;
         }
@@ -263,6 +271,7 @@ namespace Reganam {
                     h_mine_level = 0.0;
                     l_level = 0.0;
                     planet_name = planet_name_gen ();
+                    planet_diameter = planet_diameter_gen ();
                     planet_type = planet_type_gen ();
                     planet_atm = planet_atm_gen ();
             } else {
@@ -276,6 +285,7 @@ namespace Reganam {
                     planet_name = settings.planet_name;
                     planet_type = settings.planet_type;
                     planet_atm = settings.planet_atm;
+                    planet_diameter = settings.planet_diameter;
             }
 
              var provider = new Gtk.CssProvider ();
@@ -284,7 +294,8 @@ namespace Reganam {
                  @define-color colorPrimary #111111;
                  @define-color textColorPrimary #FAFAFA;
                  window.background {
-                 	background-color: #111;
+                    background-image: url("resource:///com/github/lainsce/reganam/res/bg.png");
+                    background-repeat: repeat;
                  }
                  button {
                  	background-color: #333;
@@ -358,7 +369,7 @@ namespace Reganam {
 
         string planet_name_gen () {
             int length = 7; // Planet names are only 8 characters long
-            string charset = "abcdefghijklmnopqrstuvwxyz";
+            string charset = "aeiouptkbdgmnszfv";
             for(int i=0;i<length;i++){
                 int random_index = Random.int_range(0,charset.length);
                 string ch = charset.get_char(charset.index_of_nth_char(random_index)).to_string();
@@ -373,15 +384,28 @@ namespace Reganam {
         }
 
         string planet_type_gen () {
-            string[] types = { "Warm Terra", "Cold Terra", "Hot Terra",
-                               "Warm Gas Giant", "Cold Gas Giant", "Hot Gas Giant",
-                               "Warm Planetoid", "Cold Planetoid", "Hot Planetoid" };
-            int random_index = Random.int_range(0,8);
-            string planet_type = types[random_index];
-
-            return planet_type;
+            string[] types = { "Temperate Terrestrial", "Polarian Terrestrial", "Chthonian Terrestrial",
+                               "Temperate Gas Giant", "Polarian Gas Giant", "Chthonian Gas Giant",
+                               "Temperate Dwarf", "Polarian Dwarf", "Chthonian Dwarf",
+                               "Incognito" };
+            // Diameter values in these if statements generated based on NASA info
+            if (diameter > 1.0 && diameter < 1570796.326794895) {
+                int random_index = Random.int_range(6,8);
+                string planet_type = types[random_index];
+                return planet_type;
+            } else if (diameter > 1570796.326794895 && diameter < 3141592.65358979 ) {
+                int random_index = Random.int_range(0,2);
+                string planet_type = types[random_index];
+                return planet_type;
+            } else if (diameter > 3141592.65358979 && diameter < 6283185.307179586) {
+                int random_index = Random.int_range(3,5);
+                string planet_type = types[random_index];
+                return planet_type;
+            } else {
+                string planet_type = types[9];
+                return planet_type;
+            }
         }
-
         string planet_atm_gen () {
             string[] types = { "Nitrogenic", "Nitrogen & Oxygen", "Sulfuric",
                                "Methane", "Beryllic", "Carbon Dioxide",
@@ -390,6 +414,27 @@ namespace Reganam {
             string planet_atm = types[random_index];
 
             return planet_atm;
+        }
+        string planet_diameter_gen () {
+            int random_index = Random.int_range(1,1000);
+            diameter = (Math.PI * Math.pow(random_index, 2)) * 2;
+            string planet_diameter = """%.3f""".printf(diameter);
+            planet_diameter = insert_separators (planet_diameter) + " km";
+
+            return planet_diameter;
+        }
+        private string insert_separators (string s) {
+		    unichar decimal_symbol = '.';
+ 		    unichar separator_symbol = ',';
+		    var builder = new StringBuilder (s);
+		    var decimalPos = s.last_index_of_char(decimal_symbol);
+		    if(decimalPos == -1){
+			    decimalPos = s.length;
+		    }
+		    for (int i = decimalPos - 3; i > 0; i-=3) {
+	    		builder.insert_unichar (i, separator_symbol);
+           	}
+		    return builder.str;
         }
 
         public void update_base_values () {
@@ -415,12 +460,10 @@ namespace Reganam {
             mpb.set_fraction(m_res/m_total);
             mpb.set_text ("""%.2f/%.2f""".printf(m_res, m_total));
         }
-
         public void update_c_value () {
             cpb.set_fraction(c_res/c_total);
             cpb.set_text ("""%.2f/%.2f""".printf(c_res, c_total));
         }
-
         public void update_h_value () {
             hpb.set_fraction(h_res/h_total);
             hpb.set_text ("""%.2f/%.2f""".printf(h_res, h_total));
@@ -442,6 +485,7 @@ namespace Reganam {
             settings.planet_name = planet_name;
             settings.planet_type = planet_type;
             settings.planet_atm = planet_atm;
+            settings.planet_diameter = planet_diameter;
             return false;
         }
     }

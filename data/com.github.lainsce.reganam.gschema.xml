@@ -60,5 +60,10 @@
 			<summary>Planet Atmosphere</summary>
 			<description>The type of atmosphere of the playing Planet</description>
 		</key>
+		<key name="planet-diameter" type="s">
+			<default>""</default>
+			<summary>Planet Diameter</summary>
+			<description>The diameter size of the playing Planet</description>
+		</key>
 	</schema>
 </schemalist>

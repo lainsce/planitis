@@ -30,6 +30,7 @@ namespace Reganam {
         public string planet_name { get; set; }
         public string planet_type { get; set; }
         public string planet_atm { get; set; }
+        public string planet_diameter { get; set; }
 
         public static unowned AppSettings get_default () {
             if (instance == null) {

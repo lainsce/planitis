@@ -7,6 +7,14 @@ project('com.github.lainsce.reganam', ['vala', 'c'],
 gnome = import('gnome')
 i18n = import('i18n')
 
+
+# Compile the GResources for this project
+asresources = gnome.compile_resources(
+    'as-resources', 'data/app.gresource.xml',
+    source_dir: 'data',
+    c_name: 'as'
+)
+
 # Set this for convenience
 conf = configuration_data()
 
@@ -30,6 +38,7 @@ c_args = [
 ]
 
 cc = meson.get_compiler('c')
+m_dep = cc.find_library('m', required: true)
 
 # Let's define our executable
 executable(
@@ -37,11 +46,13 @@ executable(
     'src/Application.vala',
     'src/MainWindow.vala',
     'src/Constants/AppSettings.vala',
+    asresources,
     c_args: c_args,
     dependencies: [
         dependency('granite'),
         dependency('gobject-2.0'),
         dependency('gtk+-3.0'),
+        m_dep,
     ],
     vala_args: [
         meson.source_root() + '/vapi/config.vapi',
