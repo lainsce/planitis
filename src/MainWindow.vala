@@ -199,10 +199,10 @@ namespace Reganam {
             });
 
             button_h.clicked.connect (() => {
-                if (m_res >= (150 * (h_mine_level + 1)) && c_res >= (150 * (h_mine_level + 1))) {
+                if (m_res >= (50 * (h_mine_level + 1)) && c_res >= (50 * (h_mine_level + 1))) {
                     h_mine_level += 1;
-                    m_res -= (150 * (h_mine_level + 1));
-                    c_res -= (150 * (h_mine_level + 1));
+                    m_res -= (50 * (h_mine_level + 1));
+                    c_res -= (50 * (h_mine_level + 1));
                     hpm.set_text ("""%.0f/%.0f""".printf(h_mine_level, h_total_mine));
                     hpm.set_fraction (h_mine_level/h_total_mine);
                     update_m_value ();
@@ -568,11 +568,11 @@ namespace Reganam {
                                "Temperate Dwarf", "Polarian Dwarf", "Chthonian Dwarf",
                                "Incognito" };
             // Diameter values in these if statements generated based on NASA info
-            if (diameter > 1.0 && diameter < 1570796.326794895) {
+            if (diameter > 1.0 && diameter < 196349.540849362) {
                 int random_index = Random.int_range(6,8);
                 string planet_type = types[random_index];
                 return planet_type;
-            } else if (diameter > 1570796.326794895 && diameter < 3141592.65358979 ) {
+            } else if (diameter > 196349.540849362 && diameter < 3141592.65358979 ) {
                 int random_index = Random.int_range(0,2);
                 string planet_type = types[random_index];
                 return planet_type;
