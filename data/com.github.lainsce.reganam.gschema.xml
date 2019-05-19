@@ -40,10 +40,40 @@
 			<summary>Level of hydrogen mine</summary>
 			<description>The level of the session hydrogen mine</description>
 		</key>
+		<key name="stm-level" type="d">
+			<default>0.0</default>
+			<summary>Level of storage of metal</summary>
+			<description>The level of the storage of metal</description>
+		</key>
+		<key name="stc-level" type="d">
+			<default>0.0</default>
+			<summary>Level of storage of crystal</summary>
+			<description>The level of the storage of crystal</description>
+		</key>
+		<key name="sth-level" type="d">
+			<default>0.0</default>
+			<summary>Level of storage of hydrogen</summary>
+			<description>The level of the storage of hydrogen</description>
+		</key>
 		<key name="lab-level" type="d">
 			<default>0.0</default>
 			<summary>Level of lab</summary>
 			<description>The level of the session research lab</description>
+		</key>
+		<key name="sym-level" type="d">
+			<default>0.0</default>
+			<summary>Level of synthesizer of metal</summary>
+			<description>The level of the synthesizer of metal</description>
+		</key>
+		<key name="syc-level" type="d">
+			<default>0.0</default>
+			<summary>Level of synthesizer of crystal</summary>
+			<description>The level of the synthesizer of crystal</description>
+		</key>
+		<key name="syh-level" type="d">
+			<default>0.0</default>
+			<summary>Level of synthesizer of hydrogen</summary>
+			<description>The level of the synthesizer of hydrogen</description>
 		</key>
 		<key name="planet-name" type="s">
 			<default>""</default>
