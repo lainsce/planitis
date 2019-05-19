@@ -344,7 +344,7 @@ namespace Reganam {
             sympm.set_show_text (true);
             sympm.set_text ("""%.0f/%.0f""".printf(sym_res, sym_total));
 
-            var button_sym = new Gtk.Button.with_label (_("Build!"));
+            var button_sym = new Gtk.Button.with_label (_("Research!"));
 
             button_sym.clicked.connect (() => {
                 if (c_res >= (200 * (l_level + 1)) && h_res >= (100 * (l_level + 1)) && l_level >= 1 ) {
@@ -367,7 +367,7 @@ namespace Reganam {
             sycpm.set_show_text (true);
             sycpm.set_text ("""%.0f/%.0f""".printf(syc_res, syc_total));
 
-            var button_syc = new Gtk.Button.with_label (_("Build!"));
+            var button_syc = new Gtk.Button.with_label (_("Research!"));
 
             button_syc.clicked.connect (() => {
                 if (c_res >= (100 * (l_level + 1)) && h_res >= (200 * (l_level + 1)) && l_level >= 2) {
@@ -390,15 +390,15 @@ namespace Reganam {
             syhpm.set_show_text (true);
             syhpm.set_text ("""%.0f/%.0f""".printf(syh_res, syh_total));
 
-            var button_syh = new Gtk.Button.with_label (_("Build!"));
+            var button_syh = new Gtk.Button.with_label (_("Research!"));
 
             button_syh.clicked.connect (() => {
                 if (c_res >= (200 * (l_level + 1)) && h_res >= (200 * (l_level + 1)) && l_level >= 3) {
                     syh_level += 1;
                     c_res -= (200 * (l_level + 1));
                     h_res -= (100 * (l_level + 1));
-                    sympm.set_text ("""%.0f/%.0f""".printf(syh_level, syh_total));
-                    sympm.set_fraction (syh_level/syh_total);
+                    syhpm.set_text ("""%.0f/%.0f""".printf(syh_level, syh_total));
+                    syhpm.set_fraction (syh_level/syh_total);
                     update_c_value ();
                     update_h_value ();
                     update_base_values ();
@@ -432,7 +432,13 @@ namespace Reganam {
                 settings.metal_mine == 0.0 &&
                 settings.crystal_mine == 0.0 &&
                 settings.hydrogen_mine == 0.0 &&
+                settings.stm_level == 0.0 &&
+                settings.stc_level == 0.0 &&
+                settings.sth_level == 0.0 &&
                 settings.lab_level == 0.0 &&
+                settings.sym_level == 0.0 &&
+                settings.syc_level == 0.0 &&
+                settings.syh_level == 0.0 &&
                 settings.planet_name == "" &&
                 settings.planet_type == "" &&
                 settings.planet_atm == "") {
@@ -481,6 +487,7 @@ namespace Reganam {
                  window.background {
                     background-image: url("resource:///com/github/lainsce/reganam/res/bg.png");
                     background-repeat: repeat;
+                    background-color: #111;
                  }
                  button {
                  	background-color: #333;
@@ -516,7 +523,6 @@ namespace Reganam {
              Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),provider,
                                                                   Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
              this.get_style_context().add_class("rounded");
-             this.get_style_context().add_class("flat");
              var header = new Gtk.HeaderBar();
              header.has_subtitle = false;
              header.set_show_close_button (true);
@@ -617,17 +623,15 @@ namespace Reganam {
         }
 
         public bool update_base_values () {
-            if (m_res != m_total && c_res != c_total) {
+            if (m_res != m_total && c_res != c_total && h_res != h_total) {
                 if (m_mine_level > 0 || c_mine_level > 0) {
                     m_res += ((sym_level + 1) * (1.55 * m_mine_level));
                     c_res += ((syc_level + 1) * (1.25 * c_mine_level));
                     update_m_value ();
                     update_c_value ();
-                    if (h_res != h_total) {
-                        if (h_mine_level > 0) {
-                            h_res += ((syh_level + 1) * (1.10 * h_mine_level));
-                            update_h_value ();
-                        }
+                    if (h_mine_level > 0) {
+                        h_res += ((syh_level + 1) * (1.10 * h_mine_level));
+                        update_h_value ();
                     }
                 } else {
                     m_res += 1.55;
@@ -641,7 +645,6 @@ namespace Reganam {
             } else {
                 return false;
             }
-            return false;
         }
 
         public void update_m_value () {
