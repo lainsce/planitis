@@ -54,6 +54,14 @@
     <releases>
         <release version="1.0.0" date="2019-05-31">
             <description>
+                <p>Release: Day 1 Patch</p>
+                <ul>
+                    <li>Some last minute fixes.</li>
+                </ul>
+            </description>
+        </release>
+        <release version="1.0.0" date="2019-05-31">
+            <description>
                 <p>Release: Stable</p>
                 <ul>
                     <li>First release.</li>
