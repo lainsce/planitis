@@ -168,9 +168,28 @@ namespace Reganam {
             hpm.set_show_text (true);
             hpm.set_text ("""%.0f/%.0f""".printf(h_mine_level, h_total_mine));
 
+            double pm_m = ((50 * (m_mine_level + 1)));
+            double pm_c = ((20 * (c_mine_level + 1)));
+            double pc_m = ((20 * (m_mine_level + 1)));
+            double pc_c = ((50 * (c_mine_level + 1)));
+
             var button_m = new Gtk.Button.with_label (_("Build!"));
+            var help_pm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_pm.halign = Gtk.Align.START;
+            help_pm.hexpand = true;
+            help_pm.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c));
+
             var button_c = new Gtk.Button.with_label (_("Build!"));
+            var help_pc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_pc.halign = Gtk.Align.START;
+            help_pc.hexpand = true;
+            help_pc.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c));
+
             var button_h = new Gtk.Button.with_label (_("Build!"));
+            var help_ph = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_ph.halign = Gtk.Align.START;
+            help_ph.hexpand = true;
+            help_ph.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c));
 
             button_m.clicked.connect (() => {
                 if (m_res >= (50 * (m_mine_level + 1)) && c_res >= (20 * (m_mine_level + 1))) {
@@ -233,9 +252,27 @@ namespace Reganam {
             sthpm.set_show_text (true);
             sthpm.set_text ("""%.0f/%.0f""".printf(sth_level, sth_total));
 
+            double ps_m = ((100 * (m_mine_level + 1)));
+            double ps_c = ((100 * (c_mine_level + 1)));
+            double ps_h = ((100 * (h_mine_level + 1)));
+
             var button_stm = new Gtk.Button.with_label (_("Build!"));
+            var help_sm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_sm.halign = Gtk.Align.START;
+            help_sm.hexpand = true;
+            help_sm.tooltip_text = _("""To build the next level, %.0f of Mineral is needed""".printf(ps_m));
+
             var button_stc = new Gtk.Button.with_label (_("Build!"));
+            var help_sc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_sc.halign = Gtk.Align.START;
+            help_sc.hexpand = true;
+            help_sc.tooltip_text = _("""To build the next level, %.0f of Crystal is needed""".printf(ps_c));
+
             var button_sth = new Gtk.Button.with_label (_("Build!"));
+            var help_sh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_sh.halign = Gtk.Align.START;
+            help_sh.hexpand = true;
+            help_sh.tooltip_text = _("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h));
 
             button_stm.clicked.connect (() => {
                 if (m_res >= (100 * (m_mine_level + 1))) {
@@ -273,27 +310,33 @@ namespace Reganam {
                 }
             });
 
-            grid.attach (header, 0, 0, 5, 1);
-            grid.attach (sep, 0, 1, 5, 1);
+            grid.attach (header, 0, 0, 6, 1);
+            grid.attach (sep, 0, 1, 6, 1);
             grid.attach (mineral_label, 0, 2, 1, 1);
             grid.attach (mpm, 1, 2, 3, 1);
             grid.attach (button_m, 4, 2, 1, 1);
+            grid.attach (help_pm, 5, 2, 1, 1);
             grid.attach (crystal_label, 0, 3, 1, 1);
             grid.attach (cpm, 1, 3, 3, 1);
             grid.attach (button_c, 4, 3, 1, 1);
+            grid.attach (help_pc, 5, 3, 1, 1);
             grid.attach (h_label, 0, 4, 1, 1);
             grid.attach (hpm, 1, 4, 3, 1);
             grid.attach (button_h, 4, 4, 1, 1);
+            grid.attach (help_ph, 5, 4, 1, 1);
             grid.attach (sep2, 0, 5, 5, 1);
             grid.attach (stm_label, 0, 6, 1, 1);
             grid.attach (stmpm, 1, 6, 3, 1);
             grid.attach (button_stm, 4, 6, 1, 1);
+            grid.attach (help_sm, 5, 6, 1, 1);
             grid.attach (stc_label, 0, 7, 1, 1);
             grid.attach (stcpm, 1, 7, 3, 1);
             grid.attach (button_stc, 4, 7, 1, 1);
+            grid.attach (help_sc, 5, 7, 1, 1);
             grid.attach (sth_label, 0, 8, 1, 1);
             grid.attach (sthpm, 1, 8, 3, 1);
             grid.attach (button_sth, 4, 8, 1, 1);
+            grid.attach (help_sh, 5, 8, 1, 1);
 
             return grid;
         }
@@ -319,7 +362,16 @@ namespace Reganam {
             lpm.set_show_text (true);
             lpm.set_text ("""%.0f/%.0f""".printf(l_res, l_total));
 
+            double l_m = ((200 * (l_level + 1)));
+            double l_c = ((200 * (l_level + 1)));
+            double l_h = ((100 * (l_level + 1)));
+            double s_h = ((200 * (l_level + 1)));
+
             var button_l = new Gtk.Button.with_label (_("Build!"));
+            var help_l = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_l.halign = Gtk.Align.START;
+            help_l.hexpand = true;
+            help_l.tooltip_text = _("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(l_m, l_c, l_h));
 
             button_l.clicked.connect (() => {
                 if (m_res >= (200 * (l_level + 1)) && c_res >= (200 * (l_level + 1)) && h_res >= (100 * (l_level + 1))) {
@@ -336,7 +388,7 @@ namespace Reganam {
                 }
             });
 
-            var sym_label = new Label (_("Synthesize minerals better:"));
+            var sym_label = new Label (_("Synthesizer of Minerals:"));
 
             var sympm = new Gtk.ProgressBar ();
             sympm.hexpand = true;
@@ -345,12 +397,16 @@ namespace Reganam {
             sympm.set_text ("""%.0f/%.0f""".printf(sym_res, sym_total));
 
             var button_sym = new Gtk.Button.with_label (_("Research!"));
+            var help_sym = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_sym.halign = Gtk.Align.START;
+            help_sym.hexpand = true;
+            help_sym.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(l_c, s_h));
 
             button_sym.clicked.connect (() => {
-                if (c_res >= (200 * (l_level + 1)) && h_res >= (100 * (l_level + 1)) && l_level >= 1 ) {
+                if (c_res >= (200 * (l_level + 1)) && h_res >= (200 * (l_level + 1)) && l_level >= 1 ) {
                     sym_level += 1;
                     c_res -= (200 * (l_level + 1));
-                    h_res -= (100 * (l_level + 1));
+                    h_res -= (200 * (l_level + 1));
                     sympm.set_text ("""%.0f/%.0f""".printf(sym_level, sym_total));
                     sympm.set_fraction (sym_level/sym_total);
                     update_c_value ();
@@ -359,7 +415,7 @@ namespace Reganam {
                 }
             });
 
-            var syc_label = new Label (_("Synthesize crystals better:"));
+            var syc_label = new Label (_("Synthesizer of Crystals:"));
 
             var sycpm = new Gtk.ProgressBar ();
             sycpm.hexpand = true;
@@ -368,12 +424,16 @@ namespace Reganam {
             sycpm.set_text ("""%.0f/%.0f""".printf(syc_res, syc_total));
 
             var button_syc = new Gtk.Button.with_label (_("Research!"));
+            var help_syc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_syc.halign = Gtk.Align.START;
+            help_syc.hexpand = true;
+            help_syc.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(l_c, s_h));
 
             button_syc.clicked.connect (() => {
-                if (c_res >= (100 * (l_level + 1)) && h_res >= (200 * (l_level + 1)) && l_level >= 2) {
+                if (c_res >= (200 * (l_level + 1)) && h_res >= (200 * (l_level + 1)) && l_level >= 2) {
                     syc_level += 1;
                     c_res -= (200 * (l_level + 1));
-                    h_res -= (100 * (l_level + 1));
+                    h_res -= (200 * (l_level + 1));
                     sycpm.set_text ("""%.0f/%.0f""".printf(syc_level, syc_total));
                     sycpm.set_fraction (syc_level/syc_total);
                     update_c_value ();
@@ -382,7 +442,7 @@ namespace Reganam {
                 }
             });
 
-            var syh_label = new Label (_("Synthesize hydrogen better:"));
+            var syh_label = new Label (_("Synthesizer of Hydrogen:"));
 
             var syhpm = new Gtk.ProgressBar ();
             syhpm.hexpand = true;
@@ -391,12 +451,16 @@ namespace Reganam {
             syhpm.set_text ("""%.0f/%.0f""".printf(syh_res, syh_total));
 
             var button_syh = new Gtk.Button.with_label (_("Research!"));
+            var help_syh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_syh.halign = Gtk.Align.START;
+            help_syh.hexpand = true;
+            help_syh.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(l_c, s_h));
 
             button_syh.clicked.connect (() => {
                 if (c_res >= (200 * (l_level + 1)) && h_res >= (200 * (l_level + 1)) && l_level >= 3) {
                     syh_level += 1;
                     c_res -= (200 * (l_level + 1));
-                    h_res -= (100 * (l_level + 1));
+                    h_res -= (200 * (l_level + 1));
                     syhpm.set_text ("""%.0f/%.0f""".printf(syh_level, syh_total));
                     syhpm.set_fraction (syh_level/syh_total);
                     update_c_value ();
@@ -405,21 +469,25 @@ namespace Reganam {
                 }
             });
 
-            grid.attach (header, 0, 0, 5, 1);
-            grid.attach (sep, 0, 1, 5, 1);
+            grid.attach (header, 0, 0, 6, 1);
+            grid.attach (sep, 0, 1, 6, 1);
             grid.attach (lab_label, 0, 2, 1, 1);
             grid.attach (lpm, 1, 2, 3, 1);
             grid.attach (button_l, 4, 2, 1, 1);
+            grid.attach (help_l, 5, 2, 1, 1);
             grid.attach (sep2, 0, 4, 5, 1);
             grid.attach (sym_label, 0, 5, 1, 1);
             grid.attach (sympm, 1, 5, 3, 1);
             grid.attach (button_sym, 4, 5, 1, 1);
+            grid.attach (help_sym, 5, 5, 1, 1);
             grid.attach (syc_label, 0, 6, 1, 1);
             grid.attach (sycpm, 1, 6, 3, 1);
             grid.attach (button_syc, 4, 6, 1, 1);
+            grid.attach (help_syc, 5, 6, 1, 1);
             grid.attach (syh_label, 0, 7, 1, 1);
             grid.attach (syhpm, 1, 7, 3, 1);
             grid.attach (button_syh, 4, 7, 1, 1);
+            grid.attach (help_syh, 5, 7, 1, 1);
 
             return grid;
         }
