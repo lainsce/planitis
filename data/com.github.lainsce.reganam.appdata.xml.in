@@ -52,7 +52,15 @@
         <content_attribute id="money-gambling">none</content_attribute>
     </content_rating>
     <releases>
-        <release version="1.0.0" date="2019-05-31">
+        <release version="1.0.2" date="2019-05-31">
+            <description>
+                <p>Release: Day 1 Patch</p>
+                <ul>
+                    <li>Some last minute fixes.</li>
+                </ul>
+            </description>
+        </release>
+        <release version="1.0.1" date="2019-05-31">
             <description>
                 <p>Release: Day 1 Patch</p>
                 <ul>

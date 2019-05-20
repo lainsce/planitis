@@ -201,7 +201,7 @@ namespace Reganam {
                     update_m_value ();
                     update_c_value ();
                     update_base_values ();
-                    help_pm.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c));
+                    help_pm.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c)));
                 }
             });
 
@@ -215,7 +215,7 @@ namespace Reganam {
                     update_m_value ();
                     update_c_value ();
                     update_base_values ();
-                    help_pc.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c));
+                    help_pc.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c)));
                 }
             });
 
@@ -229,7 +229,7 @@ namespace Reganam {
                     update_m_value ();
                     update_c_value ();
                     update_base_values ();
-                    help_ph.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c));
+                    help_ph.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c)));
                 }
             });
 
@@ -286,7 +286,7 @@ namespace Reganam {
                     stmpm.set_fraction (stm_level/stm_total);
                     update_m_value ();
                     update_base_values ();
-                    help_sm.tooltip_text = _("""To build the next level, %.0f of Mineral is needed""".printf(ps_m));
+                    help_sm.set_tooltip_text (_("""To build the next level, %.0f of Mineral is needed""".printf(ps_m)));
                 }
             });
 
@@ -299,7 +299,7 @@ namespace Reganam {
                     stcpm.set_fraction (stc_level/stc_total);
                     update_c_value ();
                     update_base_values ();
-                    help_sc.tooltip_text = _("""To build the next level, %.0f of Crystal is needed""".printf(ps_c));
+                    help_sc.set_tooltip_text (_("""To build the next level, %.0f of Crystal is needed""".printf(ps_c)));
                 }
             });
 
@@ -312,7 +312,7 @@ namespace Reganam {
                     sthpm.set_fraction (sth_level/sth_total);
                     update_h_value ();
                     update_base_values ();
-                    help_sh.tooltip_text = _("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h));
+                    help_sh.set_tooltip_text (_("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h)));
                 }
             });
 
@@ -391,7 +391,7 @@ namespace Reganam {
                     update_c_value ();
                     update_h_value ();
                     update_base_values ();
-                    help_l.tooltip_text = _("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(l_m, l_c, l_h));
+                    help_l.set_tooltip_text (_("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(l_m, l_c, l_h)));
                 }
             });
 
@@ -407,7 +407,7 @@ namespace Reganam {
             var help_sym = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sym.halign = Gtk.Align.START;
             help_sym.hexpand = true;
-            help_sym.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(l_c, s_h));
+            help_sym.tooltip_text = (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(l_c, s_h)));
 
             button_sym.clicked.connect (() => {
                 if (c_res >= (200 * (l_level + 1)) && h_res >= (200 * (l_level + 1)) && l_level >= 1 ) {
@@ -419,7 +419,7 @@ namespace Reganam {
                     update_c_value ();
                     update_h_value ();
                     update_base_values ();
-                    help_sym.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(l_c, s_h));
+                    help_sym.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(l_c, s_h)));
                 }
             });
 
@@ -447,7 +447,7 @@ namespace Reganam {
                     update_c_value ();
                     update_h_value ();
                     update_base_values ();
-                    help_syc.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(l_c, s_h));
+                    help_syc.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(l_c, s_h)));
                 }
             });
 
@@ -475,7 +475,7 @@ namespace Reganam {
                     update_c_value ();
                     update_h_value ();
                     update_base_values ();
-                    help_syh.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(l_c, s_h));
+                    help_syh.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(l_c, s_h)));
                 }
             });
 
