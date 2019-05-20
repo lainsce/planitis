@@ -263,7 +263,7 @@ namespace Reganam {
 
             button_sth.clicked.connect (() => {
                 if (h_res >= (100 * (h_mine_level + 1))) {
-                    stm_level += 1;
+                    sth_level += 1;
                     h_total = (h_total * sth_level);
                     h_res -= (100 * (h_mine_level + 1));
                     sthpm.set_text ("""%.0f/%.0f""".printf(sth_level, sth_total));
