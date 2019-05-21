@@ -50,6 +50,18 @@ namespace Reganam {
         public double syh_level;
         public double syh_total = 12.0;
         public double diameter;
+        public double pm_m;
+        public double pm_c;
+        public double pc_m;
+        public double pc_c;
+        public double ps_m;
+        public double ps_c;
+        public double ps_h;
+        public double l_m;
+        public double l_c;
+        public double l_h;
+        public double s_c;
+        public double s_h;
         public string planet_name = "";
         public string planet_type = "";
         public string planet_atm = "";
@@ -57,6 +69,16 @@ namespace Reganam {
         public Gtk.ProgressBar mpb;
         public Gtk.ProgressBar cpb;
         public Gtk.ProgressBar hpb;
+        public Gtk.Image help_pm;
+        public Gtk.Image help_pc;
+        public Gtk.Image help_ph;
+        public Gtk.Image help_sm;
+        public Gtk.Image help_sc;
+        public Gtk.Image help_sh;
+        public Gtk.Image help_l;
+        public Gtk.Image help_sym;
+        public Gtk.Image help_syc;
+        public Gtk.Image help_syh;
         public MainWindow (Gtk.Application app) {
             GLib.Object (
                          application: app,
@@ -168,25 +190,20 @@ namespace Reganam {
             hpm.set_show_text (true);
             hpm.set_text ("""%.0f/%.0f""".printf(h_mine_level, h_total_mine));
 
-            double pm_m = ((50 * (m_mine_level + 1)));
-            double pm_c = ((20 * (c_mine_level + 1)));
-            double pc_m = ((20 * (m_mine_level + 1)));
-            double pc_c = ((50 * (c_mine_level + 1)));
-
             var button_m = new Gtk.Button.with_label (_("Build!"));
-            var help_pm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_pm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_pm.halign = Gtk.Align.START;
             help_pm.hexpand = true;
             help_pm.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c));
 
             var button_c = new Gtk.Button.with_label (_("Build!"));
-            var help_pc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_pc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_pc.halign = Gtk.Align.START;
             help_pc.hexpand = true;
             help_pc.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c));
 
             var button_h = new Gtk.Button.with_label (_("Build!"));
-            var help_ph = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_ph = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_ph.halign = Gtk.Align.START;
             help_ph.hexpand = true;
             help_ph.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c));
@@ -255,24 +272,20 @@ namespace Reganam {
             sthpm.set_show_text (true);
             sthpm.set_text ("""%.0f/%.0f""".printf(sth_level, sth_total));
 
-            double ps_m = ((100 * (m_mine_level + 1)));
-            double ps_c = ((100 * (c_mine_level + 1)));
-            double ps_h = ((100 * (h_mine_level + 1)));
-
             var button_stm = new Gtk.Button.with_label (_("Build!"));
-            var help_sm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_sm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sm.halign = Gtk.Align.START;
             help_sm.hexpand = true;
             help_sm.tooltip_text = _("""To build the next level, %.0f of Mineral is needed""".printf(ps_m));
 
             var button_stc = new Gtk.Button.with_label (_("Build!"));
-            var help_sc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_sc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sc.halign = Gtk.Align.START;
             help_sc.hexpand = true;
             help_sc.tooltip_text = _("""To build the next level, %.0f of Crystal is needed""".printf(ps_c));
 
             var button_sth = new Gtk.Button.with_label (_("Build!"));
-            var help_sh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_sh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sh.halign = Gtk.Align.START;
             help_sh.hexpand = true;
             help_sh.tooltip_text = _("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h));
@@ -368,13 +381,8 @@ namespace Reganam {
             lpm.set_show_text (true);
             lpm.set_text ("""%.0f/%.0f""".printf(l_res, l_total));
 
-            double l_m = ((200 * (l_level + 1)));
-            double l_c = ((200 * (l_level + 1)));
-            double l_h = ((100 * (l_level + 1)));
-            double s_h = ((200 * (l_level + 1)));
-
             var button_l = new Gtk.Button.with_label (_("Build!"));
-            var help_l = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_l = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_l.halign = Gtk.Align.START;
             help_l.hexpand = true;
             help_l.tooltip_text = _("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(l_m, l_c, l_h));
@@ -404,7 +412,7 @@ namespace Reganam {
             sympm.set_text ("""%.0f/%.0f""".printf(sym_res, sym_total));
 
             var button_sym = new Gtk.Button.with_label (_("Research!"));
-            var help_sym = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_sym = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sym.halign = Gtk.Align.START;
             help_sym.hexpand = true;
             help_sym.tooltip_text = (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(l_c, s_h)));
@@ -432,7 +440,7 @@ namespace Reganam {
             sycpm.set_text ("""%.0f/%.0f""".printf(syc_res, syc_total));
 
             var button_syc = new Gtk.Button.with_label (_("Research!"));
-            var help_syc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_syc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_syc.halign = Gtk.Align.START;
             help_syc.hexpand = true;
             help_syc.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(l_c, s_h));
@@ -460,7 +468,7 @@ namespace Reganam {
             syhpm.set_text ("""%.0f/%.0f""".printf(syh_res, syh_total));
 
             var button_syh = new Gtk.Button.with_label (_("Research!"));
-            var help_syh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_syh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_syh.halign = Gtk.Align.START;
             help_syh.hexpand = true;
             help_syh.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(l_c, s_h));
@@ -523,6 +531,9 @@ namespace Reganam {
                     m_res = 100.0;
                     c_res = 100.0;
                     h_res = 0.0;
+                    m_total = 1000.0;
+                    c_total = 1000.0;
+                    h_total = 1000.0;
                     m_mine_level = 0.0;
                     c_mine_level = 0.0;
                     h_mine_level = 0.0;
@@ -541,6 +552,9 @@ namespace Reganam {
                     m_res = settings.metal;
                     c_res = settings.crystal;
                     h_res = settings.hydrogen;
+                    m_total = (m_total * (settings.stm_level + 1));
+                    c_total = (c_total * (settings.stc_level + 1));
+                    h_total = (h_total * (settings.sth_level + 1));
                     m_mine_level = settings.metal_mine;
                     c_mine_level = settings.crystal_mine;
                     h_mine_level = settings.hydrogen_mine;
@@ -710,7 +724,9 @@ namespace Reganam {
                     if (h_mine_level > 0) {
                         h_res += ((syh_level + 1) * (1.10 * h_mine_level));
                         update_h_value ();
+                        update_help_tooltips ();
                     }
+                    update_help_tooltips ();
                 } else {
                     m_res += 1.55;
                     c_res += 1.25;
@@ -718,11 +734,37 @@ namespace Reganam {
                     update_m_value ();
                     update_c_value ();
                     update_h_value ();
+                    update_help_tooltips ();
                 }
                 return true;
             } else {
                 return false;
             }
+        }
+
+        public void update_help_tooltips () {
+            pm_m = ((50 * (this.m_mine_level + 1)));
+            pm_c = ((20 * (this.c_mine_level + 1)));
+            pc_m = ((20 * (this.m_mine_level + 1)));
+            pc_c = ((50 * (this.c_mine_level + 1)));
+            ps_m = ((100 * (this.m_mine_level + 1)));
+            ps_c = ((100 * (this.c_mine_level + 1)));
+            ps_h = ((100 * (this.h_mine_level + 1)));
+            l_m = ((200 * (this.l_level + 1)));
+            l_c = ((200 * (this.l_level + 1)));
+            l_h = ((100 * (this.l_level + 1)));
+            s_c = ((200 * (this.l_level + 1)));
+            s_h = ((200 * (this.l_level + 1)));
+            help_pm.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c)));
+            help_pc.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c)));
+            help_ph.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c)));
+            help_sm.set_tooltip_text (_("""To build the next level, %.0f of Mineral is needed""".printf(ps_m)));
+            help_sc.set_tooltip_text (_("""To build the next level, %.0f of Crystal is needed""".printf(ps_c)));
+            help_sh.set_tooltip_text (_("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h)));
+            help_l.set_tooltip_text (_("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(l_m, l_c, l_h)));
+            help_sym.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(s_c, s_h)));
+            help_syc.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(s_c, s_h)));
+            help_syh.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(s_c, s_h)));
         }
 
         public void update_m_value () {
