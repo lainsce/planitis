@@ -534,8 +534,8 @@ namespace Reganam {
                     m_total = 1000.0;
                     c_total = 1000.0;
                     h_total = 1000.0;
-                    m_mine_level = 0.0;
-                    c_mine_level = 0.0;
+                    m_mine_level = 1.0;
+                    c_mine_level = 1.0;
                     h_mine_level = 0.0;
                     stm_level = 0.0;
                     stc_level = 0.0;
@@ -569,6 +569,14 @@ namespace Reganam {
                     planet_type = settings.planet_type;
                     planet_atm = settings.planet_atm;
                     planet_diameter = settings.planet_diameter;
+                    
+                    // Fixes broken savegame
+                    if (m_mine_level < 1.0) {
+                        m_mine_level = 1.0;
+                    }
+                    if (c_mine_level < 1.0) {
+                        c_mine_level = 1.0;
+                    }
             }
 
              var provider = new Gtk.CssProvider ();
@@ -645,8 +653,9 @@ namespace Reganam {
 
              update_base_values ();
 
-             Timeout.add_seconds (10, () => {
+             Timeout.add_seconds (1, () => {
                 update_base_values ();
+                return true;
              });
         }
 
@@ -714,32 +723,15 @@ namespace Reganam {
 		    return builder.str;
         }
 
-        public bool update_base_values () {
-            if (m_res != m_total && c_res != c_total && h_res != h_total) {
-                if (m_mine_level > 0 || c_mine_level > 0) {
-                    m_res += ((sym_level + 1) * (1.55 * m_mine_level));
-                    c_res += ((syc_level + 1) * (1.25 * c_mine_level));
-                    update_m_value ();
-                    update_c_value ();
-                    if (h_mine_level > 0) {
-                        h_res += ((syh_level + 1) * (1.10 * h_mine_level));
-                        update_h_value ();
-                        update_help_tooltips ();
-                    }
-                    update_help_tooltips ();
-                } else {
-                    m_res += 1.55;
-                    c_res += 1.25;
-                    h_res += 0.00;
-                    update_m_value ();
-                    update_c_value ();
-                    update_h_value ();
-                    update_help_tooltips ();
-                }
-                return true;
-            } else {
-                return false;
-            }
+        public void update_base_values () {
+            stdout.printf("HERE\n");
+            m_res = (m_res + ((sym_level + 1) * (1.55 * m_mine_level))).clamp(0, m_total);
+            c_res = (c_res + ((syc_level + 1) * (1.25 * c_mine_level))).clamp(0, c_total);
+            h_res = (h_res + ((syh_level + 1) * (1.10 * h_mine_level))).clamp(0, h_total);
+            update_m_value ();
+            update_c_value ();
+            update_h_value ();
+            update_help_tooltips ();
         }
 
         public void update_help_tooltips () {
