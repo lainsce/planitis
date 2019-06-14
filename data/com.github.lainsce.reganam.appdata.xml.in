@@ -52,6 +52,14 @@
         <content_attribute id="money-gambling">none</content_attribute>
     </content_rating>
     <releases>
+        <release version="1.0.3" date="2019-06-15">
+            <description>
+                <p>Release: Fix and Smash Bugs</p>
+                <ul>
+                    <li>Fix: There was some game locking bugs happening that would make the game unplayable. (fixed by Kai Gillmann [&at;Silberling on GitHub]</li>
+                </ul>
+            </description>
+        </release>
         <release version="1.0.2" date="2019-05-31">
             <description>
                 <p>Release: Day 1 Patch</p>

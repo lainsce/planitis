@@ -569,7 +569,7 @@ namespace Reganam {
                     planet_type = settings.planet_type;
                     planet_atm = settings.planet_atm;
                     planet_diameter = settings.planet_diameter;
-                    
+
                     // Fixes broken savegame
                     if (m_mine_level < 1.0) {
                         m_mine_level = 1.0;
@@ -653,7 +653,7 @@ namespace Reganam {
 
              update_base_values ();
 
-             Timeout.add_seconds (1, () => {
+             Timeout.add_seconds (10, () => {
                 update_base_values ();
                 return true;
              });
@@ -724,7 +724,6 @@ namespace Reganam {
         }
 
         public void update_base_values () {
-            stdout.printf("HERE\n");
             m_res = (m_res + ((sym_level + 1) * (1.55 * m_mine_level))).clamp(0, m_total);
             c_res = (c_res + ((syc_level + 1) * (1.25 * c_mine_level))).clamp(0, c_total);
             h_res = (h_res + ((syh_level + 1) * (1.10 * h_mine_level))).clamp(0, h_total);
