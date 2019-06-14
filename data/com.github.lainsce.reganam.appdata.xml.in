@@ -56,7 +56,7 @@
             <description>
                 <p>Release: Fix and Smash Bugs</p>
                 <ul>
-                    <li>Fix: There was some game locking bugs happening that would make the game unplayable. (fixed by Kai Gillmann [&at;Silberling on GitHub]</li>
+                    <li>Fix: There was some game locking bugs happening that would make the game unplayable. (fixed by Kai Gillmann [Silberling on GitHub]</li>
                 </ul>
             </description>
         </release>
