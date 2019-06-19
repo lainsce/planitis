@@ -22,10 +22,6 @@ namespace Reganam {
         public double m_res;
         public double c_res;
         public double h_res;
-        public double l_res;
-        public double sym_res;
-        public double syc_res;
-        public double syh_res;
         public double m_total = 1000.0;
         public double c_total = 1000.0;
         public double h_total = 1000.0;
@@ -377,9 +373,9 @@ namespace Reganam {
 
             var lpm = new Gtk.ProgressBar ();
             lpm.hexpand = true;
-            lpm.fraction = l_res/l_total;
+            lpm.fraction = l_level/l_total;
             lpm.set_show_text (true);
-            lpm.set_text ("""%.0f/%.0f""".printf(l_res, l_total));
+            lpm.set_text ("""%.0f/%.0f""".printf(l_level, l_total));
 
             var button_l = new Gtk.Button.with_label (_("Build!"));
             help_l = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
@@ -407,9 +403,9 @@ namespace Reganam {
 
             var sympm = new Gtk.ProgressBar ();
             sympm.hexpand = true;
-            sympm.fraction = sym_res/sym_total;
+            sympm.fraction = sym_level/sym_total;
             sympm.set_show_text (true);
-            sympm.set_text ("""%.0f/%.0f""".printf(sym_res, sym_total));
+            sympm.set_text ("""%.0f/%.0f""".printf(sym_level, sym_total));
 
             var button_sym = new Gtk.Button.with_label (_("Research!"));
             help_sym = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
@@ -435,9 +431,9 @@ namespace Reganam {
 
             var sycpm = new Gtk.ProgressBar ();
             sycpm.hexpand = true;
-            sycpm.fraction = syc_res/syc_total;
+            sycpm.fraction = syc_level/syc_total;
             sycpm.set_show_text (true);
-            sycpm.set_text ("""%.0f/%.0f""".printf(syc_res, syc_total));
+            sycpm.set_text ("""%.0f/%.0f""".printf(syc_level, syc_total));
 
             var button_syc = new Gtk.Button.with_label (_("Research!"));
             help_syc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
@@ -463,9 +459,9 @@ namespace Reganam {
 
             var syhpm = new Gtk.ProgressBar ();
             syhpm.hexpand = true;
-            syhpm.fraction = syh_res/syh_total;
+            syhpm.fraction = syh_level/syh_total;
             syhpm.set_show_text (true);
-            syhpm.set_text ("""%.0f/%.0f""".printf(syh_res, syh_total));
+            syhpm.set_text ("""%.0f/%.0f""".printf(syh_level, syh_total));
 
             var button_syh = new Gtk.Button.with_label (_("Research!"));
             help_syh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);

@@ -6,7 +6,7 @@
     <name>Reganam</name>
     <summary>Resource Management game set in space</summary>
     <description>
-        <p>Build up your planet's buildings and grow yourself a ecumenopolis of native aliens.</p>
+        <p>Build up your planet's buildings and grow yourself a ecumenopolis of native aliens. Get mines of minerals, crystals and even hydrogen to build more structures and synthesizers.</p>
         <ul>
             <li>Quit anytime with the shortcut Ctrl + Q</li>
         </ul>
@@ -52,6 +52,14 @@
         <content_attribute id="money-gambling">none</content_attribute>
     </content_rating>
     <releases>
+        <release version="1.0.4" date="2019-06-21">
+            <description>
+                <p>Release: Reserch Labs Operational</p>
+                <ul>
+                    <li>Fix: The research lab levels are now reported.</li>
+                </ul>
+            </description>
+        </release>
         <release version="1.0.3" date="2019-06-15">
             <description>
                 <p>Release: Fix and Smash Bugs</p>
