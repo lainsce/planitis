@@ -1,109 +1,109 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# French translations for com.github.lainsce.reganam package.
+# Copyright (C) 2019 THE com.github.lainsce.reganam'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.lainsce.reganam package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# NathanBnm, 2019.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.reganam\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-19 17:39+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2019-06-19 17:39+0200\n"
+"Last-Translator: NathanBnm\n"
+"Language-Team: none\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src/MainWindow.vala:101
 msgid "Type:"
-msgstr ""
+msgstr "Type :"
 
 #: src/MainWindow.vala:105
 msgid "Atmosphere:"
-msgstr ""
+msgstr "Atmosphère :"
 
 #: src/MainWindow.vala:109
 msgid "Diameter:"
-msgstr ""
+msgstr "Diamètre :"
 
 #: src/MainWindow.vala:113
 msgid "Mineral:"
-msgstr ""
+msgstr "Minerai :"
 
 #: src/MainWindow.vala:114
 msgid "Crystal:"
-msgstr ""
+msgstr "Cristal :"
 
 #: src/MainWindow.vala:115
 msgid "Hydrogen:"
-msgstr ""
+msgstr "Hydrogène :"
 
 #: src/MainWindow.vala:166
 msgid "Mines & Storage"
-msgstr ""
+msgstr "Mines et Stockage"
 
 #: src/MainWindow.vala:167
 msgid "Mineral Mine:"
-msgstr ""
+msgstr "Mine de Minerai :"
 
 #: src/MainWindow.vala:168
 msgid "Crystal Mine:"
-msgstr ""
+msgstr "Mine de Cristal :"
 
 #: src/MainWindow.vala:169
 msgid "Hydrogen Mine:"
-msgstr ""
+msgstr "Mine d'Hydrogène :"
 
 #: src/MainWindow.vala:189 src/MainWindow.vala:195 src/MainWindow.vala:201
 #: src/MainWindow.vala:271 src/MainWindow.vala:277 src/MainWindow.vala:283
 #: src/MainWindow.vala:380
 msgid "Build!"
-msgstr ""
+msgstr "Construire !"
 
 #: src/MainWindow.vala:193 src/MainWindow.vala:199 src/MainWindow.vala:205
 #: src/MainWindow.vala:217 src/MainWindow.vala:231 src/MainWindow.vala:245
 #: src/MainWindow.vala:745 src/MainWindow.vala:746 src/MainWindow.vala:747
 #, c-format
 msgid "To build the next level, %.0f of Mineral and %.0f of Crystal is needed"
-msgstr ""
+msgstr "Pour atteindre le niveau suivant, %.0f de Minerai et %.0f de Cristal sont nécessaires"
 
 #: src/MainWindow.vala:249
 msgid "Mineral Storage:"
-msgstr ""
+msgstr "Stockage de Minerai :"
 
 #: src/MainWindow.vala:250
 msgid "Crystal Storage:"
-msgstr ""
+msgstr "Stockage de Cristal :"
 
 #: src/MainWindow.vala:251
 msgid "Hydrogen Storage:"
-msgstr ""
+msgstr "Stockage d'Hydrogène :"
 
 #: src/MainWindow.vala:275 src/MainWindow.vala:298 src/MainWindow.vala:748
 #, c-format
 msgid "To build the next level, %.0f of Mineral is needed"
-msgstr ""
+msgstr "Pour atteindre le niveau suivant, %.0f de Minerai sont nécessaires"
 
 #: src/MainWindow.vala:281 src/MainWindow.vala:311 src/MainWindow.vala:749
 #, c-format
 msgid "To build the next level, %.0f of Crystal is needed"
-msgstr ""
+msgstr "Pour atteindre le niveau suivant, %.0f de Cristal sont nécessaires"
 
 #: src/MainWindow.vala:287 src/MainWindow.vala:324 src/MainWindow.vala:750
 #, c-format
 msgid "To build the next level, %.0f of Hydrogen is needed"
-msgstr ""
+msgstr "Pour atteindre le niveau suivant, %.0f d'Hydrogène sont nécessaires"
 
 #: src/MainWindow.vala:371
 msgid "Research Lab & Technologies"
-msgstr ""
+msgstr "Laboratoire de recherche et Technologies"
 
 #: src/MainWindow.vala:372
 msgid "Research Lab:"
-msgstr ""
+msgstr "Laboratoire de Recherche :"
 
 #: src/MainWindow.vala:384 src/MainWindow.vala:398 src/MainWindow.vala:751
 #, c-format
@@ -111,14 +111,15 @@ msgid ""
 "To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of "
 "Hydrogen is needed"
 msgstr ""
+"Pour atteindre le niveau suivant, %.0f de Minerai, %.0f de Cristal et %.0f d'Hydrogène sont nécessaires"
 
 #: src/MainWindow.vala:402
 msgid "Synthesizer of Minerals:"
-msgstr ""
+msgstr "Synthétiseur de Minerais :"
 
 #: src/MainWindow.vala:410 src/MainWindow.vala:438 src/MainWindow.vala:466
 msgid "Research!"
-msgstr ""
+msgstr "Rechercher !"
 
 #: src/MainWindow.vala:414 src/MainWindow.vala:426 src/MainWindow.vala:752
 #, c-format
@@ -126,10 +127,11 @@ msgid ""
 "To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research "
 "Lab level of 1 is needed"
 msgstr ""
+"Pour atteindre le niveau suivant, %.0f de Cristal, %.0f d'Hydrogène et un Laboratoire de Recherche de niveau 1 sont nécessaires"
 
 #: src/MainWindow.vala:430
 msgid "Synthesizer of Crystals:"
-msgstr ""
+msgstr "Synthétiseur de Cristaux :"
 
 #: src/MainWindow.vala:442 src/MainWindow.vala:454 src/MainWindow.vala:753
 #, c-format
@@ -137,10 +139,11 @@ msgid ""
 "To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research "
 "Lab level of 2 is needed"
 msgstr ""
+"Pour atteindre le niveau suivant, %.0f de Cristal, %.0f d'Hydrogène et un Laboratoire de Recherche de niveau 2 sont nécessaires"
 
 #: src/MainWindow.vala:458
 msgid "Synthesizer of Hydrogen:"
-msgstr ""
+msgstr "Synthétiseur d'Hydrogène :"
 
 #: src/MainWindow.vala:470 src/MainWindow.vala:482 src/MainWindow.vala:754
 #, c-format
@@ -148,15 +151,16 @@ msgid ""
 "To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research "
 "Lab level of 3 is needed"
 msgstr ""
+"Pour atteindre le niveau suivant, %.0f de Cristal, %.0f d'Hydrogène et un Laboratoire de Recherche de niveau 3 sont nécessaires"
 
 #: src/MainWindow.vala:637
 msgid "Info"
-msgstr ""
+msgstr "Information"
 
 #: src/MainWindow.vala:638
 msgid "Mines"
-msgstr ""
+msgstr "Mines"
 
 #: src/MainWindow.vala:639
 msgid "Research"
-msgstr ""
+msgstr "Recherche"
