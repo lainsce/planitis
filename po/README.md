@@ -1,8 +1,8 @@
-# How to Translate Notejot
+# How to Translate Reganam
 
 ## First Things First
 
-* Clone this repository by opening the terminal in a folder of your choice and typing ```git clone https://github.com/lainsce/notejot```
+* Clone this repository by opening the terminal in a folder of your choice and typing ```git clone https://github.com/lainsce/reganam```
 
 ## Basics
 
@@ -17,4 +17,4 @@
 * Then, type ```git add *```
 * Finally, ```git commit -m "Translated your app for <Language Name>" && git push```, follow the instructions in the terminal if need be, then type your github username and password.
 
-And that's it! You've successfully translated Notejot for your language!
+And that's it! You've successfully translated Reganam for your language!
