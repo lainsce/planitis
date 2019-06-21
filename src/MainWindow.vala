@@ -22,15 +22,19 @@ namespace Reganam {
         public double m_res;
         public double c_res;
         public double h_res;
+        public double ph_res;
         public double m_total = 1000.0;
         public double c_total = 1000.0;
         public double h_total = 1000.0;
+        public double pp_total = 10000000000.0;
         public double m_mine_level;
         public double m_total_mine = 100.0;
         public double c_mine_level;
         public double c_total_mine = 100.0;
         public double h_mine_level;
         public double h_total_mine = 100.0;
+        public double ph_level;
+        public double ph_total = 1000.0;
         public double stm_level;
         public double stm_total = 10.0;
         public double stc_level;
@@ -53,6 +57,8 @@ namespace Reganam {
         public double ps_m;
         public double ps_c;
         public double ps_h;
+        public double ph_c;
+        public double ph_h;
         public double l_m;
         public double l_c;
         public double l_h;
@@ -68,6 +74,7 @@ namespace Reganam {
         public Gtk.Image help_pm;
         public Gtk.Image help_pc;
         public Gtk.Image help_ph;
+        public Gtk.Image help_phh;
         public Gtk.Image help_sm;
         public Gtk.Image help_sc;
         public Gtk.Image help_sh;
@@ -75,11 +82,23 @@ namespace Reganam {
         public Gtk.Image help_sym;
         public Gtk.Image help_syc;
         public Gtk.Image help_syh;
+        public Gtk.Button button_m;
+        public Gtk.Button button_c;
+        public Gtk.Button button_h;
+        public Gtk.Button button_ph;
+        public Gtk.Button button_stm;
+        public Gtk.Button button_stc;
+        public Gtk.Button button_sth;
+        public Gtk.Button button_l;
+        public Gtk.Button button_sym;
+        public Gtk.Button button_syc;
+        public Gtk.Button button_syh;
+        public Gtk.Label population_desc;
         public MainWindow (Gtk.Application app) {
             GLib.Object (
                          application: app,
                          icon_name: "com.github.lainsce.reganam",
-                         height_request: 600,
+                         height_request: 650,
                          width_request: 800,
                          title: "Reganam"
             );
@@ -110,6 +129,10 @@ namespace Reganam {
             var size_diameter_desc = new Gtk.Label ("");
             size_diameter_desc.label = planet_diameter;
             size_diameter_desc.halign = Gtk.Align.START;
+            var population = new Label (_("Population:"));
+            population_desc = new Gtk.Label ("");
+            population_desc.label = "%0.f".printf(ph_res);
+            population_desc.halign = Gtk.Align.START;
             var mineral_label = new Label (_("Mineral:"));
             var crystal_label = new Label (_("Crystal:"));
             var h_label = new Label (_("Hydrogen:"));
@@ -140,18 +163,20 @@ namespace Reganam {
             grid.attach (type_of_atm_desc, 1, 3, 1, 1);
             grid.attach (size_diameter, 0, 4, 1, 1);
             grid.attach (size_diameter_desc, 1, 4, 1, 1);
-            grid.attach (sep2, 0, 5, 5, 1);
-            grid.attach (mineral_label, 0, 6, 1, 1);
-            grid.attach (mpb, 1, 6, 4, 1);
-            grid.attach (crystal_label, 0, 7, 1, 1);
-            grid.attach (cpb, 1, 7, 4, 1);
-            grid.attach (h_label, 0, 8, 1, 1);
-            grid.attach (hpb, 1, 8, 4, 1);
+            grid.attach (population, 0, 5, 1, 1);
+            grid.attach (population_desc, 1, 5, 1, 1);
+            grid.attach (sep2, 0, 6, 5, 1);
+            grid.attach (mineral_label, 0, 7, 1, 1);
+            grid.attach (mpb, 1, 7, 4, 1);
+            grid.attach (crystal_label, 0, 8, 1, 1);
+            grid.attach (cpb, 1, 8, 4, 1);
+            grid.attach (h_label, 0, 9, 1, 1);
+            grid.attach (hpb, 1, 9, 4, 1);
 
             return grid;
         }
 
-        private Gtk.Widget get_mine_grid () {
+        private Gtk.Widget get_building_grid () {
             var grid = new Gtk.Grid ();
             grid.expand = true;
             grid.row_spacing = 6;
@@ -162,8 +187,11 @@ namespace Reganam {
             var sep2 = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
             sep2.margin_top = 12;
             sep2.margin_bottom = 12;
+            var sep3 = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
+            sep3.margin_top = 12;
+            sep3.margin_bottom = 12;
 
-            var header = new Granite.HeaderLabel (_("Mines & Storage"));
+            var header = new Granite.HeaderLabel (_("Buildings"));
             var mineral_label = new Label (_("Mineral Mine:"));
             var crystal_label = new Label (_("Crystal Mine:"));
             var h_label = new Label (_("Hydrogen Mine:"));
@@ -186,19 +214,22 @@ namespace Reganam {
             hpm.set_show_text (true);
             hpm.set_text ("""%.0f/%.0f""".printf(h_mine_level, h_total_mine));
 
-            var button_m = new Gtk.Button.with_label (_("Build!"));
+            button_m = new Gtk.Button.with_label (_("Build!"));
+            button_m.sensitive = false;
             help_pm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_pm.halign = Gtk.Align.START;
             help_pm.hexpand = true;
             help_pm.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c));
 
-            var button_c = new Gtk.Button.with_label (_("Build!"));
+            button_c = new Gtk.Button.with_label (_("Build!"));
+            button_c.sensitive = false;
             help_pc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_pc.halign = Gtk.Align.START;
             help_pc.hexpand = true;
             help_pc.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c));
 
-            var button_h = new Gtk.Button.with_label (_("Build!"));
+            button_h = new Gtk.Button.with_label (_("Build!"));
+            button_h.sensitive = false;
             help_ph = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_ph.halign = Gtk.Align.START;
             help_ph.hexpand = true;
@@ -268,19 +299,22 @@ namespace Reganam {
             sthpm.set_show_text (true);
             sthpm.set_text ("""%.0f/%.0f""".printf(sth_level, sth_total));
 
-            var button_stm = new Gtk.Button.with_label (_("Build!"));
+            button_stm = new Gtk.Button.with_label (_("Build!"));
+            button_stm.sensitive = false;
             help_sm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sm.halign = Gtk.Align.START;
             help_sm.hexpand = true;
             help_sm.tooltip_text = _("""To build the next level, %.0f of Mineral is needed""".printf(ps_m));
 
-            var button_stc = new Gtk.Button.with_label (_("Build!"));
+            button_stc = new Gtk.Button.with_label (_("Build!"));
+            button_stc.sensitive = false;
             help_sc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sc.halign = Gtk.Align.START;
             help_sc.hexpand = true;
             help_sc.tooltip_text = _("""To build the next level, %.0f of Crystal is needed""".printf(ps_c));
 
-            var button_sth = new Gtk.Button.with_label (_("Build!"));
+            button_sth = new Gtk.Button.with_label (_("Build!"));
+            button_sth.sensitive = false;
             help_sh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sh.halign = Gtk.Align.START;
             help_sh.hexpand = true;
@@ -325,6 +359,36 @@ namespace Reganam {
                 }
             });
 
+            var ph_label = new Label (_("Population Housing:"));
+
+            var phpm = new Gtk.ProgressBar ();
+            phpm.hexpand = true;
+            phpm.fraction = ph_level/ph_total;
+            phpm.set_show_text (true);
+            phpm.set_text ("""%.0f/%.0f""".printf(ph_level, ph_total));
+
+            button_ph = new Gtk.Button.with_label (_("Build!"));
+            button_ph.sensitive = false;
+            help_phh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
+            help_phh.halign = Gtk.Align.START;
+            help_phh.hexpand = true;
+            help_phh.tooltip_text = _("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h));
+
+            button_ph.clicked.connect (() => {
+                if (c_res >= (10 * (c_mine_level + 1)) && m_res >= (10 * (m_mine_level + 1))) {
+                    ph_level += 1;
+                    ph_res += (10 * (ph_level + 1));
+                    m_res -= (10 * (m_mine_level + 1));
+                    c_res -= (10 * (m_mine_level + 1));
+                    population_desc.label = "%0.f".printf(ph_res);
+                    phpm.set_text ("""%.0f/%.0f""".printf(ph_level, ph_total));
+                    phpm.set_fraction (ph_level/ph_total);
+                    update_h_value ();
+                    update_base_values ();
+                    help_phh.set_tooltip_text (_("""To build the next level, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(ph_c, ph_h)));
+                }
+            });
+
             grid.attach (header, 0, 0, 6, 1);
             grid.attach (sep, 0, 1, 6, 1);
             grid.attach (mineral_label, 0, 2, 1, 1);
@@ -352,6 +416,11 @@ namespace Reganam {
             grid.attach (sthpm, 1, 8, 3, 1);
             grid.attach (button_sth, 4, 8, 1, 1);
             grid.attach (help_sh, 5, 8, 1, 1);
+            grid.attach (sep3, 0, 9, 6, 1);
+            grid.attach (ph_label, 0, 10, 1, 1);
+            grid.attach (phpm, 1, 10, 3, 1);
+            grid.attach (button_ph, 4, 10, 1, 1);
+            grid.attach (help_phh, 5, 10, 1, 1);
 
             return grid;
         }
@@ -377,7 +446,8 @@ namespace Reganam {
             lpm.set_show_text (true);
             lpm.set_text ("""%.0f/%.0f""".printf(l_level, l_total));
 
-            var button_l = new Gtk.Button.with_label (_("Build!"));
+            button_l = new Gtk.Button.with_label (_("Build!"));
+            button_l.sensitive = false;
             help_l = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_l.halign = Gtk.Align.START;
             help_l.hexpand = true;
@@ -407,7 +477,8 @@ namespace Reganam {
             sympm.set_show_text (true);
             sympm.set_text ("""%.0f/%.0f""".printf(sym_level, sym_total));
 
-            var button_sym = new Gtk.Button.with_label (_("Research!"));
+            button_sym = new Gtk.Button.with_label (_("Research!"));
+            button_sym.sensitive = false;
             help_sym = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sym.halign = Gtk.Align.START;
             help_sym.hexpand = true;
@@ -435,7 +506,8 @@ namespace Reganam {
             sycpm.set_show_text (true);
             sycpm.set_text ("""%.0f/%.0f""".printf(syc_level, syc_total));
 
-            var button_syc = new Gtk.Button.with_label (_("Research!"));
+            button_syc = new Gtk.Button.with_label (_("Research!"));
+            button_syc.sensitive = false;
             help_syc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_syc.halign = Gtk.Align.START;
             help_syc.hexpand = true;
@@ -463,7 +535,8 @@ namespace Reganam {
             syhpm.set_show_text (true);
             syhpm.set_text ("""%.0f/%.0f""".printf(syh_level, syh_total));
 
-            var button_syh = new Gtk.Button.with_label (_("Research!"));
+            button_syh = new Gtk.Button.with_label (_("Research!"));
+            button_syh.sensitive = false;
             help_syh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_syh.halign = Gtk.Align.START;
             help_syh.hexpand = true;
@@ -521,12 +594,14 @@ namespace Reganam {
                 settings.sym_level == 0.0 &&
                 settings.syc_level == 0.0 &&
                 settings.syh_level == 0.0 &&
+                settings.ph_level == 1.0 &&
                 settings.planet_name == "" &&
                 settings.planet_type == "" &&
                 settings.planet_atm == "") {
                     m_res = 100.0;
                     c_res = 100.0;
                     h_res = 0.0;
+                    ph_res = 1000.0;
                     m_total = 1000.0;
                     c_total = 1000.0;
                     h_total = 1000.0;
@@ -537,6 +612,7 @@ namespace Reganam {
                     stc_level = 0.0;
                     sth_level = 0.0;
                     l_level = 0.0;
+                    ph_level = 1.0;
                     sym_level = 0.0;
                     syc_level = 0.0;
                     syh_level = 0.0;
@@ -548,6 +624,8 @@ namespace Reganam {
                     m_res = settings.metal;
                     c_res = settings.crystal;
                     h_res = settings.hydrogen;
+                    ph_res = settings.population;
+                    ph_level = settings.ph_level;
                     m_total = (m_total * (settings.stm_level + 1));
                     c_total = (c_total * (settings.stc_level + 1));
                     h_total = (h_total * (settings.sth_level + 1));
@@ -577,11 +655,12 @@ namespace Reganam {
 
              var provider = new Gtk.CssProvider ();
              Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+             string res = "\"resource:///com/github/lainsce/reganam/res/bg.png\"";
              string css = """
                  @define-color colorPrimary #111111;
                  @define-color textColorPrimary #FAFAFA;
                  window.background {
-                    background-image: url("resource:///com/github/lainsce/reganam/res/bg.png");
+                    background-image: url(%s);
                     background-repeat: repeat;
                     background-color: #111;
                  }
@@ -610,7 +689,7 @@ namespace Reganam {
                  	box-shadow: none;
                  	border: 1px solid #333;
                  }
-             """;
+             """.printf(res);
              try {
                 provider.load_from_data(css, -1);
              } catch (GLib.Error e) {
@@ -635,7 +714,7 @@ namespace Reganam {
              main_stackswitcher.margin_top = 0;
 
              main_stack.add_titled (get_info_grid (), "info", _("Info"));
-             main_stack.add_titled (get_mine_grid (), "mine", _("Mines"));
+             main_stack.add_titled (get_building_grid (), "mine", _("Buildings"));
              main_stack.add_titled (get_lab_grid (), "lab", _("Research"));
 
              var main_grid = new Gtk.Grid ();
@@ -666,20 +745,20 @@ namespace Reganam {
             return planet_name.get_char (0).toupper ().to_string () + planet_name.slice(1,planet_name.length);
         }
         string planet_type_gen () {
-            string[] types = { "Temperate Terrestrial", "Polarian Terrestrial", "Chthonian Terrestrial",
-                               "Temperate Gas Giant", "Polarian Gas Giant", "Chthonian Gas Giant",
-                               "Temperate Dwarf", "Polarian Dwarf", "Chthonian Dwarf",
-                               "Incognito" };
+            string[] types = { _("Temperate Terrestrial"), _("Polarian Terrestrial"), _("Chthonian Terrestrial"),
+                               _("Temperate Gas Giant"), _("Polarian Gas Giant"), _("Chthonian Gas Giant"),
+                               _("Temperate Dwarf"), _("Polarian Dwarf"), _("Chthonian Dwarf"),
+                               _("Incognito") };
             // Diameter values in these if statements generated based on NASA info
-            if (diameter > 1.0 && diameter < 196349.540849362) {
+            if (diameter > 1.0 && diameter < 196349.54) {
                 int random_index = Random.int_range(6,8);
                 string planet_type = types[random_index];
                 return planet_type;
-            } else if (diameter > 196349.540849362 && diameter < 3141592.65358979 ) {
+            } else if (diameter > 196349.54 && diameter < 3141592.65 ) {
                 int random_index = Random.int_range(0,2);
                 string planet_type = types[random_index];
                 return planet_type;
-            } else if (diameter > 3141592.65358979 && diameter < 6283185.307179586) {
+            } else if (diameter > 3141592.65 && diameter < 6283185.30) {
                 int random_index = Random.int_range(3,5);
                 string planet_type = types[random_index];
                 return planet_type;
@@ -689,18 +768,18 @@ namespace Reganam {
             }
         }
         string planet_atm_gen () {
-            string[] types = { "Nitrogenic", "Nitrogen & Oxygen", "Sulfuric",
-                               "Methane", "Beryllic", "Carbon Dioxide",
-                               "Argonic", "Helium", "Hydrogenic" };
-            int random_index = Random.int_range(0,8);
+            string[] types = { _("Nitrogenic"), _("Nitrogen & Oxygen"), "Sulfuric",
+                               _("Methane"), _("Beryllic"), _("Carbon Dioxide"),
+                               _("Argonic"), _("Helium"), _("Hydrogenic") };
+            int random_index = Random.int_range (0,8);
             string planet_atm = types[random_index];
 
             return planet_atm;
         }
         string planet_diameter_gen () {
-            int random_index = Random.int_range(1,1000);
-            diameter = (Math.PI * Math.pow(random_index, 2)) * 2;
-            string planet_diameter = """%.3f""".printf(diameter);
+            int random_index = Random.int_range (1,1000);
+            diameter = (Math.PI * Math.pow (random_index, 2)) * 2;
+            string planet_diameter = """%.3f""".printf (diameter);
             planet_diameter = insert_separators (planet_diameter) + " km";
 
             return planet_diameter;
@@ -709,11 +788,11 @@ namespace Reganam {
 		    unichar decimal_symbol = '.';
  		    unichar separator_symbol = ',';
 		    var builder = new StringBuilder (s);
-		    var decimalPos = s.last_index_of_char(decimal_symbol);
-		    if(decimalPos == -1){
+		    var decimalPos = s.last_index_of_char (decimal_symbol);
+		    if (decimalPos == -1){
 			    decimalPos = s.length;
 		    }
-		    for (int i = decimalPos - 3; i > 0; i-=3) {
+		    for (int i = decimalPos - 3; i > 0; i -= 3) {
 	    		builder.insert_unichar (i, separator_symbol);
            	}
 		    return builder.str;
@@ -727,6 +806,87 @@ namespace Reganam {
             update_c_value ();
             update_h_value ();
             update_help_tooltips ();
+            update_buttons ();
+        }
+
+        public void update_buttons () {
+            // Mineral Mine button
+            if (m_res >= (50 * (m_mine_level + 1)) && c_res >= (20 * (m_mine_level + 1)) && m_mine_level < m_total_mine) {
+                button_m.sensitive = true;
+            } else {
+                button_m.sensitive = false;
+            }
+
+            // Crystal Mine button
+            if (m_res >= (20 * (c_mine_level + 1)) && c_res >= (50 * (c_mine_level + 1)) && c_mine_level < c_total_mine) {
+                button_c.sensitive = true;
+            } else {
+                button_c.sensitive = false;
+            }
+
+            // Hydrogen Mine button
+            if (m_res >= (50 * (c_mine_level + 1)) && c_res >= (50 * (c_mine_level + 1)) && h_mine_level < h_total_mine) {
+                button_h.sensitive = true;
+            } else {
+                button_h.sensitive = false;
+            }
+
+            // Mineral Storage button
+            if (m_res >= (100 * (m_mine_level + 1)) && stm_level < stm_total) {
+                button_stm.sensitive = true;
+            } else {
+                button_stm.sensitive = false;
+            }
+
+            // Crystal Storage button
+            if (c_res >= (100 * (c_mine_level + 1)) && stc_level < stc_total) {
+                button_stc.sensitive = true;
+            } else {
+                button_stc.sensitive = false;
+            }
+
+            // Hydrogen Storage button
+            if (h_res >= (100 * (h_mine_level + 1)) && sth_level < sth_total) {
+                button_sth.sensitive = true;
+            } else {
+                button_sth.sensitive = false;
+            }
+
+            // Population Housing button
+            if (c_res >= (10 * (c_mine_level + 1)) && m_res >= (10 * (m_mine_level + 1)) && ph_level < ph_total) {
+                button_ph.sensitive = true;
+            } else {
+                button_ph.sensitive = false;
+            }
+
+            // Lab button
+            if (m_res >= (200 * (l_level + 1)) && c_res >= (200 * (l_level + 1)) && h_res >= (100 * (l_level + 1)) && l_level < l_total) {
+                button_l.sensitive = true;
+            } else {
+                button_l.sensitive = false;
+            }
+
+            // Mineral Synthesizer button
+            if (c_res >= (200 * (l_level + 1)) && h_res >= (200 * (l_level + 1)) && l_level >= 1 && sym_level < sym_total) {
+                button_sym.sensitive = true;
+            } else {
+                button_sym.sensitive = false;
+            }
+
+            // Crystal Synthesizer button
+            if (c_res >= (200 * (l_level + 1)) && h_res >= (200 * (l_level + 1)) && l_level >= 2 && syc_level < syc_total) {
+                button_sym.sensitive = true;
+            } else {
+                button_sym.sensitive = false;
+            }
+
+            // Hydrogen Synthesizer button
+            if (c_res >= (200 * (l_level + 1)) && h_res >= (200 * (l_level + 1)) && l_level >= 3 && syh_level < syh_total) {
+                button_sym.sensitive = true;
+            } else {
+                button_sym.sensitive = false;
+            }
+
         }
 
         public void update_help_tooltips () {
@@ -737,6 +897,8 @@ namespace Reganam {
             ps_m = ((100 * (this.m_mine_level + 1)));
             ps_c = ((100 * (this.c_mine_level + 1)));
             ps_h = ((100 * (this.h_mine_level + 1)));
+            ph_c = ((10 * (this.c_mine_level + 1)));
+            ph_h = ((10 * (this.h_mine_level + 1)));
             l_m = ((200 * (this.l_level + 1)));
             l_c = ((200 * (this.l_level + 1)));
             l_h = ((100 * (this.l_level + 1)));
@@ -745,6 +907,7 @@ namespace Reganam {
             help_pm.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c)));
             help_pc.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c)));
             help_ph.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c)));
+            help_phh.set_tooltip_text (_("""To build the next level, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(ph_c, ph_h)));
             help_sm.set_tooltip_text (_("""To build the next level, %.0f of Mineral is needed""".printf(ps_m)));
             help_sc.set_tooltip_text (_("""To build the next level, %.0f of Crystal is needed""".printf(ps_c)));
             help_sh.set_tooltip_text (_("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h)));
@@ -776,6 +939,8 @@ namespace Reganam {
             settings.metal = m_res;
             settings.crystal = c_res;
             settings.hydrogen = h_res;
+            settings.population = ph_res;
+            settings.ph_level = ph_level;
             settings.metal_mine = m_mine_level;
             settings.crystal_mine = c_mine_level;
             settings.hydrogen_mine = h_mine_level;

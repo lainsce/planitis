@@ -25,6 +25,11 @@
 			<summary>Amount of hydrogen</summary>
 			<description>Amount of hydrogen produced</description>
 		</key>
+		<key name="population" type="d">
+			<default>0.0</default>
+			<summary>Amount of inhabitants</summary>
+			<description>Amount of inhabitants living in planet</description>
+		</key>
 		<key name="metal-mine" type="d">
 			<default>0.0</default>
 			<summary>Level of metal mine</summary>
@@ -59,6 +64,11 @@
 			<default>0.0</default>
 			<summary>Level of lab</summary>
 			<description>The level of the session research lab</description>
+		</key>
+		<key name="ph-level" type="d">
+			<default>1.0</default>
+			<summary>Level of pop. housing</summary>
+			<description>The level of the session population housing</description>
 		</key>
 		<key name="sym-level" type="d">
 			<default>0.0</default>

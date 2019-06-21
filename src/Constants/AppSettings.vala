@@ -23,6 +23,7 @@ namespace Reganam {
         public double metal { get; set; }
         public double crystal { get; set; }
         public double hydrogen { get; set; }
+        public double population { get; set; }
         public double metal_mine { get; set; }
         public double crystal_mine { get; set; }
         public double hydrogen_mine { get; set; }
@@ -33,6 +34,7 @@ namespace Reganam {
         public double sym_level { get; set; }
         public double syc_level { get; set; }
         public double syh_level { get; set; }
+        public double ph_level { get; set; }
         public string planet_name { get; set; }
         public string planet_type { get; set; }
         public string planet_atm { get; set; }
