@@ -52,6 +52,16 @@
         <content_attribute id="money-gambling">none</content_attribute>
     </content_rating>
     <releases>
+        <release version="1.0.5" date="2019-06-22">
+            <description>
+                <p>Release: Welcome to the Planet</p>
+                <ul>
+                    <li>Add: People and Housing.</li>
+                    <li>Fix: When Max level is reached, build/research buttons are disabled.</li>
+                    <li>Fix: More text available to be translated.</li>
+                </ul>
+            </description>
+        </release>
         <release version="1.0.4" date="2019-06-21">
             <description>
                 <p>Release: Reserch Labs Operational</p>
