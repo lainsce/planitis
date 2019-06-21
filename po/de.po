@@ -1,0 +1,173 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.lainsce.reganam package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.lainsce.reganam\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-19 17:39+0200\n"
+"PO-Revision-Date: 2019-06-21 06:59+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Last-Translator: Malte Kiefer <malte.kiefer@kiefer-networks.de>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+
+#: src/MainWindow.vala:101
+msgid "Type:"
+msgstr "Typ:"
+
+#: src/MainWindow.vala:105
+msgid "Atmosphere:"
+msgstr "Atmosphäre:"
+
+#: src/MainWindow.vala:109
+msgid "Diameter:"
+msgstr "Durchmesser:"
+
+#: src/MainWindow.vala:113
+msgid "Mineral:"
+msgstr "Mineral:"
+
+#: src/MainWindow.vala:114
+msgid "Crystal:"
+msgstr "Kristall:"
+
+#: src/MainWindow.vala:115
+msgid "Hydrogen:"
+msgstr "Wasserstoff:"
+
+#: src/MainWindow.vala:166
+msgid "Mines & Storage"
+msgstr "Minen & Speicher"
+
+#: src/MainWindow.vala:167
+msgid "Mineral Mine:"
+msgstr "Mineralmine:"
+
+#: src/MainWindow.vala:168
+msgid "Crystal Mine:"
+msgstr "Kristallmine:"
+
+#: src/MainWindow.vala:169
+msgid "Hydrogen Mine:"
+msgstr "Wasserstoffmine:"
+
+#: src/MainWindow.vala:189 src/MainWindow.vala:195 src/MainWindow.vala:201
+#: src/MainWindow.vala:271 src/MainWindow.vala:277 src/MainWindow.vala:283
+#: src/MainWindow.vala:380
+msgid "Build!"
+msgstr "Bau!"
+
+#: src/MainWindow.vala:193 src/MainWindow.vala:199 src/MainWindow.vala:205
+#: src/MainWindow.vala:217 src/MainWindow.vala:231 src/MainWindow.vala:245
+#: src/MainWindow.vala:745 src/MainWindow.vala:746 src/MainWindow.vala:747
+#, c-format
+msgid "To build the next level, %.0f of Mineral and %.0f of Crystal is needed"
+msgstr ""
+"Um das nächste Level aufzubauen, werden % .0f Mineral und % .0f Kristall "
+"benötigt"
+
+#: src/MainWindow.vala:249
+msgid "Mineral Storage:"
+msgstr "Mineralspeicher:"
+
+#: src/MainWindow.vala:250
+msgid "Crystal Storage:"
+msgstr "Kristallspeicher:"
+
+#: src/MainWindow.vala:251
+msgid "Hydrogen Storage:"
+msgstr "Wasserstoffspeicher:"
+
+#: src/MainWindow.vala:275 src/MainWindow.vala:298 src/MainWindow.vala:748
+#, c-format
+msgid "To build the next level, %.0f of Mineral is needed"
+msgstr "Um das nächste Level aufzubauen, werden % .0f Mineral benötigt"
+
+#: src/MainWindow.vala:281 src/MainWindow.vala:311 src/MainWindow.vala:749
+#, c-format
+msgid "To build the next level, %.0f of Crystal is needed"
+msgstr "Um das nächste Level aufzubauen, werden % .0f Kristall benötigt"
+
+#: src/MainWindow.vala:287 src/MainWindow.vala:324 src/MainWindow.vala:750
+#, c-format
+msgid "To build the next level, %.0f of Hydrogen is needed"
+msgstr "Um das nächste Level aufzubauen, werden % .0f Wasserstoff benötigt"
+
+#: src/MainWindow.vala:371
+msgid "Research Lab & Technologies"
+msgstr "Forschungslabor & Technologien"
+
+#: src/MainWindow.vala:372
+msgid "Research Lab:"
+msgstr "Forschungslabor:"
+
+#: src/MainWindow.vala:384 src/MainWindow.vala:398 src/MainWindow.vala:751
+#, c-format
+msgid ""
+"To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of "
+"Hydrogen is needed"
+msgstr ""
+"Um das nächste Level aufzubauen, werden % .0f Mineral, %.0f Kristall und "
+"%.0f Wasserstoff benötigt"
+
+#: src/MainWindow.vala:402
+msgid "Synthesizer of Minerals:"
+msgstr "Synthesizer von Mineralien:"
+
+#: src/MainWindow.vala:410 src/MainWindow.vala:438 src/MainWindow.vala:466
+msgid "Research!"
+msgstr "Erforschen!"
+
+#: src/MainWindow.vala:414 src/MainWindow.vala:426 src/MainWindow.vala:752
+#, c-format
+msgid ""
+"To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research "
+"Lab level of 1 is needed"
+msgstr ""
+"Um die nächste Stufe zu erforschen, werden % .0f Kristall, % .0f Wasserstoff "
+"und eine Stufe von 1 im Forschungslabor benötigt"
+
+#: src/MainWindow.vala:430
+msgid "Synthesizer of Crystals:"
+msgstr "Synthesizer von Kristallen:"
+
+#: src/MainWindow.vala:442 src/MainWindow.vala:454 src/MainWindow.vala:753
+#, c-format
+msgid ""
+"To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research "
+"Lab level of 2 is needed"
+msgstr ""
+"Um die nächste Stufe zu erforschen, werden % .0f Kristall ,% .0f Wasserstoff "
+"und eine Stufe von 2 im Forschungslabor benötigt"
+
+#: src/MainWindow.vala:458
+msgid "Synthesizer of Hydrogen:"
+msgstr "Synthesizer von Wasserstoff:"
+
+#: src/MainWindow.vala:470 src/MainWindow.vala:482 src/MainWindow.vala:754
+#, c-format
+msgid ""
+"To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research "
+"Lab level of 3 is needed"
+msgstr ""
+"Um die nächste Stufe zu erforschen, werden % .0f Kristall ,% .0f Wasserstoff "
+"und eine Stufe von 3 im Forschungslabor benötigt"
+
+#: src/MainWindow.vala:637
+msgid "Info"
+msgstr "Info"
+
+#: src/MainWindow.vala:638
+msgid "Mines"
+msgstr "Minen"
+
+#: src/MainWindow.vala:639
+msgid "Research"
+msgstr "Forschung"
