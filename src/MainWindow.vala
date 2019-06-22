@@ -321,10 +321,10 @@ namespace Reganam {
             help_sh.tooltip_text = _("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h));
 
             button_stm.clicked.connect (() => {
-                if (m_res >= (100 * (m_mine_level + 1))) {
+                if (m_res >= (100 * (stm_level + 1))) {
                     stm_level += 1;
                     m_total = (m_total * (stm_level + 1));
-                    m_res -= (100 * (m_mine_level + 1));
+                    m_res -= (100 * (stm_level + 1));
                     stmpm.set_text ("""%.0f/%.0f""".printf(stm_level, stm_total));
                     stmpm.set_fraction (stm_level/stm_total);
                     update_m_value ();
@@ -334,10 +334,10 @@ namespace Reganam {
             });
 
             button_stc.clicked.connect (() => {
-                if (c_res >= (100 * (c_mine_level + 1))) {
+                if (c_res >= (100 * (stc_level + 1))) {
                     stc_level += 1;
                     c_total = (c_total * stc_level);
-                    c_res -= (100 * (c_mine_level + 1));
+                    c_res -= (100 * (stc_level + 1));
                     stcpm.set_text ("""%.0f/%.0f""".printf(stc_level, stc_total));
                     stcpm.set_fraction (stc_level/stc_total);
                     update_c_value ();
@@ -347,10 +347,10 @@ namespace Reganam {
             });
 
             button_sth.clicked.connect (() => {
-                if (h_res >= (100 * (h_mine_level + 1))) {
+                if (h_res >= (100 * (sth_level + 1))) {
                     sth_level += 1;
                     h_total = (h_total * sth_level);
-                    h_res -= (100 * (h_mine_level + 1));
+                    h_res -= (100 * (sth_level + 1));
                     sthpm.set_text ("""%.0f/%.0f""".printf(sth_level, sth_total));
                     sthpm.set_fraction (sth_level/sth_total);
                     update_h_value ();
@@ -375,11 +375,11 @@ namespace Reganam {
             help_phh.tooltip_text = _("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h));
 
             button_ph.clicked.connect (() => {
-                if (c_res >= (10 * (c_mine_level + 1)) && m_res >= (10 * (m_mine_level + 1))) {
+                if (c_res >= (10 * (ph_level + 1)) && m_res >= (10 * (ph_level + 1))) {
                     ph_level += 1;
                     ph_res += (10 * (ph_level + 1));
-                    m_res -= (10 * (m_mine_level + 1));
-                    c_res -= (10 * (m_mine_level + 1));
+                    m_res -= (10 * (ph_level + 1));
+                    c_res -= (10 * (ph_level + 1));
                     population_desc.label = "%0.f".printf(ph_res);
                     phpm.set_text ("""%.0f/%.0f""".printf(ph_level, ph_total));
                     phpm.set_fraction (ph_level/ph_total);
@@ -832,28 +832,28 @@ namespace Reganam {
             }
 
             // Mineral Storage button
-            if (m_res >= (100 * (m_mine_level + 1)) && stm_level < stm_total) {
+            if (m_res >= (100 * (stm_level + 1)) && stm_level < stm_total) {
                 button_stm.sensitive = true;
             } else {
                 button_stm.sensitive = false;
             }
 
             // Crystal Storage button
-            if (c_res >= (100 * (c_mine_level + 1)) && stc_level < stc_total) {
+            if (c_res >= (100 * (stc_level + 1)) && stc_level < stc_total) {
                 button_stc.sensitive = true;
             } else {
                 button_stc.sensitive = false;
             }
 
             // Hydrogen Storage button
-            if (h_res >= (100 * (h_mine_level + 1)) && sth_level < sth_total) {
+            if (h_res >= (100 * (sth_level + 1)) && sth_level < sth_total) {
                 button_sth.sensitive = true;
             } else {
                 button_sth.sensitive = false;
             }
 
             // Population Housing button
-            if (c_res >= (10 * (c_mine_level + 1)) && m_res >= (10 * (m_mine_level + 1)) && ph_level < ph_total) {
+            if (c_res >= (10 * (ph_level + 1)) && m_res >= (10 * (ph_level + 1)) && ph_level < ph_total) {
                 button_ph.sensitive = true;
             } else {
                 button_ph.sensitive = false;
@@ -894,11 +894,11 @@ namespace Reganam {
             pm_c = ((20 * (this.c_mine_level + 1)));
             pc_m = ((20 * (this.m_mine_level + 1)));
             pc_c = ((50 * (this.c_mine_level + 1)));
-            ps_m = ((100 * (this.m_mine_level + 1)));
-            ps_c = ((100 * (this.c_mine_level + 1)));
-            ps_h = ((100 * (this.h_mine_level + 1)));
-            ph_c = ((10 * (this.c_mine_level + 1)));
-            ph_h = ((10 * (this.h_mine_level + 1)));
+            ps_m = ((100 * (this.stm_level + 1)));
+            ps_c = ((100 * (this.stc_level + 1)));
+            ps_h = ((100 * (this.sth_level + 1)));
+            ph_c = ((10 * (this.ph_level + 1)));
+            ph_h = ((10 * (this.ph_level + 1)));
             l_m = ((200 * (this.l_level + 1)));
             l_c = ((200 * (this.l_level + 1)));
             l_h = ((100 * (this.l_level + 1)));
