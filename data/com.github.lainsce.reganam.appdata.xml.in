@@ -57,6 +57,7 @@
                 <p>Release: Planet Buster</p>
                 <ul>
                     <li>Add: Reset All Button under a Cog menu.</li>
+                    <li>Add: Population Housing research</li>
                     <li>Fix: Synthesizers pricing bug</li>
                 </ul>
             </description>

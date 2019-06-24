@@ -85,6 +85,11 @@
 			<summary>Level of synthesizer of hydrogen</summary>
 			<description>The level of the synthesizer of hydrogen</description>
 		</key>
+	  <key name="phs-level" type="d">
+			<default>0.0</default>
+			<summary>Level of population housing</summary>
+			<description>The level of the population housing</description>
+		</key>
 		<key name="planet-name" type="s">
 			<default>""</default>
 			<summary>Planet Name</summary>

@@ -35,6 +35,7 @@ namespace Reganam {
         public double syc_level { get; set; }
         public double syh_level { get; set; }
         public double ph_level { get; set; }
+        public double phs_level { get; set; }
         public string planet_name { get; set; }
         public string planet_type { get; set; }
         public string planet_atm { get; set; }
