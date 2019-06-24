@@ -52,6 +52,15 @@
         <content_attribute id="money-gambling">none</content_attribute>
     </content_rating>
     <releases>
+        <release version="1.0.8" date="2019-06-27">
+            <description>
+                <p>Release: Planet Buster</p>
+                <ul>
+                    <li>Add: Reset All Button under a Cog menu.</li>
+                    <li>Fix: Synthesizers pricing bug</li>
+                </ul>
+            </description>
+        </release>
         <release version="1.0.8" date="2019-06-25">
             <description>
                 <p>Release: Storage Upgrade</p>
