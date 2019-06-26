@@ -1081,28 +1081,28 @@ namespace Reganam {
             }
 
             // Mineral Synthesizer button
-            if (c_res >= (200 * (sym_level + 1)) && h_res >= (200 * (sym_level + 1)) && l_level == 1 && sym_level < sym_total) {
+            if (c_res >= (200 * (sym_level + 1)) && h_res >= (200 * (sym_level + 1)) && l_level >= 1 && sym_level < sym_total) {
                 button_sym.sensitive = true;
             } else {
                 button_sym.sensitive = false;
             }
 
             // Crystal Synthesizer button
-            if (c_res >= (200 * (syc_level + 1)) && h_res >= (200 * (syc_level + 1)) && l_level == 2 && syc_level < syc_total) {
+            if (c_res >= (200 * (syc_level + 1)) && h_res >= (200 * (syc_level + 1)) && l_level >= 2 && syc_level < syc_total) {
                 button_syc.sensitive = true;
             } else {
                 button_syc.sensitive = false;
             }
 
             // Hydrogen Synthesizer button
-            if (c_res >= (200 * (syh_level + 1)) && h_res >= (200 * (syc_level + 1)) && l_level == 3 && syh_level < syh_total) {
+            if (c_res >= (200 * (syh_level + 1)) && h_res >= (200 * (syc_level + 1)) && l_level >= 3 && syh_level < syh_total) {
                 button_syh.sensitive = true;
             } else {
                 button_syh.sensitive = false;
             }
 
             // Population Housing Upgrade button
-            if (c_res >= (100 * (phs_level + 1)) && m_res >= (100 * (phs_level + 1)) && l_level == 1 && phs_level < phs_total) {
+            if (c_res >= (100 * (phs_level + 1)) && m_res >= (100 * (phs_level + 1)) && l_level >= 1 && phs_level < phs_total) {
                 button_phs.sensitive = true;
             } else {
                 button_phs.sensitive = false;

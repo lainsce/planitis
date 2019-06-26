@@ -52,6 +52,14 @@
         <content_attribute id="money-gambling">none</content_attribute>
     </content_rating>
     <releases>
+        <release version="1.1.1" date="2019-06-29">
+            <description>
+                <p>Release: Patched Synths, part 2</p>
+                <ul>
+                    <li>Minor fixes in the research level algorithms</li>
+                </ul>
+            </description>
+        </release>
         <release version="1.1.0" date="2019-06-28">
             <description>
                 <p>Release: Patched Synths</p>
