@@ -217,7 +217,7 @@ namespace Reganam {
             sep3.margin_top = 12;
             sep3.margin_bottom = 12;
 
-            var header = new Granite.HeaderLabel (_("Buildings"));
+            var header = new Granite.HeaderLabel (_("Buildings & Storage"));
             var mineral_label = new Label (_("Mineral Mine:"));
             var crystal_label = new Label (_("Crystal Mine:"));
             var h_label = new Label (_("Hydrogen Mine:"));
@@ -508,6 +508,7 @@ namespace Reganam {
 
             button_sym = new Gtk.Button.with_label (_("Research!"));
             button_sym.sensitive = false;
+            button_sym.vexpand = false;
             help_sym = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sym.halign = Gtk.Align.START;
             help_sym.hexpand = true;
@@ -537,6 +538,7 @@ namespace Reganam {
 
             button_syc = new Gtk.Button.with_label (_("Research!"));
             button_syc.sensitive = false;
+            button_syc.vexpand = false;
             help_syc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_syc.halign = Gtk.Align.START;
             help_syc.hexpand = true;
@@ -566,6 +568,7 @@ namespace Reganam {
 
             button_syh = new Gtk.Button.with_label (_("Research!"));
             button_syh.sensitive = false;
+            button_syh.vexpand = false;
             help_syh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_syh.halign = Gtk.Align.START;
             help_syh.hexpand = true;
@@ -595,6 +598,7 @@ namespace Reganam {
 
             button_phs = new Gtk.Button.with_label (_("Research!"));
             button_phs.sensitive = false;
+            button_phs.vexpand = false;
             help_phs = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_phs.halign = Gtk.Align.START;
             help_phs.hexpand = true;
@@ -614,6 +618,11 @@ namespace Reganam {
                 }
             });
 
+            var res_sym = res_info_widget ();
+            var res_syc = res_info_widget ();
+            var res_syh = res_info_widget ();
+            var res_phs = res_info_widget ();
+
             grid.attach (header, 0, 0, 6, 1);
             grid.attach (sep, 0, 1, 6, 1);
             grid.attach (lab_label, 0, 2, 1, 1);
@@ -621,23 +630,27 @@ namespace Reganam {
             grid.attach (button_l, 4, 2, 1, 1);
             grid.attach (help_l, 5, 2, 1, 1);
             grid.attach (sep2, 0, 4, 5, 1);
-            grid.attach (sym_label, 0, 5, 1, 1);
+            grid.attach (sym_label, 0, 5, 1, 2);
             grid.attach (sympm, 1, 5, 3, 1);
-            grid.attach (button_sym, 4, 5, 1, 1);
-            grid.attach (help_sym, 5, 5, 1, 1);
-            grid.attach (syc_label, 0, 6, 1, 1);
-            grid.attach (sycpm, 1, 6, 3, 1);
-            grid.attach (button_syc, 4, 6, 1, 1);
-            grid.attach (help_syc, 5, 6, 1, 1);
-            grid.attach (syh_label, 0, 7, 1, 1);
-            grid.attach (syhpm, 1, 7, 3, 1);
-            grid.attach (button_syh, 4, 7, 1, 1);
-            grid.attach (help_syh, 5, 7, 1, 1);
-            grid.attach (sep3, 0, 8, 5, 1);
-            grid.attach (phs_label, 0, 9, 1, 1);
-            grid.attach (phspm, 1, 9, 3, 1);
-            grid.attach (button_phs, 4, 9, 1, 1);
-            grid.attach (help_phs, 5, 9, 1, 1);
+            grid.attach (res_sym, 1, 6, 1, 1);
+            grid.attach (button_sym, 4, 5, 1, 2);
+            grid.attach (help_sym, 5, 5, 1, 2);
+            grid.attach (syc_label, 0, 7, 1, 2);
+            grid.attach (sycpm, 1, 7, 3, 1);
+            grid.attach (res_syc, 1, 8, 1, 1);
+            grid.attach (button_syc, 4, 7, 1, 2);
+            grid.attach (help_syc, 5, 7, 1, 2);
+            grid.attach (syh_label, 0, 9, 1, 2);
+            grid.attach (syhpm, 1, 9, 3, 1);
+            grid.attach (res_syh, 1, 10, 1, 1);
+            grid.attach (button_syh, 4, 9, 1, 2);
+            grid.attach (help_syh, 5, 9, 1, 2);
+            grid.attach (sep3, 0, 11, 5, 1);
+            grid.attach (phs_label, 0, 12, 1, 2);
+            grid.attach (phspm, 1, 12, 3, 1);
+            grid.attach (res_phs, 1, 13, 1, 1);
+            grid.attach (button_phs, 4, 12, 1, 2);
+            grid.attach (help_phs, 5, 12, 1, 2);
 
             return grid;
         }
@@ -754,6 +767,12 @@ namespace Reganam {
                  	background-color: #111;
                  	box-shadow: none;
                  	border: 1px solid #333;
+                 }
+
+                 .info> image,
+                 .info > label {
+                     color: #99DA64;
+                     font-size: 0.88em;
                  }
              """.printf(res);
              try {
@@ -990,6 +1009,23 @@ namespace Reganam {
             update_pb_values ();
             update_help_tooltips ();
             update_buttons ();
+        }
+
+        public Gtk.Widget res_info_widget () {
+            var res = new Gtk.Image.from_icon_name ("go-up-symbolic", Gtk.IconSize.MENU);
+            res.halign = Gtk.Align.START;
+            var res_desc = new Gtk.Label ("Raises production by 8.33% per level");
+
+            var grid = new Gtk.Grid ();
+            grid.hexpand = true;
+            grid.row_spacing = 3;
+            grid.column_spacing = 6;
+            grid.attach (res, 0, 0, 1, 1);
+            grid.attach (res_desc, 1, 0, 1, 1);
+
+            grid.get_style_context().add_class("info");
+
+            return grid;
         }
 
         public void update_pb_values () {
