@@ -605,7 +605,7 @@ namespace Reganam {
             help_phs.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(phs_c, phs_h));
 
             button_phs.clicked.connect (() => {
-                if (c_res >= (100 * (phs_level + 1)) && h_res >= (100 * (phs_level + 1)) && l_level == 1) {
+                if (c_res >= (100 * (phs_level + 1)) && h_res >= (100 * (phs_level + 1)) && l_level >= 1) {
                     phs_level += 1;
                     c_res -= (100 * (phs_level + 1));
                     h_res -= (100 * (phs_level + 1));
