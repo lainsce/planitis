@@ -1,6 +1,6 @@
 # Name our project
 project('com.github.lainsce.reganam', ['vala', 'c'],
-    version: '1.1.1'
+    version: '1.1.2'
 )
 
 # Import main lib files
