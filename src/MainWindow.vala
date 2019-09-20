@@ -1138,7 +1138,7 @@ namespace Reganam {
             }
 
             // Population Housing Upgrade button
-            if (c_res >= (100 * (phs_level + 1)) && m_res >= (100 * (phs_level + 1)) && l_level >= 1 && phs_level < phs_total) {
+            if (c_res >= (100 * (phs_level + 1)) && h_res >= (100 * (phs_level + 1)) && l_level >= 1 && phs_level < phs_total) {
                 button_phs.sensitive = true;
             } else {
                 button_phs.sensitive = false;
