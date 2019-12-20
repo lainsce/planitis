@@ -245,21 +245,21 @@ namespace Reganam {
             help_pm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_pm.halign = Gtk.Align.START;
             help_pm.hexpand = true;
-            help_pm.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c));
+            help_pm.tooltip_text = (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c)));
 
             button_c = new Gtk.Button.with_label (_("Build!"));
             button_c.sensitive = false;
             help_pc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_pc.halign = Gtk.Align.START;
             help_pc.hexpand = true;
-            help_pc.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c));
+            help_pc.tooltip_text = (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c)));
 
             button_h = new Gtk.Button.with_label (_("Build!"));
             button_h.sensitive = false;
             help_ph = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_ph.halign = Gtk.Align.START;
             help_ph.hexpand = true;
-            help_ph.tooltip_text = _("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c));
+            help_ph.tooltip_text = (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c)));
 
             button_m.clicked.connect (() => {
                 if (m_res >= (50 * (m_mine_level + 1)) && c_res >= (20 * (m_mine_level + 1))) {
@@ -330,21 +330,21 @@ namespace Reganam {
             help_sm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sm.halign = Gtk.Align.START;
             help_sm.hexpand = true;
-            help_sm.tooltip_text = _("""To build the next level, %.0f of Mineral is needed""".printf(ps_m));
+            help_sm.tooltip_text = (_("""To build the next level, %.0f of Mineral is needed""".printf(ps_m)));
 
             button_stc = new Gtk.Button.with_label (_("Build!"));
             button_stc.sensitive = false;
             help_sc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sc.halign = Gtk.Align.START;
             help_sc.hexpand = true;
-            help_sc.tooltip_text = _("""To build the next level, %.0f of Crystal is needed""".printf(ps_c));
+            help_sc.tooltip_text = (_("""To build the next level, %.0f of Crystal is needed""".printf(ps_c)));
 
             button_sth = new Gtk.Button.with_label (_("Build!"));
             button_sth.sensitive = false;
             help_sh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sh.halign = Gtk.Align.START;
             help_sh.hexpand = true;
-            help_sh.tooltip_text = _("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h));
+            help_sh.tooltip_text = (_("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h)));
 
             button_stm.clicked.connect (() => {
                 if (m_res >= (100 * (stm_level + 1))) {
@@ -398,7 +398,7 @@ namespace Reganam {
             help_phh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_phh.halign = Gtk.Align.START;
             help_phh.hexpand = true;
-            help_phh.tooltip_text = _("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h));
+            help_phh.tooltip_text = (_("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h)));
 
             button_ph.clicked.connect (() => {
                 if (c_res >= (10 * (ph_level + 1)) && m_res >= (10 * (ph_level + 1))) {
@@ -480,7 +480,7 @@ namespace Reganam {
             help_l = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_l.halign = Gtk.Align.START;
             help_l.hexpand = true;
-            help_l.tooltip_text = _("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(l_m, l_c, l_h));
+            help_l.tooltip_text = (_("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(l_m, l_c, l_h)));
 
             button_l.clicked.connect (() => {
                 if (m_res >= (200 * (l_level + 1)) && c_res >= (200 * (l_level + 1)) && h_res >= (100 * (l_level + 1))) {
@@ -542,7 +542,7 @@ namespace Reganam {
             help_syc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_syc.halign = Gtk.Align.START;
             help_syc.hexpand = true;
-            help_syc.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(sc_c, sc_h));
+            help_syc.tooltip_text = (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(sc_c, sc_h)));
 
             button_syc.clicked.connect (() => {
                 if (c_res >= (200 * (syc_level + 1)) && h_res >= (200 * (syc_level + 1)) && l_level >= 2) {
@@ -572,7 +572,7 @@ namespace Reganam {
             help_syh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_syh.halign = Gtk.Align.START;
             help_syh.hexpand = true;
-            help_syh.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(sh_c, sh_h));
+            help_syh.tooltip_text = (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(sh_c, sh_h)));
 
             button_syh.clicked.connect (() => {
                 if (c_res >= (200 * (syh_level + 1)) && h_res >= (200 * (syh_level + 1)) && l_level >= 3) {
@@ -588,7 +588,7 @@ namespace Reganam {
                 }
             });
 
-            var phs_label = new Label (_("Population Housing Upgrade:"));
+            var phs_label = new Label ((_("Population Housing Upgrade:")));
 
             phspm = new Gtk.ProgressBar ();
             phspm.hexpand = true;
@@ -602,7 +602,7 @@ namespace Reganam {
             help_phs = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_phs.halign = Gtk.Align.START;
             help_phs.hexpand = true;
-            help_phs.tooltip_text = _("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(phs_c, phs_h));
+            help_phs.tooltip_text = (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(phs_c, phs_h)));
 
             button_phs.clicked.connect (() => {
                 if (c_res >= (100 * (phs_level + 1)) && h_res >= (100 * (phs_level + 1)) && l_level >= 1) {
@@ -822,9 +822,9 @@ namespace Reganam {
              main_stackswitcher.margin = 12;
              main_stackswitcher.margin_top = 0;
 
-             main_stack.add_titled (get_info_grid (), "info", _("Info"));
-             main_stack.add_titled (get_building_grid (), "mine", _("Buildings"));
-             main_stack.add_titled (get_lab_grid (), "lab", _("Research"));
+             main_stack.add_titled (get_info_grid (), "info", (_("Info")));
+             main_stack.add_titled (get_building_grid (), "mine", (_("Buildings")));
+             main_stack.add_titled (get_lab_grid (), "lab", (_("Research")));
 
              var main_grid = new Gtk.Grid ();
              main_grid.expand = true;
@@ -1237,15 +1237,15 @@ namespace Reganam {
         public Dialog () {
             Object (
                 image_icon: new ThemedIcon ("dialog-warning"),
-                primary_text: _("Reset Your Game?"),
-                secondary_text: _("If you reset, the planet will be issued a Planet Buster™ and you'll move to another planet, newly colonized. Proceed?")
+                primary_text: (_("Reset Your Game?")),
+                secondary_text: (_("If you reset, the planet will be issued a Planet Buster™ and you'll move to another planet, newly colonized. Proceed?"))
             );
         }
         construct {
-            var save = add_button (_("Yes, destroy!"), Gtk.ResponseType.OK);
+            var save = add_button ((_("Yes, destroy!")), Gtk.ResponseType.OK);
             var save_context = save.get_style_context ();
             save_context.add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
-            var cws = add_button (_("No, don't!"), Gtk.ResponseType.NO);
+            var cws = add_button ((_("No, don't!")), Gtk.ResponseType.NO);
         }
     }
 }
