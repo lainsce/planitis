@@ -8,241 +8,273 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.lainsce.reganam\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 11:22-0300\n"
+"POT-Creation-Date: 2019-12-21 13:12-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/MainWindow.vala:120
+#: src/MainWindow.vala:146
 msgid "Type:"
 msgstr ""
 
-#: src/MainWindow.vala:124
+#: src/MainWindow.vala:150
 msgid "Atmosphere:"
 msgstr ""
 
-#: src/MainWindow.vala:128
+#: src/MainWindow.vala:154
 msgid "Diameter:"
 msgstr ""
 
-#: src/MainWindow.vala:132
+#: src/MainWindow.vala:158
 msgid "Population:"
 msgstr ""
 
-#: src/MainWindow.vala:136
+#: src/MainWindow.vala:162
 msgid "Mineral:"
 msgstr ""
 
-#: src/MainWindow.vala:137
+#: src/MainWindow.vala:163
 msgid "Crystal:"
 msgstr ""
 
-#: src/MainWindow.vala:138
+#: src/MainWindow.vala:164
 msgid "Hydrogen:"
 msgstr ""
 
-#: src/MainWindow.vala:194
-msgid "Mines & Storage"
+#: src/MainWindow.vala:220
+msgid "Buildings & Storage"
 msgstr ""
 
-#: src/MainWindow.vala:195
+#: src/MainWindow.vala:221
 msgid "Mineral Mine:"
 msgstr ""
 
-#: src/MainWindow.vala:196
+#: src/MainWindow.vala:222
 msgid "Crystal Mine:"
 msgstr ""
 
-#: src/MainWindow.vala:197
+#: src/MainWindow.vala:223
 msgid "Hydrogen Mine:"
 msgstr ""
 
-#: src/MainWindow.vala:217 src/MainWindow.vala:224 src/MainWindow.vala:231
-#: src/MainWindow.vala:302 src/MainWindow.vala:309 src/MainWindow.vala:316
-#: src/MainWindow.vala:370 src/MainWindow.vala:449
+#: src/MainWindow.vala:243 src/MainWindow.vala:250 src/MainWindow.vala:257
+#: src/MainWindow.vala:328 src/MainWindow.vala:335 src/MainWindow.vala:342
+#: src/MainWindow.vala:396 src/MainWindow.vala:478
 msgid "Build!"
 msgstr ""
 
-#: src/MainWindow.vala:222 src/MainWindow.vala:229 src/MainWindow.vala:236
-#: src/MainWindow.vala:248 src/MainWindow.vala:262 src/MainWindow.vala:276
-#: src/MainWindow.vala:907 src/MainWindow.vala:908 src/MainWindow.vala:909
+#: src/MainWindow.vala:248 src/MainWindow.vala:255 src/MainWindow.vala:262
+#: src/MainWindow.vala:274 src/MainWindow.vala:288 src/MainWindow.vala:302
+#: src/MainWindow.vala:1170 src/MainWindow.vala:1171 src/MainWindow.vala:1172
 #, c-format
 msgid "To build the next level, %.0f of Mineral and %.0f of Crystal is needed"
 msgstr ""
 
-#: src/MainWindow.vala:280
+#: src/MainWindow.vala:306
 msgid "Mineral Storage:"
 msgstr ""
 
-#: src/MainWindow.vala:281
+#: src/MainWindow.vala:307
 msgid "Crystal Storage:"
 msgstr ""
 
-#: src/MainWindow.vala:282
+#: src/MainWindow.vala:308
 msgid "Hydrogen Storage:"
 msgstr ""
 
-#: src/MainWindow.vala:307 src/MainWindow.vala:332 src/MainWindow.vala:911
+#: src/MainWindow.vala:333 src/MainWindow.vala:358 src/MainWindow.vala:1174
 #, c-format
 msgid "To build the next level, %.0f of Mineral is needed"
 msgstr ""
 
-#: src/MainWindow.vala:314 src/MainWindow.vala:345 src/MainWindow.vala:912
+#: src/MainWindow.vala:340 src/MainWindow.vala:371 src/MainWindow.vala:1175
 #, c-format
 msgid "To build the next level, %.0f of Crystal is needed"
 msgstr ""
 
-#: src/MainWindow.vala:321 src/MainWindow.vala:358 src/MainWindow.vala:375
-#: src/MainWindow.vala:913
+#: src/MainWindow.vala:347 src/MainWindow.vala:384 src/MainWindow.vala:401
+#: src/MainWindow.vala:1176
 #, c-format
 msgid "To build the next level, %.0f of Hydrogen is needed"
 msgstr ""
 
-#: src/MainWindow.vala:362
+#: src/MainWindow.vala:388
 msgid "Population Housing:"
 msgstr ""
 
-#: src/MainWindow.vala:388 src/MainWindow.vala:910
+#: src/MainWindow.vala:414 src/MainWindow.vala:1173
 #, c-format
 msgid "To build the next level, %.0f of Crystal and %.0f of Hydrogen is needed"
 msgstr ""
 
-#: src/MainWindow.vala:440
+#: src/MainWindow.vala:469
 msgid "Research Lab & Technologies"
 msgstr ""
 
-#: src/MainWindow.vala:441
+#: src/MainWindow.vala:470
 msgid "Research Lab:"
 msgstr ""
 
-#: src/MainWindow.vala:454 src/MainWindow.vala:468 src/MainWindow.vala:914
+#: src/MainWindow.vala:483 src/MainWindow.vala:497 src/MainWindow.vala:1177
 #, c-format
 msgid ""
 "To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of "
 "Hydrogen is needed"
 msgstr ""
 
-#: src/MainWindow.vala:472
+#: src/MainWindow.vala:501
 msgid "Synthesizer of Minerals:"
 msgstr ""
 
-#: src/MainWindow.vala:480 src/MainWindow.vala:509 src/MainWindow.vala:538
+#: src/MainWindow.vala:509 src/MainWindow.vala:539 src/MainWindow.vala:569
+#: src/MainWindow.vala:599
 msgid "Research!"
 msgstr ""
 
-#: src/MainWindow.vala:485 src/MainWindow.vala:497 src/MainWindow.vala:915
+#: src/MainWindow.vala:515 src/MainWindow.vala:527 src/MainWindow.vala:605
+#: src/MainWindow.vala:617 src/MainWindow.vala:1178 src/MainWindow.vala:1181
 #, c-format
 msgid ""
 "To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research "
 "Lab level of 1 is needed"
 msgstr ""
 
-#: src/MainWindow.vala:501
+#: src/MainWindow.vala:531
 msgid "Synthesizer of Crystals:"
 msgstr ""
 
-#: src/MainWindow.vala:514 src/MainWindow.vala:526 src/MainWindow.vala:916
+#: src/MainWindow.vala:545 src/MainWindow.vala:557 src/MainWindow.vala:1179
 #, c-format
 msgid ""
 "To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research "
 "Lab level of 2 is needed"
 msgstr ""
 
-#: src/MainWindow.vala:530
+#: src/MainWindow.vala:561
 msgid "Synthesizer of Hydrogen:"
 msgstr ""
 
-#: src/MainWindow.vala:543 src/MainWindow.vala:555 src/MainWindow.vala:917
+#: src/MainWindow.vala:575 src/MainWindow.vala:587 src/MainWindow.vala:1180
 #, c-format
 msgid ""
 "To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research "
 "Lab level of 3 is needed"
 msgstr ""
 
-#: src/MainWindow.vala:716
+#: src/MainWindow.vala:591
+msgid "Population Housing Upgrade:"
+msgstr ""
+
+#: src/MainWindow.vala:793
+msgid "Reset Game"
+msgstr ""
+
+#: src/MainWindow.vala:811
+msgid "Settings"
+msgstr ""
+
+#: src/MainWindow.vala:825
 msgid "Info"
 msgstr ""
 
-#: src/MainWindow.vala:717
-msgid "Mines"
+#: src/MainWindow.vala:826
+msgid "Buildings"
 msgstr ""
 
-#: src/MainWindow.vala:718
+#: src/MainWindow.vala:827
 msgid "Research"
 msgstr ""
 
-#: src/MainWindow.vala:748
+#: src/MainWindow.vala:949
 msgid "Temperate Terrestrial"
 msgstr ""
 
-#: src/MainWindow.vala:748
+#: src/MainWindow.vala:949
 msgid "Polarian Terrestrial"
 msgstr ""
 
-#: src/MainWindow.vala:748
+#: src/MainWindow.vala:949
 msgid "Chthonian Terrestrial"
 msgstr ""
 
-#: src/MainWindow.vala:749
+#: src/MainWindow.vala:950
 msgid "Temperate Gas Giant"
 msgstr ""
 
-#: src/MainWindow.vala:749
+#: src/MainWindow.vala:950
 msgid "Polarian Gas Giant"
 msgstr ""
 
-#: src/MainWindow.vala:749
+#: src/MainWindow.vala:950
 msgid "Chthonian Gas Giant"
 msgstr ""
 
-#: src/MainWindow.vala:750
+#: src/MainWindow.vala:951
 msgid "Temperate Dwarf"
 msgstr ""
 
-#: src/MainWindow.vala:750
+#: src/MainWindow.vala:951
 msgid "Polarian Dwarf"
 msgstr ""
 
-#: src/MainWindow.vala:750
+#: src/MainWindow.vala:951
 msgid "Chthonian Dwarf"
 msgstr ""
 
-#: src/MainWindow.vala:751
+#: src/MainWindow.vala:952
 msgid "Incognito"
 msgstr ""
 
-#: src/MainWindow.vala:771
+#: src/MainWindow.vala:972
 msgid "Nitrogenic"
 msgstr ""
 
-#: src/MainWindow.vala:771
+#: src/MainWindow.vala:972
 msgid "Nitrogen & Oxygen"
 msgstr ""
 
-#: src/MainWindow.vala:772
+#: src/MainWindow.vala:973
 msgid "Methane"
 msgstr ""
 
-#: src/MainWindow.vala:772
+#: src/MainWindow.vala:973
 msgid "Beryllic"
 msgstr ""
 
-#: src/MainWindow.vala:772
+#: src/MainWindow.vala:973
 msgid "Carbon Dioxide"
 msgstr ""
 
-#: src/MainWindow.vala:773
+#: src/MainWindow.vala:974
 msgid "Argonic"
 msgstr ""
 
-#: src/MainWindow.vala:773
+#: src/MainWindow.vala:974
 msgid "Helium"
 msgstr ""
 
-#: src/MainWindow.vala:773
+#: src/MainWindow.vala:974
 msgid "Hydrogenic"
+msgstr ""
+
+#: src/MainWindow.vala:1240
+msgid "Reset Your Game?"
+msgstr ""
+
+#: src/MainWindow.vala:1241
+msgid ""
+"If you reset, the planet will be issued a Planet Buster™ and you'll move to "
+"another planet, newly colonized. Proceed?"
+msgstr ""
+
+#: src/MainWindow.vala:1245
+msgid "Yes, destroy!"
+msgstr ""
+
+#: src/MainWindow.vala:1248
+msgid "No, don't!"
 msgstr ""
