@@ -19,11 +19,16 @@
 */
 namespace Reganam {
     public class Application : Gtk.Application {
+        public static GLib.Settings gsettings;
         public MainWindow app_window;
 
         public Application () {
             Object (flags: ApplicationFlags.FLAGS_NONE,
             application_id: "com.github.lainsce.reganam");
+        }
+
+        static construct {
+            gsettings = new GLib.Settings ("com.github.lainsce.reganam");
         }
 
         protected override void activate () {

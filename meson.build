@@ -1,6 +1,6 @@
 # Name our project
 project('com.github.lainsce.reganam', ['vala', 'c'],
-    version: '1.1.2'
+    version: '1.1.3'
 )
 
 # Import main lib files
@@ -45,7 +45,6 @@ executable(
     meson.project_name(),
     'src/Application.vala',
     'src/MainWindow.vala',
-    'src/Constants/AppSettings.vala',
     asresources,
     c_args: c_args,
     dependencies: [

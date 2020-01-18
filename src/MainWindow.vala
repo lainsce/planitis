@@ -19,6 +19,7 @@
 
 namespace Reganam {
     public class MainWindow : Gtk.Window {
+        public Gtk.Application app { get; construct; }
         public double m_res;
         public double c_res;
         public double h_res;
@@ -120,9 +121,12 @@ namespace Reganam {
         public Gtk.Label size_diameter_desc;
         public Gtk.Label population_desc;
         public Granite.HeaderLabel header;
+        public int window_x;
+        public int window_y;
         public MainWindow (Gtk.Application app) {
             GLib.Object (
                          application: app,
+                         app: app,
                          icon_name: "com.github.lainsce.reganam",
                          height_request: 650,
                          width_request: 800,
@@ -656,83 +660,42 @@ namespace Reganam {
         }
 
         construct {
-            var settings = AppSettings.get_default ();
-            if (settings.metal == 0.0 &&
-                settings.crystal == 0.0 &&
-                settings.hydrogen == 0.0 &&
-                settings.metal_mine == 0.0 &&
-                settings.crystal_mine == 0.0 &&
-                settings.hydrogen_mine == 0.0 &&
-                settings.stm_level == 0.0 &&
-                settings.stc_level == 0.0 &&
-                settings.sth_level == 0.0 &&
-                settings.lab_level == 0.0 &&
-                settings.sym_level == 0.0 &&
-                settings.syc_level == 0.0 &&
-                settings.syh_level == 0.0 &&
-                settings.ph_level == 1.0 &&
-                settings.phs_level == 0.0 &&
-                settings.planet_name == "" &&
-                settings.planet_type == "" &&
-                settings.planet_atm == "") {
-                    m_res = 100.0;
-                    c_res = 100.0;
-                    h_res = 0.0;
-                    ph_res = 1000.0;
-                    m_total = 1000.0;
-                    c_total = 1000.0;
-                    h_total = 1000.0;
-                    m_mine_level = 1.0;
-                    c_mine_level = 1.0;
-                    h_mine_level = 0.0;
-                    stm_level = 0.0;
-                    stc_level = 0.0;
-                    sth_level = 0.0;
-                    l_level = 0.0;
-                    ph_level = 1.0;
-                    sym_level = 0.0;
-                    syc_level = 0.0;
-                    syh_level = 0.0;
-                    phs_level = 0.0;
-                    planet_name = planet_name_gen ();
-                    planet_diameter = planet_diameter_gen ();
-                    planet_type = planet_type_gen ();
-                    planet_atm = planet_atm_gen ();
+            if (Reganam.Application.gsettings.get_string("planet-diameter") == "") {
+                m_res = 100.0;
+                c_res = 100.0;
+                h_res = 0.0;
+                ph_res = 1000.0;
+                m_total = 1000.0;
+                c_total = 1000.0;
+                h_total = 1000.0;
+                m_mine_level = 1.0;
+                c_mine_level = 1.0;
+                h_mine_level = 0.0;
+                stm_level = 0.0;
+                stc_level = 0.0;
+                sth_level = 0.0;
+                l_level = 0.0;
+                ph_level = 1.0;
+                sym_level = 0.0;
+                syc_level = 0.0;
+                syh_level = 0.0;
+                phs_level = 0.0;
+                planet_name = planet_name_gen ();
+                planet_diameter = planet_diameter_gen ();
+                planet_type = planet_type_gen ();
+                planet_atm = planet_atm_gen ();
             } else {
-                    m_res = settings.metal;
-                    c_res = settings.crystal;
-                    h_res = settings.hydrogen;
-                    ph_res = settings.population;
-                    ph_level = settings.ph_level;
-                    m_total = (m_total * (settings.stm_level + 1));
-                    c_total = (c_total * (settings.stc_level + 1));
-                    h_total = (h_total * (settings.sth_level + 1));
-                    m_mine_level = settings.metal_mine;
-                    c_mine_level = settings.crystal_mine;
-                    h_mine_level = settings.hydrogen_mine;
-                    stm_level = settings.stm_level;
-                    stc_level = settings.stc_level;
-                    sth_level = settings.sth_level;
-                    l_level = settings.lab_level;
-                    sym_level = settings.sym_level;
-                    syc_level = settings.syc_level;
-                    syh_level = settings.syh_level;
-                    phs_level = settings.phs_level;
-                    planet_name = settings.planet_name;
-                    planet_type = settings.planet_type;
-                    planet_atm = settings.planet_atm;
-                    planet_diameter = settings.planet_diameter;
+                get_gsettings ();
 
-                    // Fixes broken savegame
-                    if (m_mine_level < 1.0) {
-                        m_mine_level = 1.0;
-                    }
-                    if (c_mine_level < 1.0) {
-                        c_mine_level = 1.0;
-                    }
+                // Fixes broken savegame
+                if (m_mine_level < 1.0) {
+                    m_mine_level = 1.0;
+                }
+                if (c_mine_level < 1.0) {
+                    c_mine_level = 1.0;
+                }
             }
-
-             var provider = new Gtk.CssProvider ();
+            var provider = new Gtk.CssProvider ();
              Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
              string res = "\"resource:///com/github/lainsce/reganam/res/bg.png\"";
              string css = """
@@ -832,6 +795,10 @@ namespace Reganam {
              main_grid.attach (main_stackswitcher, 0, 0, 1, 1);
              main_grid.attach (main_stack, 0, 1, 1, 1);
 
+             this.window_x = Reganam.Application.gsettings.get_int ("window-x");
+             this.window_y = Reganam.Application.gsettings.get_int ("window-y");
+             this.move (this.window_x, this.window_y);
+
              this.add (main_grid);
              this.show_all ();
 
@@ -879,27 +846,8 @@ namespace Reganam {
                         type_of_atm_desc.set_label (planet_atm);
                         population_desc.set_label ("%0.f".printf(ph_res));
 
-                        var settings = AppSettings.get_default ();
-                        settings.metal = m_res;
-                        settings.crystal = c_res;
-                        settings.hydrogen = h_res;
-                        settings.population = ph_res;
-                        settings.ph_level = ph_level;
-                        settings.metal_mine = m_mine_level;
-                        settings.crystal_mine = c_mine_level;
-                        settings.hydrogen_mine = h_mine_level;
-                        settings.stm_level = stm_level;
-                        settings.stc_level = stc_level;
-                        settings.sth_level = sth_level;
-                        settings.lab_level = l_level;
-                        settings.sym_level = sym_level;
-                        settings.syc_level = syc_level;
-                        settings.syh_level = syh_level;
-                        settings.phs_level = phs_level;
-                        settings.planet_name = planet_name;
-                        settings.planet_type = planet_type;
-                        settings.planet_atm = planet_atm;
-                        settings.planet_diameter = planet_diameter;
+                        get_gsettings ();
+                        set_gsettings ();
 
                         // Fixes broken savegame
                         if (m_mine_level < 1.0) {
@@ -1195,32 +1143,62 @@ namespace Reganam {
         }
 
         public override bool delete_event (Gdk.EventAny event) {
-            var settings = AppSettings.get_default ();
-            int x, y;
-            this.get_position (out x, out y);
-            settings.window_x = x;
-            settings.window_y = y;
-            settings.metal = m_res;
-            settings.crystal = c_res;
-            settings.hydrogen = h_res;
-            settings.population = ph_res;
-            settings.ph_level = ph_level;
-            settings.phs_level = phs_level;
-            settings.metal_mine = m_mine_level;
-            settings.crystal_mine = c_mine_level;
-            settings.hydrogen_mine = h_mine_level;
-            settings.stm_level = stm_level;
-            settings.stc_level = stc_level;
-            settings.sth_level = sth_level;
-            settings.lab_level = l_level;
-            settings.sym_level = sym_level;
-            settings.syc_level = syc_level;
-            settings.syh_level = syh_level;
-            settings.planet_name = planet_name;
-            settings.planet_type = planet_type;
-            settings.planet_atm = planet_atm;
-            settings.planet_diameter = planet_diameter;
+            this.get_position (out this.window_x, out this.window_y);
+
+            Reganam.Application.gsettings.set_int ("window-x", this.window_x);
+            Reganam.Application.gsettings.set_int ("window-y", this.window_y);
+            set_gsettings ();
             return false;
+        }
+
+        public void set_gsettings () {
+            Reganam.Application.gsettings.set_double ("metal", m_res);
+            Reganam.Application.gsettings.set_double ("crystal", c_res);
+            Reganam.Application.gsettings.set_double ("hydrogen", h_res);
+            Reganam.Application.gsettings.set_double ("population", ph_res);
+            Reganam.Application.gsettings.set_double ("ph-level", ph_level);
+            Reganam.Application.gsettings.set_double ("metal-mine", m_mine_level);
+            Reganam.Application.gsettings.set_double ("crystal-mine", c_mine_level);
+            Reganam.Application.gsettings.set_double ("hydrogen-mine", h_mine_level);
+            Reganam.Application.gsettings.set_double ("stm-level", stm_level);
+            Reganam.Application.gsettings.set_double ("stc-level", stc_level);
+            Reganam.Application.gsettings.set_double ("sth-level", sth_level);
+            Reganam.Application.gsettings.set_double ("lab-level", l_level);
+            Reganam.Application.gsettings.set_double ("sym-level", sym_level);
+            Reganam.Application.gsettings.set_double ("syc-level", syc_level);
+            Reganam.Application.gsettings.set_double ("syh-level", syh_level);
+            Reganam.Application.gsettings.set_double ("phs-level", phs_level);
+    
+            Reganam.Application.gsettings.set_string ("planet-name", planet_name);
+            Reganam.Application.gsettings.set_string ("planet-type", planet_type);
+            Reganam.Application.gsettings.set_string ("planet-atm", planet_atm);
+            Reganam.Application.gsettings.set_string ("planet-diameter", planet_diameter);
+        }
+
+        public void get_gsettings () {
+            m_res = Reganam.Application.gsettings.get_double("metal");
+            c_res = Reganam.Application.gsettings.get_double("crystal");
+            h_res = Reganam.Application.gsettings.get_double("hydrogen");
+            ph_res = Reganam.Application.gsettings.get_double("population");
+            ph_level = Reganam.Application.gsettings.get_double("ph-level");
+            m_total = (m_total * (Reganam.Application.gsettings.get_double("stm-level") + 1));
+            c_total = (c_total * (Reganam.Application.gsettings.get_double("stc-level") + 1));
+            h_total = (h_total * (Reganam.Application.gsettings.get_double("sth-level") + 1));
+            m_mine_level = Reganam.Application.gsettings.get_double("metal-mine");
+            c_mine_level = Reganam.Application.gsettings.get_double("crystal-mine");
+            h_mine_level = Reganam.Application.gsettings.get_double("hydrogen-mine");
+            stm_level = Reganam.Application.gsettings.get_double("stm-level");
+            stc_level = Reganam.Application.gsettings.get_double("stc-level");
+            sth_level = Reganam.Application.gsettings.get_double("sth-level");
+            l_level = Reganam.Application.gsettings.get_double("lab-level");
+            sym_level = Reganam.Application.gsettings.get_double("sym-level");
+            syc_level = Reganam.Application.gsettings.get_double("syc-level");
+            syh_level = Reganam.Application.gsettings.get_double("syh-level");
+            phs_level = Reganam.Application.gsettings.get_double("phs-level");
+            planet_name = Reganam.Application.gsettings.get_string("planet-name");
+            planet_type = Reganam.Application.gsettings.get_string("planet-type");
+            planet_atm = Reganam.Application.gsettings.get_string("planet-atm");
+            planet_diameter = Reganam.Application.gsettings.get_string("planet-diameter");
         }
     }
 
