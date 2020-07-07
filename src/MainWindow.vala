@@ -184,7 +184,6 @@ namespace Planitis {
             main_stackswitcher.halign = Gtk.Align.CENTER;
             main_stackswitcher.homogeneous = true;
             main_stackswitcher.margin_top = 6;
-            main_stackswitcher.margin_start = main_stackswitcher.margin_end = 3;
 
             infogrid = new Widgets.InfoGrid (this);
             resgrid = new Widgets.ResGrid (this, infogrid);

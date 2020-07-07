@@ -66,6 +66,7 @@ progressbar .left {
 .pl-switcher button {
     box-shadow: none;
     background-image: none;
+    margin: 0 6px;
     border-radius: 8px 8px 0 0;
     background: mix(@accent, @base_color, 0.95);
 }
