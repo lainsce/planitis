@@ -44,10 +44,9 @@ window.unified decoration-overlay {
     background: none;
 }
 .pl-planet-name {
-    font-size: 1.9em;
     color: @accent;
-    font-weight: 500;
-    opacity: 1;
+    font-weight: 300;
+    font-size: 24pt;
 }
 .pl-destructive {
     background-color: #D07070;

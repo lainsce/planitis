@@ -68,6 +68,7 @@ namespace Planitis {
             sep2.margin_bottom = 12;
             
             header = new Granite.HeaderLabel (_(planet_name));
+            header.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
             header.get_style_context ().add_class ("pl-planet-name");
             var type_of_planet = new Services.Utils.Label (_("Type:"));
             type_of_planet_desc = new Gtk.Label ("");
@@ -125,19 +126,6 @@ namespace Planitis {
             this.attach (h_label, 0, 9, 1, 1);
             this.attach (hpb, 1, 9, 4, 1);
             this.show_all ();
-        }
-
-        public void update_m_value () {
-            mpb.set_fraction(m_res/m_total);
-            mpb.set_text ("""%.2f/%.2f""".printf(m_res, m_total));
-        }
-        public void update_c_value () {
-            cpb.set_fraction(c_res/c_total);
-            cpb.set_text ("""%.2f/%.2f""".printf(c_res, c_total));
-        }
-        public void update_h_value () {
-            hpb.set_fraction(h_res/h_total);
-            hpb.set_text ("""%.2f/%.2f""".printf(h_res, h_total));
         }
         public string planet_name_gen () {
             int length = 3; // Planet names are only 6 characters long

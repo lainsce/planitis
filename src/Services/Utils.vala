@@ -35,12 +35,10 @@ namespace Planitis.Services.Utils {
             infogrid.m_res = (infogrid.m_res + ((resgrid.sym_level + 1) * (1.55 * buildgrid.m_mine_level))).clamp(0, infogrid.m_total);
             infogrid.c_res = (infogrid.c_res + ((resgrid.syc_level + 1) * (1.25 * buildgrid.c_mine_level))).clamp(0, infogrid.c_total);
             infogrid.h_res = (infogrid.h_res + ((resgrid.syh_level + 1) * (1.10 * buildgrid.h_mine_level))).clamp(0, infogrid.h_total);
-            infogrid.update_m_value ();
-            infogrid.update_c_value ();
-            infogrid.update_h_value ();
             update_pb_values ();
             update_help_tooltips ();
             update_buttons ();
+            set_settings ();
         }
 
         public void update_help_tooltips () {
@@ -162,30 +160,34 @@ namespace Planitis.Services.Utils {
             } else {
                 resgrid.button_phs.sensitive = false;
             }
-            
         }
 
         public void update_pb_values () {
+            infogrid.population_desc.set_label ("%0.f".printf(infogrid.ph_res));
+            infogrid.mpb.set_fraction(infogrid.m_res/infogrid.m_total);
+            infogrid.mpb.set_text ("""%.2f/%.2f""".printf(infogrid.m_res, infogrid.m_total));
+            infogrid.cpb.set_fraction(infogrid.c_res/infogrid.c_total);
+            infogrid.cpb.set_text ("""%.2f/%.2f""".printf(infogrid.c_res, infogrid.c_total));
+            infogrid.hpb.set_fraction(infogrid.h_res/infogrid.h_total);
+            infogrid.hpb.set_text ("""%.2f/%.2f""".printf(infogrid.h_res, infogrid.h_total));
+            
             buildgrid.mpm.set_text ("""%.0f/%.0f""".printf(buildgrid.m_mine_level, buildgrid.m_total_mine));
             buildgrid.mpm.set_fraction (buildgrid.m_mine_level/buildgrid.m_total_mine);
             buildgrid.cpm.set_text ("""%.0f/%.0f""".printf(buildgrid.c_mine_level, buildgrid.c_total_mine));
             buildgrid.cpm.set_fraction (buildgrid.c_mine_level/buildgrid.c_total_mine);
             buildgrid.hpm.set_text ("""%.0f/%.0f""".printf(buildgrid.h_mine_level, buildgrid.h_total_mine));
             buildgrid.hpm.set_fraction (buildgrid.h_mine_level/buildgrid.h_total_mine);
-            
             buildgrid.stmpm.set_text ("""%.0f/%.0f""".printf(buildgrid.stm_level, buildgrid.stm_total));
             buildgrid.stmpm.set_fraction (buildgrid.stm_level/buildgrid.stm_total);
             buildgrid.stcpm.set_text ("""%.0f/%.0f""".printf(buildgrid.stc_level, buildgrid.stc_total));
             buildgrid.stcpm.set_fraction (buildgrid.stc_level/buildgrid.stc_total);
             buildgrid.sthpm.set_text ("""%.0f/%.0f""".printf(buildgrid.sth_level, buildgrid.sth_total));
             buildgrid.sthpm.set_fraction (buildgrid.sth_level/buildgrid.sth_total);
-            infogrid.population_desc.set_label ("%0.f".printf(infogrid.ph_res));
             buildgrid.phpm.set_text ("""%.0f/%.0f""".printf(buildgrid.ph_level, buildgrid.ph_total));
             buildgrid.phpm.set_fraction (buildgrid.ph_level/buildgrid.ph_total);
             
             resgrid.lpm.set_text ("""%.0f/%.0f""".printf(resgrid.l_level, resgrid.l_total));
             resgrid.lpm.set_fraction (resgrid.l_level/resgrid.l_total);
-            
             resgrid.sympm.set_text ("""%.0f/%.0f""".printf(resgrid.sym_level, resgrid.sym_total));
             resgrid.sympm.set_fraction (resgrid.sym_level/resgrid.sym_total);
             resgrid.sycpm.set_text ("""%.0f/%.0f""".printf(resgrid.syc_level, resgrid.syc_total));
@@ -237,9 +239,7 @@ namespace Planitis.Services.Utils {
                 buildgrid.c_mine_level = 1.0;
             }
             
-            infogrid.update_m_value ();
-            infogrid.update_c_value ();
-            infogrid.update_h_value ();
+            update_base_values ();
         }
 
         public void set_settings () {
@@ -293,14 +293,21 @@ namespace Planitis.Services.Utils {
         }
     }
 
-    public class Dialog : Granite.MessageDialog {
+    public class ExplodyDialog : Granite.MessageDialog {
         public MainWindow win;
-        public Dialog () {
+        public Services.Utils.Base base_utils;
+
+        public ExplodyDialog (MainWindow win) {
             Object (
                 image_icon: new ThemedIcon ("dialog-warning"),
                 primary_text: (_("Reset Your Game?")),
                 secondary_text: (_("If you reset, the planet will be issued a Planet Buster™ and you'll move to another planet, newly colonized. Proceed?"))
             );
+            
+            this.win = win;
+            base_utils = new Services.Utils.Base (this.win, this.win.infogrid, this.win.buildgrid, this.win.resgrid);
+            this.transient_for = this.win;
+            this.modal = true;
         }
         construct {
             var save = add_button ((_("Yes, destroy!")), Gtk.ResponseType.OK);
@@ -308,6 +315,28 @@ namespace Planitis.Services.Utils {
             save_context.add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
             save_context.add_class ("pl-destructive");
             var cws = add_button ((_("No, don't!")), Gtk.ResponseType.NO);
+
+            response.connect ((response_id) => {
+                switch (response_id) {
+                    case Gtk.ResponseType.OK:
+                        base_utils.reset_all ();
+                        base_utils.update_pb_values ();
+                        base_utils.update_help_tooltips ();
+                        base_utils.update_buttons ();
+                        this.close ();
+                        break;
+                    case Gtk.ResponseType.NO:
+                        this.close ();
+                        break;
+                    case Gtk.ResponseType.CANCEL:
+                    case Gtk.ResponseType.CLOSE:
+                    case Gtk.ResponseType.DELETE_EVENT:
+                        this.close ();
+                        return;
+                    default:
+                        assert_not_reached ();
+                }
+            });
         }
     }
 }

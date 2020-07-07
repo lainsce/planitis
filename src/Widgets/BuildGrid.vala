@@ -24,6 +24,28 @@ namespace Planitis {
         private Widgets.ResGrid resgrid;
         private Services.Utils.Base base_utils;
 
+        public Gtk.ProgressBar mpm;
+        public Gtk.ProgressBar cpm;
+        public Gtk.ProgressBar hpm;
+        public Gtk.ProgressBar stmpm;
+        public Gtk.ProgressBar stcpm;
+        public Gtk.ProgressBar sthpm;
+        public Gtk.ProgressBar phpm;
+        public Gtk.Image help_pm;
+        public Gtk.Image help_pc;
+        public Gtk.Image help_ph;
+        public Gtk.Image help_phh;
+        public Gtk.Image help_sm;
+        public Gtk.Image help_sc;
+        public Gtk.Image help_sh;
+        public Gtk.Button button_m;
+        public Gtk.Button button_c;
+        public Gtk.Button button_h;
+        public Gtk.Button button_ph;
+        public Gtk.Button button_stm;
+        public Gtk.Button button_stc;
+        public Gtk.Button button_sth;
+
         public double pp_total = 10000000000.0;
         public double m_mine_level;
         public double m_total_mine = 100.0;
@@ -48,27 +70,6 @@ namespace Planitis {
         public double ps_h;
         public double ph_c;
         public double ph_h;
-        public Gtk.ProgressBar mpm;
-        public Gtk.ProgressBar cpm;
-        public Gtk.ProgressBar hpm;
-        public Gtk.ProgressBar stmpm;
-        public Gtk.ProgressBar stcpm;
-        public Gtk.ProgressBar sthpm;
-        public Gtk.ProgressBar phpm;
-        public Gtk.Image help_pm;
-        public Gtk.Image help_pc;
-        public Gtk.Image help_ph;
-        public Gtk.Image help_phh;
-        public Gtk.Image help_sm;
-        public Gtk.Image help_sc;
-        public Gtk.Image help_sh;
-        public Gtk.Button button_m;
-        public Gtk.Button button_c;
-        public Gtk.Button button_h;
-        public Gtk.Button button_ph;
-        public Gtk.Button button_stm;
-        public Gtk.Button button_stc;
-        public Gtk.Button button_sth;
 
         public BuildGrid (MainWindow win, Widgets.InfoGrid infogrid, Widgets.ResGrid resgrid) {
             ph_level = Planitis.Application.gsettings.get_double("ph-level");
@@ -147,8 +148,6 @@ namespace Planitis {
                     infogrid.c_res -= (30 * (m_mine_level + 1));
                     mpm.set_text ("""%.0f/%.0f""".printf(m_mine_level, m_total_mine));
                     mpm.set_fraction (m_mine_level/m_total_mine);
-                    infogrid.update_m_value ();
-                    infogrid.update_c_value ();
                     base_utils.update_base_values ();
                     help_pm.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c)));
                     Planitis.Application.gsettings.set_double ("metal-mine", m_mine_level);
@@ -162,8 +161,6 @@ namespace Planitis {
                     infogrid.c_res -= (50 * (c_mine_level + 1));
                     cpm.set_text ("""%.0f/%.0f""".printf(c_mine_level, c_total_mine));
                     cpm.set_fraction (c_mine_level/c_total_mine);
-                    infogrid.update_m_value ();
-                    infogrid.update_c_value ();
                     base_utils.update_base_values ();
                     help_pc.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c)));
                     Planitis.Application.gsettings.set_double ("crystal-mine", c_mine_level);
@@ -177,8 +174,6 @@ namespace Planitis {
                     infogrid.c_res -= (50 * (h_mine_level + 1));
                     hpm.set_text ("""%.0f/%.0f""".printf(h_mine_level, h_total_mine));
                     hpm.set_fraction (h_mine_level/h_total_mine);
-                    infogrid.update_m_value ();
-                    infogrid.update_c_value ();
                     base_utils.update_base_values ();
                     help_ph.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c)));
                     Planitis.Application.gsettings.set_double ("hydrogen-mine", h_mine_level);
@@ -235,7 +230,6 @@ namespace Planitis {
                     infogrid.m_res -= (100 * (stm_level + 1));
                     stmpm.set_text ("""%.0f/%.0f""".printf(stm_level, stm_total));
                     stmpm.set_fraction (stm_level/stm_total);
-                    infogrid.update_m_value ();
                     base_utils.update_base_values ();
                     help_sm.set_tooltip_text (_("""To build the next level, %.0f of Mineral is needed""".printf(ps_m)));
                     Planitis.Application.gsettings.set_double ("stm-level", stm_level);
@@ -249,7 +243,6 @@ namespace Planitis {
                     infogrid.c_res -= (100 * (stc_level + 1));
                     stcpm.set_text ("""%.0f/%.0f""".printf(stc_level, stc_total));
                     stcpm.set_fraction (stc_level/stc_total);
-                    infogrid.update_c_value ();
                     base_utils.update_base_values ();
                     help_sc.set_tooltip_text (_("""To build the next level, %.0f of Crystal is needed""".printf(ps_c)));
                     Planitis.Application.gsettings.set_double ("stc-level", stc_level);
@@ -263,7 +256,6 @@ namespace Planitis {
                     infogrid.h_res -= (100 * (sth_level + 1));
                     sthpm.set_text ("""%.0f/%.0f""".printf(sth_level, sth_total));
                     sthpm.set_fraction (sth_level/sth_total);
-                    infogrid.update_h_value ();
                     base_utils.update_base_values ();
                     help_sh.set_tooltip_text (_("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h)));
                     Planitis.Application.gsettings.set_double ("sth-level", sth_level);
@@ -294,7 +286,6 @@ namespace Planitis {
                     infogrid.population_desc.label = "%0.f".printf(infogrid.ph_res);
                     phpm.set_text ("""%.0f/%.0f""".printf(ph_level, ph_total));
                     phpm.set_fraction (ph_level/ph_total);
-                    infogrid.update_h_value ();
                     base_utils.update_base_values ();
                     help_phh.set_tooltip_text (_("""To build the next level, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(ph_c, ph_h)));
                     Planitis.Application.gsettings.set_double ("ph-level", ph_level);

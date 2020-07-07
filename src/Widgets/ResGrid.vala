@@ -110,9 +110,6 @@ namespace Planitis {
                     infogrid.h_res -= 100;
                     lpm.set_text ("""%.0f/%.0f""".printf(l_level, l_total));
                     lpm.set_fraction (l_level/l_total);
-                    infogrid.update_m_value ();
-                    infogrid.update_c_value ();
-                    infogrid.update_h_value ();
                     base_utils.update_base_values ();
                     help_l.set_tooltip_text (_("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(l_m, l_c, l_h)));
                     Planitis.Application.gsettings.set_double ("lab-level", l_level);
@@ -143,8 +140,6 @@ namespace Planitis {
                     infogrid.h_res -= (200 * (sym_level + 1));
                     sympm.set_text ("""%.0f/%.0f""".printf(sym_level, sym_total));
                     sympm.set_fraction (sym_level/sym_total);
-                    infogrid.update_c_value ();
-                    infogrid.update_h_value ();
                     base_utils.update_base_values ();
                     help_sym.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(sm_c, sm_h)));
                     Planitis.Application.gsettings.set_double ("sym-level", sym_level);
@@ -175,8 +170,6 @@ namespace Planitis {
                     infogrid.h_res -= (200 * (syc_level + 1));
                     sycpm.set_text ("""%.0f/%.0f""".printf(syc_level, syc_total));
                     sycpm.set_fraction (syc_level/syc_total);
-                    infogrid.update_c_value ();
-                    infogrid.update_h_value ();
                     base_utils.update_base_values ();
                     help_syc.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(sc_c, sc_h)));
                     Planitis.Application.gsettings.set_double ("syc-level", syc_level);
@@ -207,8 +200,6 @@ namespace Planitis {
                     infogrid.h_res -= (200 * (syh_level + 1));
                     syhpm.set_text ("""%.0f/%.0f""".printf(syh_level, syh_total));
                     syhpm.set_fraction (syh_level/syh_total);
-                    infogrid.update_c_value ();
-                    infogrid.update_h_value ();
                     base_utils.update_base_values ();
                     help_syh.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(sh_c, sh_h)));
                     Planitis.Application.gsettings.set_double ("syh-level", syh_level);
@@ -239,8 +230,6 @@ namespace Planitis {
                     infogrid.h_res -= (100 * (phs_level + 1));
                     phspm.set_text ("""%.0f/%.0f""".printf(phs_level, phs_total));
                     phspm.set_fraction (phs_level/phs_total);
-                    infogrid.update_c_value ();
-                    infogrid.update_h_value ();
                     base_utils.update_base_values ();
                     help_phs.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(phs_c, phs_h)));
                     Planitis.Application.gsettings.set_double ("phs-level", phs_level);

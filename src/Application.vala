@@ -19,7 +19,7 @@
 */
 namespace Planitis {
     public class Application : Gtk.Application {
-        public static MainWindow win = null;
+        public MainWindow win = null;
         public static GLib.Settings gsettings;
         public static Granite.Settings grsettings;
 
