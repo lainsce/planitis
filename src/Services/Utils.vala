@@ -212,8 +212,8 @@ namespace Planitis.Services.Utils {
             buildgrid.stm_level = 0.0;
             buildgrid.stc_level = 0.0;
             buildgrid.sth_level = 0.0;
-            resgrid.l_level = 0.0;
             buildgrid.ph_level = 1.0;
+            resgrid.l_level = 0.0;
             resgrid.phs_level = 0.0;
             resgrid.sym_level = 0.0;
             resgrid.syc_level = 0.0;
@@ -230,14 +230,6 @@ namespace Planitis.Services.Utils {
             infogrid.mpb.set_fraction (infogrid.m_res/infogrid.m_total);
             infogrid.cpb.set_fraction (infogrid.c_res/infogrid.c_total);
             infogrid.hpb.set_fraction (infogrid.h_res/infogrid.h_total);
-            
-            // Fixes broken savegame
-            if (buildgrid.m_mine_level < 1.0) {
-                buildgrid.m_mine_level = 1.0;
-            }
-            if (buildgrid.c_mine_level < 1.0) {
-                buildgrid.c_mine_level = 1.0;
-            }
             
             update_base_values ();
         }

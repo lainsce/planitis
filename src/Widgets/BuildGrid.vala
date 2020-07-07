@@ -322,5 +322,24 @@ namespace Planitis {
             this.attach (help_phh, 5, 10, 1, 1);
             this.show_all ();
         }
+
+        public void load_base_values (
+            double ma_level,
+            double ca_level,
+            double ha_level,
+            double stma_level,
+            double stca_level,
+            double stha_level,
+            double pha_level
+         ) {
+
+            m_mine_level = ma_level;
+            c_mine_level = ca_level;
+            h_mine_level = ha_level;
+            stm_level = stma_level;
+            stc_level = stca_level;
+            sth_level = stha_level;
+            ph_level = pha_level;
+        }
     }
 }

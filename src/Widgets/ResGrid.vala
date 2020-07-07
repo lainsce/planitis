@@ -266,6 +266,21 @@ namespace Planitis {
             this.show_all ();
         }
 
+        public void load_base_values (
+            double la_level,
+            double syma_level,
+            double syca_level,
+            double syha_level,
+            double phsa_level
+                ) {
+
+            l_level = la_level;
+            sym_level = syma_level;
+            syc_level = syca_level;
+            syh_level = syha_level;
+            phs_level = phsa_level;
+        }
+
         public Gtk.Widget res_info_widget () {
             var res = new Gtk.Image.from_icon_name ("go-up-symbolic", Gtk.IconSize.MENU);
             res.halign = Gtk.Align.START;

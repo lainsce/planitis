@@ -186,20 +186,22 @@ namespace Planitis {
             };
             main_stackswitcher.set_size_request (185,-1);
             main_stackswitcher.get_style_context ().add_class ("pl-switcher");
+            
+            gsm = new Services.GameSaveManager (this);
+
+            if (resetted) {
+                resetted = false;
+            } else {
+                gsm.load_from_file ();
+            }
 
             infogrid = new Widgets.InfoGrid (this);
             resgrid = new Widgets.ResGrid (this, infogrid);
             buildgrid = new Widgets.BuildGrid (this, infogrid, resgrid);
+            
+            gsm.load_from_file ();
 
             base_utils = new Services.Utils.Base (this, infogrid, buildgrid, resgrid);
-
-            if (resetted) {
-                base_utils.reset_all ();
-                resetted = false;
-            }
-
-            gsm = new Services.GameSaveManager (this, infogrid, buildgrid, resgrid);
-            gsm.load_from_file ();
             
             base_utils.update_base_values ();
             Timeout.add_seconds (10, () => {
@@ -295,60 +297,13 @@ namespace Planitis {
         }
         
         public void reset_cb () {
-            resetted = true;
+            if (resetted) {
+                base_utils.reset_all ();
+                resetted = true;
+            }
+            
             var dialog = new Services.Utils.ExplodyDialog (this);
             dialog.run ();
-        }
-
-        public void  load_base_values (string planet_name,
-                                       string planet_type,
-                                       string planet_atm,
-                                       string planet_diameter,
-                                       double m_res,
-                                       double c_res,
-                                       double h_res,
-                                       double diameter,
-                                       double m_total,
-                                       double c_total,
-                                       double h_total,
-                                       double m_level,
-                                       double c_level,
-                                       double h_level,
-                                       double stm_level,
-                                       double stc_level,
-                                       double sth_level,
-                                       double ph_level,
-                                       double l_level,
-                                       double sym_level,
-                                       double syc_level,
-                                       double syh_level,
-                                       double phs_level
-                                    ) {
-            infogrid.planet_name = planet_name;
-            infogrid.planet_type = planet_type;
-            infogrid.planet_atm = planet_atm;
-            infogrid.planet_diameter = planet_diameter;
-            infogrid.m_res = m_res;
-            infogrid.c_res = c_res;
-            infogrid.h_res = h_res;
-            infogrid.diameter = diameter;
-            infogrid.m_total = m_total;
-            infogrid.c_total = c_total;
-            infogrid.h_total = h_total;
-
-            buildgrid.m_mine_level = m_level;
-            buildgrid.c_mine_level = c_level;
-            buildgrid.h_mine_level = h_level;
-            buildgrid.stm_level = stm_level;
-            buildgrid.stc_level = stc_level;
-            buildgrid.sth_level = sth_level;
-            buildgrid.ph_level = ph_level;
-
-            resgrid.l_level = l_level;
-            resgrid.sym_level = sym_level;
-            resgrid.syc_level = syc_level;
-            resgrid.syh_level = syh_level;
-            resgrid.phs_level = phs_level;
         }
     }
 }
