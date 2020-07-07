@@ -28,10 +28,10 @@ conf = configuration_data()
 pkgdatadir = join_paths([ get_option('prefix'),
                           get_option('datadir'),
                           'com.github.lainsce.planitis' ])
+
 conf.set_quoted('PKGDATADIR', pkgdatadir)
 
 # Other configs
-conf.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 conf
 add_global_arguments('-DDATADIR="' + get_option('datadir') + '"', language: 'c')
 configure_file(output: 'config.h', configuration: conf)
@@ -51,11 +51,17 @@ executable(
     meson.project_name(),
     'src/Application.vala',
     'src/MainWindow.vala',
+    'src/Widgets/InfoGrid.vala',
+    'src/Widgets/BuildGrid.vala',
+    'src/Widgets/ResGrid.vala',
+    'src/Services/Utils.vala',
     asresources,
     c_args: c_args,
     dependencies: [
         dependency('granite'),
         dependency('gobject-2.0'),
+        dependency('json-glib-1.0'),
+        dependency('gee-0.8'),
         dependency('gtk+-3.0'),
         dependency('libhandy-1', version: '>=0.80.0'),
         m_dep,
@@ -68,7 +74,7 @@ executable(
 )
 
 # Add in a post install script
-meson.add_install_script(meson.source_root() + '/meson/post_install.py')
+meson.add_install_script('meson/post_install.py', join_paths(get_option('prefix'), get_option('datadir')))
 
 # Add subfolders for Meson to look
 subdir('data')

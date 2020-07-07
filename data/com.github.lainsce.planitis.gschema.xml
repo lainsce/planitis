@@ -10,6 +10,21 @@
 			<summary>Window position</summary>
 			<description>The y axis of window position</description>
 		</key>
+		<key name="window-width" type="i">
+			<default>600</default>
+			<summary>Window size</summary>
+			<description>The x axis of window size</description>
+		</key>
+		<key name="window-height" type="i">
+			<default>300</default>
+			<summary>Window size</summary>
+			<description>The y axis of window size</description>
+		</key>
+		<key name="dark-mode" type="b">
+			<default>false</default>
+			<summary>Dark Mode</summary>
+			<description>Whether the app is on Dark Mode</description>
+		</key>
 		<key name="metal" type="d">
 			<default>0.0</default>
 			<summary>Amount of metal</summary>
@@ -85,7 +100,7 @@
 			<summary>Level of synthesizer of hydrogen</summary>
 			<description>The level of the synthesizer of hydrogen</description>
 		</key>
-	  <key name="phs-level" type="d">
+	    <key name="phs-level" type="d">
 			<default>0.0</default>
 			<summary>Level of population housing</summary>
 			<description>The level of the population housing</description>
