@@ -170,10 +170,10 @@ namespace Planitis {
             }
         }
         public string planet_atm_gen () {
-            string[] types = { _("Nitrogenic"), _("Nitrogen & Oxygen"), "Sulfuric",
-            _("Methane"), _("Beryllic"), _("Carbon Dioxide"),
-            _("Argonic"), _("Helium"), _("Hydrogenic") };
-            int random_index = Random.int_range (0,8);
+            string[] types = { _("Nitrogenic"), _("Nitrogenic & Oxygenic"), _("Sulfuric"),
+            _("Methanic"), _("Beryllic"), _("Carbon Dioxidic"), _("Oxygenic"),
+            _("Argonic"), _("Heliumnic"), _("Hydrogenic") };
+            int random_index = Random.int_range (0,9);
             string planet_atm = types[random_index];
             
             return planet_atm;
