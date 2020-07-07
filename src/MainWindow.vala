@@ -252,21 +252,15 @@ namespace Planitis {
             grid.attach (titlebar, 1, 0, 1, 1);
             grid.attach (main_frame_grid, 1, 1, 1, 1);
             grid.show_all ();
-            
-            var separator = new Gtk.Separator (Gtk.Orientation.VERTICAL);
-            var separator_cx = separator.get_style_context ();
-            separator_cx.add_class ("vsep");
 
             leaflet = new Hdy.Leaflet () {
                 transition_type = Hdy.LeafletTransitionType.UNDER,
-                can_swipe_back = true,
-                visible_child = grid
+                can_swipe_back = true
             };
+            leaflet.set_visible_child (grid);
             leaflet.add (sgrid);
-            leaflet.add (separator);
             leaflet.add (grid);
             leaflet.show_all ();
-            leaflet.child_set_property (separator, "allow-visible", false);
 
             update ();
             leaflet.notify["folded"].connect (() => {

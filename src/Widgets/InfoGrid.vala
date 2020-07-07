@@ -115,33 +115,36 @@ namespace Planitis {
             this.show_all ();
         }
 
-        public void load_base_values (  string p_name,
-                                        string p_type,
-                                        string p_atm,
-                                        string p_diameter,
-                                        double mt_res,
-                                        double cy_res,
-                                        double hy_res,
-                                        double pha_res,
-                                        double mt_total,
-                                        double cy_total,
-                                        double hy_total
-                                    ) {
-                            planet_name = p_name;
-                            header.label = p_name;
-                            planet_type = p_type;
-                            type_of_planet_desc.label = p_type;
-                            planet_atm = p_atm;
-                            type_of_atm_desc.label = p_atm;
-                            planet_diameter = p_diameter;
-                            size_diameter_desc.label = p_diameter;
-                            m_res = mt_res;
-                            c_res = cy_res;
-                            h_res = hy_res;
-                            ph_res = pha_res;
-                            m_total = mt_total;
-                            c_total = cy_total;
-                            h_total = hy_total;
+        public void load_base_values (  
+            string p_name,
+            string p_type,
+            string p_atm,
+            string p_diameter,
+            double mt_res,
+            double cy_res,
+            double hy_res,
+            double pha_res,
+            double mt_total,
+            double cy_total,
+            double hy_total
+        ) {
+            if (this != null) {
+                planet_name = p_name;
+                header.label = p_name;
+                planet_type = p_type;
+                type_of_planet_desc.label = p_type;
+                planet_atm = p_atm;
+                type_of_atm_desc.label = p_atm;
+                planet_diameter = p_diameter;
+                size_diameter_desc.label = p_diameter;
+                m_res = mt_res;
+                c_res = cy_res;
+                h_res = hy_res;
+                ph_res = pha_res;
+                m_total = mt_total;
+                c_total = cy_total;
+                h_total = hy_total;
+            }  
         }
 
         public string planet_name_gen () {

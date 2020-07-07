@@ -129,36 +129,39 @@ namespace Planitis.Services {
                 double syh_level = resgrid_arr.get_double_element(3);
                 double phs_level = resgrid_arr.get_double_element(4);
 
-                win.infogrid.load_base_values (planet_name,
-                                        planet_type,
-                                        planet_atm,
-                                        planet_diameter,
-                                        m_res,
-                                        c_res,
-                                        h_res,
-                                        ph_res,
-                                        m_total,
-                                        c_total,
-                                        h_total
-                );
+                if (win.infogrid != null && win.resgrid != null && win.buildgrid != null) {
+                    win.infogrid.load_base_values (planet_name,
+                                            planet_type,
+                                            planet_atm,
+                                            planet_diameter,
+                                            m_res,
+                                            c_res,
+                                            h_res,
+                                            ph_res,
+                                            m_total,
+                                            c_total,
+                                            h_total
+                    );
 
-                win.resgrid.load_base_values (
-                                        l_level,
-                                        sym_level,
-                                        syc_level,
-                                        syh_level,
-                                        phs_level
-                );
+                    win.resgrid.load_base_values (
+                                            l_level,
+                                            sym_level,
+                                            syc_level,
+                                            syh_level,
+                                            phs_level
+                    );
 
-                win.buildgrid.load_base_values (
-                                        m_level,
-                                        c_level,
-                                        h_level,
-                                        stm_level,
-                                        stc_level,
-                                        sth_level,
-                                        ph_level
-                );
+                    win.buildgrid.load_base_values (
+                                            m_level,
+                                            c_level,
+                                            h_level,
+                                            stm_level,
+                                            stc_level,
+                                            sth_level,
+                                            ph_level
+                    );
+                }
+                
 
             } catch (Error e) {
                 warning ("Failed to load file: %s\n", e.message);

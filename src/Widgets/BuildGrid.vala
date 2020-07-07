@@ -333,13 +333,16 @@ namespace Planitis {
             double pha_level
          ) {
 
-            m_mine_level = ma_level;
-            c_mine_level = ca_level;
-            h_mine_level = ha_level;
-            stm_level = stma_level;
-            stc_level = stca_level;
-            sth_level = stha_level;
-            ph_level = pha_level;
+            if (this != null) {
+                m_mine_level = ma_level;
+                c_mine_level = ca_level;
+                h_mine_level = ha_level;
+                stm_level = stma_level;
+                stc_level = stca_level;
+                sth_level = stha_level;
+                ph_level = pha_level;
+            }
+            
         }
     }
 }

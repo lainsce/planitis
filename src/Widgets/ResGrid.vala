@@ -272,13 +272,14 @@ namespace Planitis {
             double syca_level,
             double syha_level,
             double phsa_level
-                ) {
-
-            l_level = la_level;
-            sym_level = syma_level;
-            syc_level = syca_level;
-            syh_level = syha_level;
-            phs_level = phsa_level;
+        ) {
+            if (this != null) {
+                l_level = la_level;
+                sym_level = syma_level;
+                syc_level = syca_level;
+                syh_level = syha_level;
+                phs_level = phsa_level;
+            }
         }
 
         public Gtk.Widget res_info_widget () {
