@@ -143,8 +143,9 @@ namespace Planitis {
         }
         public string planet_type_gen () {
             string[] types = { _("Temperate Terrestrial"), _("Polarian Terrestrial"), _("Chthonian Terrestrial"),
-            _("Temperate Gas Giant"), _("Polarian Gas Giant"), _("Chthonian Gas Giant"),
+            _("Temperate Gas Dwarf"), _("Polarian Gas Dwarf"), _("Chthonian Gas Dwarf"),
             _("Temperate Dwarf"), _("Polarian Dwarf"), _("Chthonian Dwarf"),
+            _("Temperate Gas Giant"), _("Polarian Gas Giant"), _("Chthonian Gas Giant"),
             _("Incognito") };
             // Diameter values in these if statements generated based on NASA info
             if (diameter > 1.0 && diameter < 2400.00) {
@@ -159,8 +160,12 @@ namespace Planitis {
                 int random_index = Random.int_range(3,5);
                 string planet_type = types[random_index];
                 return planet_type;
+            } else if (diameter > 49244.00 && diameter < 279640.00) {
+                int random_index = Random.int_range(9,11);
+                string planet_type = types[random_index];
+                return planet_type;
             } else {
-                string planet_type = types[9];
+                string planet_type = types[12];
                 return planet_type;
             }
         }
