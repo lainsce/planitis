@@ -21,6 +21,7 @@ namespace Planitis {
     public class MainWindow : Hdy.ApplicationWindow {
         public Gtk.Application app { get; construct; }
         private Services.Utils.Base base_utils;
+        public Services.GameSaveManager gsm;
         public bool resetted = false;
         public Hdy.Leaflet leaflet;
         public Gtk.Grid grid;
@@ -107,19 +108,6 @@ namespace Planitis {
             weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
             default_theme.add_resource_path ("/com/github/lainsce/planitis");
 
-            base_utils = new Services.Utils.Base (this, infogrid, buildgrid, resgrid);
-
-            if (resetted) {
-                base_utils.reset_all ();
-                resetted = false;
-            }
-            
-            base_utils.update_base_values ();
-            Timeout.add_seconds (10, () => {
-                base_utils.update_base_values ();
-                return true;
-            });
-
             int x = Planitis.Application.gsettings.get_int("window-x");
             int y = Planitis.Application.gsettings.get_int("window-y");
             int h = Planitis.Application.gsettings.get_int("window-height");
@@ -202,6 +190,23 @@ namespace Planitis {
             infogrid = new Widgets.InfoGrid (this);
             resgrid = new Widgets.ResGrid (this, infogrid);
             buildgrid = new Widgets.BuildGrid (this, infogrid, resgrid);
+
+            base_utils = new Services.Utils.Base (this, infogrid, buildgrid, resgrid);
+
+            if (resetted) {
+                base_utils.reset_all ();
+                resetted = false;
+            }
+
+            gsm = new Services.GameSaveManager (this, infogrid, buildgrid, resgrid);
+            gsm.load_from_file ();
+            
+            base_utils.update_base_values ();
+            Timeout.add_seconds (10, () => {
+                base_utils.update_base_values ();
+                gsm.save_game ();
+                return true;
+            });
             
             main_stack.add_titled (infogrid, "info", (_("INFO")));
             main_stack.add_titled (buildgrid, "mine", (_("BUILDINGS")));
@@ -273,6 +278,7 @@ namespace Planitis {
 
         public override bool delete_event (Gdk.EventAny event) {
             base_utils.set_settings ();
+            gsm.save_game ();
             return false;
         }
 
@@ -292,6 +298,57 @@ namespace Planitis {
             resetted = true;
             var dialog = new Services.Utils.ExplodyDialog (this);
             dialog.run ();
-        } 
+        }
+
+        public void  load_base_values (string planet_name,
+                                       string planet_type,
+                                       string planet_atm,
+                                       string planet_diameter,
+                                       double m_res,
+                                       double c_res,
+                                       double h_res,
+                                       double diameter,
+                                       double m_total,
+                                       double c_total,
+                                       double h_total,
+                                       double m_level,
+                                       double c_level,
+                                       double h_level,
+                                       double stm_level,
+                                       double stc_level,
+                                       double sth_level,
+                                       double ph_level,
+                                       double l_level,
+                                       double sym_level,
+                                       double syc_level,
+                                       double syh_level,
+                                       double phs_level
+                                    ) {
+            infogrid.planet_name = planet_name;
+            infogrid.planet_type = planet_type;
+            infogrid.planet_atm = planet_atm;
+            infogrid.planet_diameter = planet_diameter;
+            infogrid.m_res = m_res;
+            infogrid.c_res = c_res;
+            infogrid.h_res = h_res;
+            infogrid.diameter = diameter;
+            infogrid.m_total = m_total;
+            infogrid.c_total = c_total;
+            infogrid.h_total = h_total;
+
+            buildgrid.m_mine_level = m_level;
+            buildgrid.c_mine_level = c_level;
+            buildgrid.h_mine_level = h_level;
+            buildgrid.stm_level = stm_level;
+            buildgrid.stc_level = stc_level;
+            buildgrid.sth_level = sth_level;
+            buildgrid.ph_level = ph_level;
+
+            resgrid.l_level = l_level;
+            resgrid.sym_level = sym_level;
+            resgrid.syc_level = syc_level;
+            resgrid.syh_level = syh_level;
+            resgrid.phs_level = phs_level;
+        }
     }
 }

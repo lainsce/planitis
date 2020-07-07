@@ -30,36 +30,31 @@ namespace Planitis {
         public Gtk.ProgressBar hpb;
 
         public string planet_name = "";
-        public string planet_type = "";
-        public string planet_atm = "";
-        public string planet_diameter = "";
-        public double m_res;
-        public double c_res;
+        public string planet_type;
+        public string planet_atm;
+        public string planet_diameter;
+        public double m_res = 100.0;
+        public double c_res = 100.0;
         public double h_res;
-        public double ph_res;
+        public double ph_res = 1000.0;
         public double diameter;
         public double m_total = 1000.0;
         public double c_total = 1000.0;
         public double h_total = 1000.0;
 
         public InfoGrid (MainWindow win) {
-            m_res = Planitis.Application.gsettings.get_double("metal");
-            c_res = Planitis.Application.gsettings.get_double("crystal");
-            h_res = Planitis.Application.gsettings.get_double("hydrogen");
-            ph_res = Planitis.Application.gsettings.get_double("population");
-            m_total = (m_total * (Planitis.Application.gsettings.get_double("stm-level") + 1));
-            c_total = (c_total * (Planitis.Application.gsettings.get_double("stc-level") + 1));
-            h_total = (h_total * (Planitis.Application.gsettings.get_double("sth-level") + 1));
-
-            planet_name = Planitis.Application.gsettings.get_string("planet-name");
-            planet_type = Planitis.Application.gsettings.get_string("planet-type");
-            planet_atm = Planitis.Application.gsettings.get_string("planet-atm");
-            planet_diameter = Planitis.Application.gsettings.get_string("planet-diameter");
-
             this.win = win;
             this.expand = true;
             this.row_spacing = 6;
             this.column_spacing = 12;
+
+            if (planet_name == "") {
+                planet_name = planet_name_gen ();
+                planet_type = planet_type_gen ();
+                planet_atm = planet_atm_gen ();
+                planet_diameter = planet_diameter_gen ();
+            }
+            
             
             var sep = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
             sep.margin_bottom = 12;
@@ -67,7 +62,7 @@ namespace Planitis {
             sep2.margin_top = 12;
             sep2.margin_bottom = 12;
             
-            header = new Granite.HeaderLabel (_(planet_name));
+            header = new Granite.HeaderLabel (planet_name);
             header.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
             header.get_style_context ().add_class ("pl-planet-name");
             var type_of_planet = new Services.Utils.Label (_("Type:"));

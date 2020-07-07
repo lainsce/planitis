@@ -55,6 +55,7 @@ executable(
     'src/Widgets/BuildGrid.vala',
     'src/Widgets/ResGrid.vala',
     'src/Services/Utils.vala',
+    'src/Services/GameSaveManager.vala',
     asresources,
     c_args: c_args,
     dependencies: [

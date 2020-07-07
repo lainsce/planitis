@@ -62,12 +62,6 @@ namespace Planitis {
         public double sh_h;
 
         public ResGrid (MainWindow win, Widgets.InfoGrid infogrid) {
-            l_level = Planitis.Application.gsettings.get_double("lab-level");
-            sym_level = Planitis.Application.gsettings.get_double("sym-level");
-            syc_level = Planitis.Application.gsettings.get_double("syc-level");
-            syh_level = Planitis.Application.gsettings.get_double("syh-level");
-            phs_level = Planitis.Application.gsettings.get_double("phs-level");
-
             this.win = win;
             this.infogrid = infogrid;
             this.expand = true;
@@ -112,7 +106,7 @@ namespace Planitis {
                     lpm.set_fraction (l_level/l_total);
                     base_utils.update_base_values ();
                     help_l.set_tooltip_text (_("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(l_m, l_c, l_h)));
-                    Planitis.Application.gsettings.set_double ("lab-level", l_level);
+                    win.gsm.save_game ();
                 }
             });
             
@@ -142,7 +136,7 @@ namespace Planitis {
                     sympm.set_fraction (sym_level/sym_total);
                     base_utils.update_base_values ();
                     help_sym.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(sm_c, sm_h)));
-                    Planitis.Application.gsettings.set_double ("sym-level", sym_level);
+                    win.gsm.save_game ();
                 }
             });
             
@@ -172,7 +166,7 @@ namespace Planitis {
                     sycpm.set_fraction (syc_level/syc_total);
                     base_utils.update_base_values ();
                     help_syc.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(sc_c, sc_h)));
-                    Planitis.Application.gsettings.set_double ("syc-level", syc_level);
+                    win.gsm.save_game ();
                 }
             });
             
@@ -202,7 +196,7 @@ namespace Planitis {
                     syhpm.set_fraction (syh_level/syh_total);
                     base_utils.update_base_values ();
                     help_syh.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(sh_c, sh_h)));
-                    Planitis.Application.gsettings.set_double ("syh-level", syh_level);
+                    win.gsm.save_game ();
                 }
             });
             
@@ -232,7 +226,7 @@ namespace Planitis {
                     phspm.set_fraction (phs_level/phs_total);
                     base_utils.update_base_values ();
                     help_phs.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(phs_c, phs_h)));
-                    Planitis.Application.gsettings.set_double ("phs-level", phs_level);
+                    win.gsm.save_game ();
                 }
             });
             

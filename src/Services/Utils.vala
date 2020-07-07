@@ -251,29 +251,6 @@ namespace Planitis.Services.Utils {
             Planitis.Application.gsettings.set_int("window-y", y);
             Planitis.Application.gsettings.set_int("window-width", w);
             Planitis.Application.gsettings.set_int("window-height", h);
-
-            Planitis.Application.gsettings.set_double ("metal", infogrid.m_res);
-            Planitis.Application.gsettings.set_double ("crystal", infogrid.c_res);
-            Planitis.Application.gsettings.set_double ("hydrogen", infogrid.h_res);
-            Planitis.Application.gsettings.set_double ("population", infogrid.ph_res);
-            Planitis.Application.gsettings.set_string ("planet-name", infogrid.planet_name);
-            Planitis.Application.gsettings.set_string ("planet-type", infogrid.planet_type);
-            Planitis.Application.gsettings.set_string ("planet-atm", infogrid.planet_atm);
-            Planitis.Application.gsettings.set_string ("planet-diameter", infogrid.planet_diameter);
-
-            Planitis.Application.gsettings.set_double ("metal-mine", buildgrid.m_mine_level);
-            Planitis.Application.gsettings.set_double ("crystal-mine", buildgrid.c_mine_level);
-            Planitis.Application.gsettings.set_double ("hydrogen-mine", buildgrid.h_mine_level);
-            Planitis.Application.gsettings.set_double ("stm-level", buildgrid.stm_level);
-            Planitis.Application.gsettings.set_double ("stc-level", buildgrid.stc_level);
-            Planitis.Application.gsettings.set_double ("sth-level", buildgrid.sth_level);
-            Planitis.Application.gsettings.set_double ("ph-level", buildgrid.ph_level);
-
-            Planitis.Application.gsettings.set_double ("lab-level", resgrid.l_level);
-            Planitis.Application.gsettings.set_double ("sym-level", resgrid.sym_level);
-            Planitis.Application.gsettings.set_double ("syc-level", resgrid.syc_level);
-            Planitis.Application.gsettings.set_double ("syh-level", resgrid.syh_level);
-            Planitis.Application.gsettings.set_double ("phs-level", resgrid.phs_level);
         }
     }
 

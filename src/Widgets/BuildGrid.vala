@@ -47,9 +47,9 @@ namespace Planitis {
         public Gtk.Button button_sth;
 
         public double pp_total = 10000000000.0;
-        public double m_mine_level;
+        public double m_mine_level = 1.0;
         public double m_total_mine = 100.0;
-        public double c_mine_level;
+        public double c_mine_level = 1.0;
         public double c_total_mine = 100.0;
         public double h_mine_level;
         public double h_total_mine = 100.0;
@@ -72,20 +72,16 @@ namespace Planitis {
         public double ph_h;
 
         public BuildGrid (MainWindow win, Widgets.InfoGrid infogrid, Widgets.ResGrid resgrid) {
-            ph_level = Planitis.Application.gsettings.get_double("ph-level");
-            m_mine_level = Planitis.Application.gsettings.get_double("metal-mine");
-            c_mine_level = Planitis.Application.gsettings.get_double("crystal-mine");
-            h_mine_level = Planitis.Application.gsettings.get_double("hydrogen-mine");
-            stm_level = Planitis.Application.gsettings.get_double("stm-level");
-            stc_level = Planitis.Application.gsettings.get_double("stc-level");
-            sth_level = Planitis.Application.gsettings.get_double("sth-level");
-
             this.win = win;
             this.infogrid = infogrid;
             this.resgrid = resgrid;
             this.expand = true;
             this.row_spacing = 6;
             this.column_spacing = 12;
+
+            infogrid.m_total = (infogrid.m_total * (stm_level + 1));
+            infogrid.c_total = (infogrid.c_total * (stc_level + 1));
+            infogrid.h_total = (infogrid.h_total * (sth_level + 1));
         }
         construct {
             var sep = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
@@ -150,7 +146,7 @@ namespace Planitis {
                     mpm.set_fraction (m_mine_level/m_total_mine);
                     base_utils.update_base_values ();
                     help_pm.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c)));
-                    Planitis.Application.gsettings.set_double ("metal-mine", m_mine_level);
+                    win.gsm.save_game ();
                 }
             });
             
@@ -163,7 +159,7 @@ namespace Planitis {
                     cpm.set_fraction (c_mine_level/c_total_mine);
                     base_utils.update_base_values ();
                     help_pc.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c)));
-                    Planitis.Application.gsettings.set_double ("crystal-mine", c_mine_level);
+                    win.gsm.save_game ();
                 }
             });
             
@@ -176,7 +172,7 @@ namespace Planitis {
                     hpm.set_fraction (h_mine_level/h_total_mine);
                     base_utils.update_base_values ();
                     help_ph.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c)));
-                    Planitis.Application.gsettings.set_double ("hydrogen-mine", h_mine_level);
+                    win.gsm.save_game ();
                 }
             });
             
@@ -232,7 +228,7 @@ namespace Planitis {
                     stmpm.set_fraction (stm_level/stm_total);
                     base_utils.update_base_values ();
                     help_sm.set_tooltip_text (_("""To build the next level, %.0f of Mineral is needed""".printf(ps_m)));
-                    Planitis.Application.gsettings.set_double ("stm-level", stm_level);
+                    win.gsm.save_game ();
                 }
             });
             
@@ -245,7 +241,7 @@ namespace Planitis {
                     stcpm.set_fraction (stc_level/stc_total);
                     base_utils.update_base_values ();
                     help_sc.set_tooltip_text (_("""To build the next level, %.0f of Crystal is needed""".printf(ps_c)));
-                    Planitis.Application.gsettings.set_double ("stc-level", stc_level);
+                    win.gsm.save_game ();
                 }
             });
             
@@ -258,7 +254,7 @@ namespace Planitis {
                     sthpm.set_fraction (sth_level/sth_total);
                     base_utils.update_base_values ();
                     help_sh.set_tooltip_text (_("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h)));
-                    Planitis.Application.gsettings.set_double ("sth-level", sth_level);
+                    win.gsm.save_game ();
                 }
             });
             
@@ -288,7 +284,7 @@ namespace Planitis {
                     phpm.set_fraction (ph_level/ph_total);
                     base_utils.update_base_values ();
                     help_phh.set_tooltip_text (_("""To build the next level, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(ph_c, ph_h)));
-                    Planitis.Application.gsettings.set_double ("ph-level", ph_level);
+                    win.gsm.save_game ();
                 }
             });
             
