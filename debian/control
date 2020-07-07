@@ -1,4 +1,4 @@
-Source: com.github.lainsce.reganam
+Source: com.github.lainsce.planitis
 Section: x11
 Priority: extra
 Maintainer: Lains <lainsce@airmail.cc>
@@ -11,7 +11,7 @@ Build-Depends: meson,
                valac (>= 0.26)
 
 Standards-Version: 3.9.3
-Package: com.github.lainsce.reganam
+Package: com.github.lainsce.planitis
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Build up your planet's buildings and grow yourself a ecumenopolis of native aliens.

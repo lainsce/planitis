@@ -1,11 +1,11 @@
-# Polish translations for Reganam.
-# This file is distributed under the same license as the com.github.lainsce.reganam.
+# Polish translations for Planitis.
+# This file is distributed under the same license as the com.github.lainsce.planitis.
 # Translated by Michał Nowakowski <nowakowski@offshore.rocks>, 2019.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.lainsce.reganam\n"
+"Project-Id-Version: com.github.lainsce.planitis\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-21 11:22-0300\n"
 "PO-Revision-Date: 2019-12-20 17:08+0100\n"

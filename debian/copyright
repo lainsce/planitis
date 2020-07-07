@@ -1,6 +1,6 @@
 Format: http://dep.debian.net/deps/dep5
-Upstream-Name: com.github.lainsce.reganam
-Source: https://github.com/lainsce/reganam
+Upstream-Name: com.github.lainsce.planitis
+Source: https://github.com/lainsce/planitis
 
 Files: src/* data/* cmake/* debian/*
 Copyright: 2017 Lains <lainsce@airmail.cc>

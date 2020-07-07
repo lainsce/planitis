@@ -1,11 +1,11 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the com.github.lainsce.reganam package.
+# This file is distributed under the same license as the com.github.lainsce.planitis package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.lainsce.reganam\n"
+"Project-Id-Version: com.github.lainsce.planitis\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-21 11:22-0300\n"
 "PO-Revision-Date: 2019-07-28 21:13+0200\n"

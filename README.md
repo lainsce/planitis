@@ -1,10 +1,10 @@
-# ![icon](data/icon.png) Reganam
+# ![icon](data/icon.png) Planitis
 
 ## Build up your planet's buildings and grow yourself a ecumenopolis of native aliens
 
-[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.lainsce.reganam)
+[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.lainsce.planitis)
 
-[![Build Status](https://travis-ci.org/lainsce/reganam.svg?branch=master)](https://travis-ci.org/lainsce/reganam)
+[![Build Status](https://travis-ci.org/lainsce/planitis.svg?branch=master)](https://travis-ci.org/lainsce/planitis)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
 ![Screenshot](data/shot.png)

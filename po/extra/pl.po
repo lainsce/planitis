@@ -1,5 +1,5 @@
-# Polish translations for Reganam.
-# This file is distributed under the same license as the com.github.lainsce.reganam.
+# Polish translations for Planitis.
+# This file is distributed under the same license as the com.github.lainsce.planitis.
 # Translated by Michał Nowakowski <nowakowski@offshore.rocks>, 2019.
 #
 #, fuzzy
@@ -16,25 +16,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.github.lainsce.reganam.desktop.in:3
-#: data/com.github.lainsce.reganam.appdata.xml.in:6
-msgid "Reganam"
-msgstr "Reganam"
+#: data/com.github.lainsce.planitis.desktop.in:3
+#: data/com.github.lainsce.planitis.appdata.xml.in:6
+msgid "Planitis"
+msgstr "Planitis"
 
-#: data/com.github.lainsce.reganam.desktop.in:4
-#: data/com.github.lainsce.reganam.appdata.xml.in:7
+#: data/com.github.lainsce.planitis.desktop.in:4
+#: data/com.github.lainsce.planitis.appdata.xml.in:7
 msgid "Resource Management game set in space"
 msgstr "Gra o zarządzaniu zasobami w kosmosie"
 
-#: data/com.github.lainsce.reganam.desktop.in:6
-msgid "com.github.lainsce.reganam"
-msgstr "com.github.lainsce.reganam"
+#: data/com.github.lainsce.planitis.desktop.in:6
+msgid "com.github.lainsce.planitis"
+msgstr "com.github.lainsce.planitis"
 
-#: data/com.github.lainsce.reganam.desktop.in:7
+#: data/com.github.lainsce.planitis.desktop.in:7
 msgid "Resource Management;Game;"
 msgstr "Zarządzanie zasobami;Gra;"
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:9
+#: data/com.github.lainsce.planitis.appdata.xml.in:9
 msgid ""
 "Build up your planet's buildings and grow yourself a ecumenopolis of native "
 "aliens. Get mines of minerals, crystals and even hydrogen to build more "
@@ -44,27 +44,27 @@ msgstr ""
 "Zadbaj o kopalnie minerału, kryształu, a nawet wodoru, żeby budować "
 "jeszcze więcej struktur i syntezatorów."
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:11
+#: data/com.github.lainsce.planitis.appdata.xml.in:11
 msgid "Quit anytime with the shortcut Ctrl + Q"
 msgstr "Wyjdź z gry kiedy chcesz skrótem Ctrl + Q"
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:17
+#: data/com.github.lainsce.planitis.appdata.xml.in:17
 msgid "Lains"
 msgstr "Lains"
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:57
+#: data/com.github.lainsce.planitis.appdata.xml.in:57
 msgid "Release: Reserch Labs Operational"
 msgstr "Wydanie: Działające Laboratoria Badawcze"
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:59
+#: data/com.github.lainsce.planitis.appdata.xml.in:59
 msgid "Fix: The research lab levels are now reported."
 msgstr "Poprawiono: Poziomy laboratorium badawczego są od teraz podawane."
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:65
+#: data/com.github.lainsce.planitis.appdata.xml.in:65
 msgid "Release: Fix and Smash Bugs"
 msgstr "Wydanie: Poprawki i zgniatanie bugów"
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:67
+#: data/com.github.lainsce.planitis.appdata.xml.in:67
 msgid ""
 "Fix: There was some game locking bugs happening that would make the game "
 "unplayable. (fixed by Kai Gillmann [Silberling on GitHub])"
@@ -72,20 +72,20 @@ msgstr ""
 "Poprawiono: Kilka błędów blokujących grę na tyle, że mogły uczynić "
 "ją niegrywalną. (Poprawki zrobił Kai Gillmann; Silberling na GitHubie)"
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:73
-#: data/com.github.lainsce.reganam.appdata.xml.in:81
+#: data/com.github.lainsce.planitis.appdata.xml.in:73
+#: data/com.github.lainsce.planitis.appdata.xml.in:81
 msgid "Release: Day 1 Patch"
 msgstr "Wydanie: Łatka Dnia Pierwszego"
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:75
-#: data/com.github.lainsce.reganam.appdata.xml.in:83
+#: data/com.github.lainsce.planitis.appdata.xml.in:75
+#: data/com.github.lainsce.planitis.appdata.xml.in:83
 msgid "Some last minute fixes."
 msgstr "Poprawki na ostatnią minutę."
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:89
+#: data/com.github.lainsce.planitis.appdata.xml.in:89
 msgid "Release: Stable"
 msgstr "Wydanie: Stabilne"
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:91
+#: data/com.github.lainsce.planitis.appdata.xml.in:91
 msgid "First release."
 msgstr "Pierwsze wydanie."

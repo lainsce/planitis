@@ -17,71 +17,71 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.github.lainsce.reganam.desktop.in:3
-#: data/com.github.lainsce.reganam.appdata.xml.in:6
-msgid "Reganam"
+#: data/com.github.lainsce.planitis.desktop.in:3
+#: data/com.github.lainsce.planitis.appdata.xml.in:6
+msgid "Planitis"
 msgstr ""
 
-#: data/com.github.lainsce.reganam.desktop.in:4
-#: data/com.github.lainsce.reganam.appdata.xml.in:7
+#: data/com.github.lainsce.planitis.desktop.in:4
+#: data/com.github.lainsce.planitis.appdata.xml.in:7
 msgid "Resource Management game set in space"
 msgstr ""
 
-#: data/com.github.lainsce.reganam.desktop.in:6
-msgid "com.github.lainsce.reganam"
+#: data/com.github.lainsce.planitis.desktop.in:6
+msgid "com.github.lainsce.planitis"
 msgstr ""
 
-#: data/com.github.lainsce.reganam.desktop.in:7
+#: data/com.github.lainsce.planitis.desktop.in:7
 msgid "Resource Management;Game;"
 msgstr ""
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:9
+#: data/com.github.lainsce.planitis.appdata.xml.in:9
 msgid ""
 "Build up your planet's buildings and grow yourself a ecumenopolis of native "
 "aliens. Get mines of minerals, crystals and even hydrogen to build more "
 "structures and synthesizers."
 msgstr ""
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:11
+#: data/com.github.lainsce.planitis.appdata.xml.in:11
 msgid "Quit anytime with the shortcut Ctrl + Q"
 msgstr ""
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:17
+#: data/com.github.lainsce.planitis.appdata.xml.in:17
 msgid "Lains"
 msgstr ""
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:57
+#: data/com.github.lainsce.planitis.appdata.xml.in:57
 msgid "Release: Reserch Labs Operational"
 msgstr ""
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:59
+#: data/com.github.lainsce.planitis.appdata.xml.in:59
 msgid "Fix: The research lab levels are now reported."
 msgstr ""
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:65
+#: data/com.github.lainsce.planitis.appdata.xml.in:65
 msgid "Release: Fix and Smash Bugs"
 msgstr ""
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:67
+#: data/com.github.lainsce.planitis.appdata.xml.in:67
 msgid ""
 "Fix: There was some game locking bugs happening that would make the game "
 "unplayable. (fixed by Kai Gillmann [Silberling on GitHub])"
 msgstr ""
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:73
-#: data/com.github.lainsce.reganam.appdata.xml.in:81
+#: data/com.github.lainsce.planitis.appdata.xml.in:73
+#: data/com.github.lainsce.planitis.appdata.xml.in:81
 msgid "Release: Day 1 Patch"
 msgstr "Verson : Patch Jour 1"
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:75
-#: data/com.github.lainsce.reganam.appdata.xml.in:83
+#: data/com.github.lainsce.planitis.appdata.xml.in:75
+#: data/com.github.lainsce.planitis.appdata.xml.in:83
 msgid "Some last minute fixes."
 msgstr "Quelques corrections de dernière minute."
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:89
+#: data/com.github.lainsce.planitis.appdata.xml.in:89
 msgid "Release: Stable"
 msgstr "Version : Stable"
 
-#: data/com.github.lainsce.reganam.appdata.xml.in:91
+#: data/com.github.lainsce.planitis.appdata.xml.in:91
 msgid "First release."
 msgstr "Première version."

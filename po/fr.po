@@ -1,11 +1,11 @@
-# French translations for com.github.lainsce.reganam package.
-# Copyright (C) 2019 THE com.github.lainsce.reganam'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the com.github.lainsce.reganam package.
+# French translations for com.github.lainsce.planitis package.
+# Copyright (C) 2019 THE com.github.lainsce.planitis'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.lainsce.planitis package.
 # NathanBnm, 2019.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.lainsce.reganam\n"
+"Project-Id-Version: com.github.lainsce.planitis\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-19 17:39+0200\n"
 "PO-Revision-Date: 2019-06-19 17:39+0200\n"

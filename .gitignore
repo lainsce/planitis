@@ -3,9 +3,9 @@ build/
 *~
 .flatpak-builder/
 app-dir/
-debian/com.github.lainsce.reganam.debhelper.log
-debian/com.github.lainsce.reganam.substvars
-debian/com.github.lainsce.reganam/
+debian/com.github.lainsce.planitis.debhelper.log
+debian/com.github.lainsce.planitis.substvars
+debian/com.github.lainsce.planitis/
 debian/debhelper-build-stamp
 debian/files
 obj-x86_64-linux-gnu/

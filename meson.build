@@ -1,12 +1,18 @@
 # Name our project
-project('com.github.lainsce.reganam', ['vala', 'c'],
-    version: '1.1.4'
+project('com.github.lainsce.planitis', ['vala', 'c'],
+    version: '2.0.0'
 )
 
 # Import main lib files
 gnome = import('gnome')
 i18n = import('i18n')
 
+add_global_arguments([
+        '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
+        '-DHANDY_USE_UNSTABLE_API'
+    ],
+    language:'c'
+)
 
 # Compile the GResources for this project
 asresources = gnome.compile_resources(
@@ -21,7 +27,7 @@ conf = configuration_data()
 # Get the package data directory under Meson
 pkgdatadir = join_paths([ get_option('prefix'),
                           get_option('datadir'),
-                          'com.github.lainsce.reganam' ])
+                          'com.github.lainsce.planitis' ])
 conf.set_quoted('PKGDATADIR', pkgdatadir)
 
 # Other configs
@@ -51,6 +57,7 @@ executable(
         dependency('granite'),
         dependency('gobject-2.0'),
         dependency('gtk+-3.0'),
+        dependency('libhandy-1', version: '>=0.80.0'),
         m_dep,
     ],
     vala_args: [
