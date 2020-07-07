@@ -103,7 +103,7 @@ progressbar .left {
 }
 .pl-switcher button {
     background: shade (mix (@accent, @base_color, 0.85), 0.88);
-    border: 1px solid shade (mix (@accent, @base_color, 0.95), 0.88);
+    border: 1px solid shade (mix (@accent, @base_color, 0.85), 0.88);
 }
 .pl-column {
     background: mix (@accent, @base_color, 0.85);
