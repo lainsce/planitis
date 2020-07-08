@@ -48,25 +48,25 @@ namespace Planitis {
         public double m_total_mine = 100.0;
         public double c_mine_level = 1.0;
         public double c_total_mine = 100.0;
-        public double h_mine_level;
+        public double h_mine_level = 0.0;
         public double h_total_mine = 100.0;
-        public double ph_level;
+        public double ph_level = 0.0;
         public double ph_total = 1000.0;
-        public double stm_level;
+        public double stm_level = 0.0;
         public double stm_total = 10.0;
-        public double stc_level;
+        public double stc_level = 0.0;
         public double stc_total = 10.0;
-        public double sth_level;
+        public double sth_level = 0.0;
         public double sth_total = 10.0;
-        public double pm_m;
-        public double pm_c;
-        public double pc_m;
-        public double pc_c;
-        public double ps_m;
-        public double ps_c;
-        public double ps_h;
-        public double ph_c;
-        public double ph_h;
+        public double pm_m = 0.0;
+        public double pm_c = 0.0;
+        public double pc_m = 0.0;
+        public double pc_c = 0.0;
+        public double ps_m = 0.0;
+        public double ps_c = 0.0;
+        public double ps_h = 0.0;
+        public double ph_c = 0.0;
+        public double ph_h = 0.0;
 
         public BuildGrid (MainWindow win) {
             this.win = win;
@@ -230,7 +230,7 @@ namespace Planitis {
             button_stc.clicked.connect (() => {
                 if (win.infogrid.c_res >= (100 * (stc_level + 1))) {
                     stc_level += 1;
-                    win.infogrid.c_total = (win.infogrid.c_total * stc_level);
+                    win.infogrid.c_total = (win.infogrid.c_total * (stc_level + 1));
                     win.infogrid.c_res -= (100 * (stc_level + 1));
                     stcpm.set_text ("""%.0f/%.0f""".printf(stc_level, stc_total));
                     stcpm.set_fraction (stc_level/stc_total);
@@ -243,7 +243,7 @@ namespace Planitis {
             button_sth.clicked.connect (() => {
                 if (win.infogrid.h_res >= (100 * (sth_level + 1))) {
                     sth_level += 1;
-                    win.infogrid.h_total = (win.infogrid.h_total * sth_level);
+                    win.infogrid.h_total = (win.infogrid.h_total * (sth_level + 1));
                     win.infogrid.h_res -= (100 * (sth_level + 1));
                     sthpm.set_text ("""%.0f/%.0f""".printf(sth_level, sth_total));
                     sthpm.set_fraction (sth_level/sth_total);

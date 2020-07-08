@@ -37,27 +37,27 @@ namespace Planitis {
         public Gtk.Button button_syh;
         public Gtk.Button button_phs;
 
-        public double l_level;
+        public double l_level = 0.0;
         public double l_total = 12.0;
-        public double sym_level;
+        public double sym_level = 0.0;
         public double sym_total = 12.0;
-        public double syc_level;
+        public double syc_level = 0.0;
         public double syc_total = 12.0;
-        public double syh_level;
+        public double syh_level = 0.0;
         public double syh_total = 12.0;
-        public double phs_level;
+        public double phs_level = 0.0;
         public double phs_total = 12.0;
-        public double l_m;
-        public double l_c;
-        public double l_h;
-        public double phs_c;
-        public double phs_h;
-        public double sm_c;
-        public double sm_h;
-        public double sc_c;
-        public double sc_h;
-        public double sh_c;
-        public double sh_h;
+        public double l_m = 0.0;
+        public double l_c = 0.0;
+        public double l_h = 0.0;
+        public double phs_c = 0.0;
+        public double phs_h = 0.0;
+        public double sm_c = 0.0;
+        public double sm_h = 0.0;
+        public double sc_c = 0.0;
+        public double sc_h = 0.0;
+        public double sh_c = 0.0;
+        public double sh_h = 0.0;
 
         public ResGrid (MainWindow win) {
             this.win = win;

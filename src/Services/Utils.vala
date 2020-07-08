@@ -156,7 +156,15 @@ namespace Planitis.Services.Utils {
         }
 
         public void update_pb_values () {
-            win.infogrid.population_desc.set_label ("%0.f".printf(win.infogrid.ph_res));
+            win.planet_header.label = win.infogrid.planet_name.up ();
+            win.mpbs.set_fraction(win.infogrid.m_res/win.infogrid.m_total);
+            win.mpbs.set_text ("""Metal: %.2f""".printf(win.infogrid.m_res));
+            win.cpbs.set_fraction(win.infogrid.c_res/win.infogrid.c_total);
+            win.cpbs.set_text ("""Crystal: %.2f""".printf(win.infogrid.c_res));
+            win.hpbs.set_fraction(win.infogrid.h_res/win.infogrid.h_total);
+            win.hpbs.set_text ("""H²: %.2f""".printf(win.infogrid.h_res));
+
+            win.infogrid.population_desc.set_label ("%0.f pop.".printf(win.infogrid.ph_res));
             win.infogrid.mpb.set_fraction(win.infogrid.m_res/win.infogrid.m_total);
             win.infogrid.mpb.set_text ("""%.2f/%.2f""".printf(win.infogrid.m_res, win.infogrid.m_total));
             win.infogrid.cpb.set_fraction(win.infogrid.c_res/win.infogrid.c_total);
@@ -233,6 +241,7 @@ namespace Planitis.Services.Utils {
             label = text;
             halign = Gtk.Align.END;
             margin_start = 12;
+            this.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
         }
     }
 

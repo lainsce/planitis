@@ -35,10 +35,10 @@ window.unified decoration-overlay {
 }
 
 .pl-window {
-    background: #F7F7F7;
+    background-color: #F7F7F7;
 }
 .pl-window-dark {
-    background: #151515;
+    background-color: #151515;
 }
 .pl-toolbar .image-button {
     background: none;
@@ -62,12 +62,32 @@ progressbar .left {
     background: @accent;
 }
 
+.pl-progressbar trough {
+    background: mix(@accent, @base_color, 0.85);
+    border: 1px solid shade (mix (@accent, @base_color, 0.85), 0.88);
+    box-shadow: none;
+    background-image: none;
+    border-radius: 8px;
+}
+
+.pl-progressbar .left {
+    background: shade (mix (@accent, @base_color, 0.85), 0.88);
+    border: 1px solid shade (mix (@accent, @base_color, 0.85), 0.88);
+    box-shadow: none;
+    background-image: none;
+    border-radius: 8px;
+}
+
+.pl-progressbar text {
+    opacity: 0.8;
+}
+
 .pl-switcher button {
     box-shadow: none;
     background-image: none;
     margin: 0 6px;
     border-radius: 8px 8px 0 0;
-    background: mix(@accent, @base_color, 0.95);
+    background: mix(@accent, @base_color, 0.85);
 }
 .pl-switcher button:first-child {
     border-bottom: 1px solid shade (mix (@accent, @base_color, 0.85), 0.88);

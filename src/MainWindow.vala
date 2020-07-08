@@ -30,6 +30,11 @@ namespace Planitis {
         public Hdy.HeaderBar fauxtitlebar;
         public Gtk.Box main_frame_grid;
 
+        public Gtk.Label planet_header;
+        public Gtk.ProgressBar mpbs;
+        public Gtk.ProgressBar cpbs;
+        public Gtk.ProgressBar hpbs;
+
         public Widgets.InfoGrid infogrid;
         public Widgets.BuildGrid buildgrid;
         public Widgets.ResGrid resgrid;
@@ -108,6 +113,27 @@ namespace Planitis {
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
             default_theme.add_resource_path ("/com/github/lainsce/planitis");
+
+            var provider2 = new Gtk.CssProvider ();
+            string res1 = "\"resource:///com/github/lainsce/planitis/res/bg1.png\"";
+            string res2 = "\"resource:///com/github/lainsce/planitis/res/bg2.png\"";
+            string css = """
+                .pl-window {
+                    background-image: url(%s);
+                    background-repeat: repeat;
+                }
+                .pl-window-dark {
+                    background-image: url(%s);
+                    background-repeat: repeat;
+                }
+             """.printf(res1, res2);
+             try {
+                provider2.load_from_data(css, -1);
+             } catch (GLib.Error e) {
+                warning ("Failed to parse css style : %s", e.message);
+             }
+             Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),provider2,
+                                                                  Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             
             titlebar = new Hdy.HeaderBar() {
                 title = "Planitis",
@@ -212,14 +238,54 @@ namespace Planitis {
             };
             column_header.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
 
+            planet_header = new Gtk.Label (_("%s".printf(infogrid.planet_name.up()))) {
+                halign = Gtk.Align.START,
+                margin_start = 9
+            };
+            planet_header.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
+
+            mpbs = new Gtk.ProgressBar () {
+                hexpand = true,
+                fraction = infogrid.m_res/infogrid.m_total,
+                show_text = true,
+                text = """Metal: %.2f""".printf(infogrid.m_res)
+            };
+            mpbs.get_style_context ().add_class ("pl-progressbar");
+            cpbs = new Gtk.ProgressBar () {
+                hexpand = true,
+                fraction = infogrid.c_res/infogrid.c_total,
+                show_text = true,
+                text = """Crystal: %.2f""".printf(infogrid.c_res)
+            };
+            cpbs.get_style_context ().add_class ("pl-progressbar");
+            hpbs = new Gtk.ProgressBar () {
+                hexpand = true,
+                fraction = infogrid.h_res/infogrid.h_total,
+                show_text = true,
+                text = """H²: %.2f""".printf(infogrid.h_res)
+            };
+            hpbs.get_style_context ().add_class ("pl-progressbar");
+
+            var stats_box = new Gtk.Grid () {
+                orientation = Gtk.Orientation.VERTICAL,
+                row_spacing = 6,
+                margin = 6,
+                valign = Gtk.Align.CENTER,
+                halign = Gtk.Align.CENTER
+            };
+            stats_box.add (mpbs);
+            stats_box.add (cpbs);
+            stats_box.add (hpbs);
+
             var column = new Gtk.Grid () {
                 orientation = Gtk.Orientation.VERTICAL,
                 vexpand = true
             };
+            column.add (planet_header);
+            column.add (stats_box);
             column.add (column_header);
             column.add (main_stackswitcher);
             column.get_style_context ().add_class ("pl-column");
-            column.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
             
             fauxtitlebar = new Hdy.HeaderBar () {
                 show_close_button = true,
@@ -245,13 +311,19 @@ namespace Planitis {
             grid.attach (main_frame_grid, 1, 1, 1, 1);
             grid.show_all ();
 
+            var separator = new Gtk.Separator (Gtk.Orientation.VERTICAL);
+            var separator_cx = separator.get_style_context ();
+            separator_cx.add_class ("vsep");
+
             leaflet = new Hdy.Leaflet () {
                 transition_type = Hdy.LeafletTransitionType.UNDER,
                 can_swipe_back = true
             };
-            leaflet.set_visible_child (grid);
             leaflet.add (sgrid);
+            leaflet.add (separator);
             leaflet.add (grid);
+            leaflet.set_visible_child (grid);
+            leaflet.child_set_property (separator, "allow-visible", false);
             leaflet.show_all ();
 
             update ();

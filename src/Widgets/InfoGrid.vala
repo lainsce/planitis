@@ -35,9 +35,9 @@ namespace Planitis {
         public string planet_diameter;
         public double m_res = 100.0;
         public double c_res = 100.0;
-        public double h_res;
+        public double h_res = 0.0;
         public double ph_res = 1000.0;
-        public double diameter;
+        public double diameter = 0.0;
         public double m_total = 1000.0;
         public double c_total = 1000.0;
         public double h_total = 1000.0;
@@ -71,7 +71,7 @@ namespace Planitis {
             size_diameter_desc.halign = Gtk.Align.START;
             var population = new Services.Utils.Label (_("Population:"));
             population_desc = new Gtk.Label ("");
-            population_desc.label = "%0.f".printf(ph_res);
+            population_desc.label = "%0.f pop.".printf(ph_res);
             population_desc.halign = Gtk.Align.START;
             var mineral_label = new Services.Utils.Label (_("Mineral:"));
             var crystal_label = new Services.Utils.Label (_("Crystal:"));

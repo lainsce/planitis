@@ -42,16 +42,13 @@ namespace Planitis.Services {
             } catch (Error e) {
                 warning ("Failed to save planitis: %s\n", e.message);
             }
-
         }
 
         private string prepare_json_from_game () {
             builder = new Json.Builder ();
-
             builder.begin_array ();
             save_column (builder, win.infogrid, win.buildgrid, win.resgrid);
             builder.end_array ();
-
             Json.Generator generator = new Json.Generator ();
             Json.Node root = builder.get_root ();
             generator.set_root (root);
@@ -73,7 +70,6 @@ namespace Planitis.Services {
             builder.add_double_value (infogrid.c_total);
             builder.add_double_value (infogrid.h_total);
             builder.end_array ();
-
             builder.begin_array ();
             builder.add_double_value (buildgrid.m_mine_level);
             builder.add_double_value (buildgrid.c_mine_level);
@@ -83,7 +79,6 @@ namespace Planitis.Services {
             builder.add_double_value (buildgrid.sth_level);
             builder.add_double_value (buildgrid.ph_level);
             builder.end_array ();
-
             builder.begin_array ();
             builder.add_double_value (resgrid.l_level);
             builder.add_double_value (resgrid.sym_level);
@@ -101,7 +96,6 @@ namespace Planitis.Services {
                 parser.load_from_data(json_string);
                 var root = parser.get_root();
                 var array = root.get_array();
-
                 var infogrid_arr = array.get_array_element (0);
                 string planet_name = infogrid_arr.get_string_element(0);
                 string planet_type = infogrid_arr.get_string_element(1);
@@ -142,7 +136,6 @@ namespace Planitis.Services {
                                             c_total,
                                             h_total
                     );
-
                     win.resgrid.load_base_values (
                                             l_level,
                                             sym_level,
@@ -150,7 +143,6 @@ namespace Planitis.Services {
                                             syh_level,
                                             phs_level
                     );
-
                     win.buildgrid.load_base_values (
                                             m_level,
                                             c_level,
@@ -161,8 +153,6 @@ namespace Planitis.Services {
                                             ph_level
                     );
                 }
-                
-
             } catch (Error e) {
                 warning ("Failed to load file: %s\n", e.message);
             }

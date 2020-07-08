@@ -2,6 +2,8 @@
 <gresources>
     <gresource prefix="/com/github/lainsce/planitis">
         <file alias="app.css">app.css</file>
+        <file alias="res/bg1.png">res/bg1.png</file>
+        <file alias="res/bg2.png">res/bg2.png</file>
         <file alias="explosion-symbolic.svg">icons/symbolic/explosion-symbolic.svg</file>
     </gresource>
 </gresources>
