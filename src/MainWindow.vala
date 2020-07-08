@@ -20,7 +20,7 @@
 namespace Planitis {
     public class MainWindow : Hdy.ApplicationWindow {
         public Gtk.Application app { get; construct; }
-        private Services.Utils.Base base_utils;
+        public Services.Utils.Base base_utils;
         public Services.GameSaveManager gsm;
         public bool resetted = false;
         public Hdy.Leaflet leaflet;
@@ -57,15 +57,9 @@ namespace Planitis {
                 titlebar.get_style_context ().add_class ("pl-toolbar-dark");
                 main_frame_grid.get_style_context ().add_class ("pl-window-dark");
             } else if (Planitis.Application.grsettings.prefers_color_scheme == Granite.Settings.ColorScheme.NO_PREFERENCE) {
-                if (Planitis.Application.gsettings.get_boolean("dark-mode")) {
-                    Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
-                    titlebar.get_style_context ().add_class ("pl-toolbar-dark");
-                    main_frame_grid.get_style_context ().add_class ("pl-window-dark");
-                } else {
-                    Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
-                    titlebar.get_style_context ().remove_class ("pl-toolbar-dark");
-                    main_frame_grid.get_style_context ().remove_class ("pl-window-dark");
-                }
+                Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
+                titlebar.get_style_context ().remove_class ("pl-toolbar-dark");
+                main_frame_grid.get_style_context ().remove_class ("pl-window-dark");
             }
 
             Planitis.Application.grsettings.notify["prefers-color-scheme"].connect (() => {
@@ -74,17 +68,15 @@ namespace Planitis {
                     titlebar.get_style_context ().add_class ("pl-toolbar-dark");
                     main_frame_grid.get_style_context ().add_class ("pl-window-dark");
                 } else if (Planitis.Application.grsettings.prefers_color_scheme == Granite.Settings.ColorScheme.NO_PREFERENCE) {
-                    if (Planitis.Application.gsettings.get_boolean("dark-mode")) {
-                        Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
-                        titlebar.get_style_context ().add_class ("pl-toolbar-dark");
-                        main_frame_grid.get_style_context ().add_class ("pl-window-dark");
-                    } else {
-                        Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
-                        titlebar.get_style_context ().remove_class ("pl-toolbar-dark");
-                        main_frame_grid.get_style_context ().remove_class ("pl-window-dark");
-                    }
+                    Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
+                    titlebar.get_style_context ().remove_class ("pl-toolbar-dark");
+                    main_frame_grid.get_style_context ().remove_class ("pl-window-dark");
                 }
             });
+        }
+
+        construct {
+            gsm = new Services.GameSaveManager (this);
 
             Planitis.Application.gsettings.changed.connect (() => {
                 if (Planitis.Application.gsettings.get_boolean("dark-mode")) {
@@ -97,16 +89,6 @@ namespace Planitis {
                     main_frame_grid.get_style_context ().remove_class ("pl-window-dark");
                 }
             });
-        }
-
-        construct {
-            var provider = new Gtk.CssProvider ();
-            provider.load_from_resource ("/com/github/lainsce/planitis/app.css");
-            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
-            provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
-            default_theme.add_resource_path ("/com/github/lainsce/planitis");
 
             int x = Planitis.Application.gsettings.get_int("window-x");
             int y = Planitis.Application.gsettings.get_int("window-y");
@@ -118,6 +100,14 @@ namespace Planitis {
             if (w != 0 && h != 0) {
                 this.resize (w, h);
             }
+
+            var provider = new Gtk.CssProvider ();
+            provider.load_from_resource ("/com/github/lainsce/planitis/app.css");
+            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
+            provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
+            default_theme.add_resource_path ("/com/github/lainsce/planitis");
             
             titlebar = new Hdy.HeaderBar() {
                 title = "Planitis",
@@ -135,7 +125,10 @@ namespace Planitis {
                 halign = Gtk.Align.END
             };
 
-            var dark_sw = new Services.Utils.SettingsSwitch ("dark-mode");
+            var dark_sw = new Gtk.Switch ();
+            dark_sw.halign = Gtk.Align.START;
+            dark_sw.valign = Gtk.Align.CENTER;
+            Planitis.Application.gsettings.bind ("dark-mode", dark_sw, "active", GLib.SettingsBindFlags.DEFAULT);
 
             var menu_grid = new Gtk.Grid () {
                 margin = 12,
@@ -186,8 +179,6 @@ namespace Planitis {
             };
             main_stackswitcher.set_size_request (185,-1);
             main_stackswitcher.get_style_context ().add_class ("pl-switcher");
-            
-            gsm = new Services.GameSaveManager (this);
 
             if (resetted) {
                 resetted = false;
@@ -201,9 +192,10 @@ namespace Planitis {
             
             gsm.load_from_file ();
 
-            base_utils = new Services.Utils.Base (this, infogrid, buildgrid, resgrid);
+            base_utils = new Services.Utils.Base (this);
             
             base_utils.update_base_values ();
+            gsm.save_game ();
             Timeout.add_seconds (10, () => {
                 base_utils.update_base_values ();
                 gsm.save_game ();

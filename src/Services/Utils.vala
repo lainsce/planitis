@@ -20,21 +20,15 @@
 namespace Planitis.Services.Utils {
     public class Base : Object {
         private MainWindow win;
-        private Widgets.InfoGrid infogrid;
-        private Widgets.BuildGrid buildgrid;
-        private Widgets.ResGrid resgrid;
 
-        public Base (MainWindow win, Widgets.InfoGrid infogrid, Widgets.BuildGrid buildgrid, Widgets.ResGrid resgrid) {
+        public Base (MainWindow win) {
             this.win = win;
-            this.resgrid = resgrid;
-            this.buildgrid = buildgrid;
-            this.infogrid = infogrid;
         }
 
         public void update_base_values () {
-            infogrid.m_res = (infogrid.m_res + ((resgrid.sym_level + 1) * (1.55 * buildgrid.m_mine_level))).clamp(0, infogrid.m_total);
-            infogrid.c_res = (infogrid.c_res + ((resgrid.syc_level + 1) * (1.25 * buildgrid.c_mine_level))).clamp(0, infogrid.c_total);
-            infogrid.h_res = (infogrid.h_res + ((resgrid.syh_level + 1) * (1.10 * buildgrid.h_mine_level))).clamp(0, infogrid.h_total);
+            win.infogrid.m_res = (win.infogrid.m_res + ((win.resgrid.sym_level + 1) * (1.55 * win.buildgrid.m_mine_level))).clamp(0, win.infogrid.m_total);
+            win.infogrid.c_res = (win.infogrid.c_res + ((win.resgrid.syc_level + 1) * (1.25 * win.buildgrid.c_mine_level))).clamp(0, win.infogrid.c_total);
+            win.infogrid.h_res = (win.infogrid.h_res + ((win.resgrid.syh_level + 1) * (1.10 * win.buildgrid.h_mine_level))).clamp(0, win.infogrid.h_total);
             update_pb_values ();
             update_help_tooltips ();
             update_buttons ();
@@ -42,194 +36,194 @@ namespace Planitis.Services.Utils {
         }
 
         public void update_help_tooltips () {
-            buildgrid.pm_m = ((50 * (buildgrid.m_mine_level + 1)));
-            buildgrid.pm_c = ((20 * (buildgrid.c_mine_level + 1)));
-            buildgrid.pc_m = ((20 * (buildgrid.m_mine_level + 1)));
-            buildgrid.pc_c = ((50 * (buildgrid.c_mine_level + 1)));
-            buildgrid.ps_m = ((100 * (buildgrid.stm_level + 1)));
-            buildgrid.ps_c = ((100 * (buildgrid.stc_level + 1)));
-            buildgrid.ps_h = ((100 * (buildgrid.sth_level + 1)));
-            buildgrid.ph_c = ((10 * (buildgrid.ph_level + 1)));
-            buildgrid.ph_h = ((10 * (buildgrid.ph_level + 1)));
-            resgrid.l_m = ((200 * (resgrid.l_level + 1)));
-            resgrid.l_c = ((200 * (resgrid.l_level + 1)));
-            resgrid.l_h = ((100 * (resgrid.l_level + 1)));
-            resgrid.sm_c = ((200 * (resgrid.sym_level + 1)));
-            resgrid.sm_h = ((200 * (resgrid.sym_level + 1)));
-            resgrid.sc_c = ((200 * (resgrid.syc_level + 1)));
-            resgrid.sc_h = ((200 * (resgrid.syc_level + 1)));
-            resgrid.sh_c = ((200 * (resgrid.syh_level + 1)));
-            resgrid.sh_h = ((200 * (resgrid.syh_level + 1)));
-            resgrid.phs_c = ((100 * (resgrid.phs_level + 1)));
-            resgrid.phs_h = ((100 * (resgrid.phs_level + 1)));
-            buildgrid.help_pm.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(buildgrid.pm_m, buildgrid.pm_c)));
-            buildgrid.help_pc.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(buildgrid.pc_m, buildgrid.pc_c)));
-            buildgrid.help_ph.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(buildgrid.pm_m, buildgrid.pc_c)));
-            buildgrid.help_phh.set_tooltip_text (_("""To build the next level, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(buildgrid.ph_c, buildgrid.ph_h)));
-            buildgrid.help_sm.set_tooltip_text (_("""To build the next level, %.0f of Mineral is needed""".printf(buildgrid.ps_m)));
-            buildgrid.help_sc.set_tooltip_text (_("""To build the next level, %.0f of Crystal is needed""".printf(buildgrid.ps_c)));
-            buildgrid.help_sh.set_tooltip_text (_("""To build the next level, %.0f of Hydrogen is needed""".printf(buildgrid.ps_h)));
-            resgrid.help_l.set_tooltip_text (_("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(resgrid.l_m, resgrid.l_c, resgrid.l_h)));
-            resgrid.help_sym.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(resgrid.sm_c, resgrid.sm_h)));
-            resgrid.help_syc.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(resgrid.sc_c, resgrid.sc_h)));
-            resgrid.help_syh.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(resgrid.sh_c, resgrid.sh_h)));
-            resgrid.help_phs.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(resgrid.phs_c, resgrid.phs_h)));
+            win.buildgrid.pm_m = ((50 * (win.buildgrid.m_mine_level + 1)));
+            win.buildgrid.pm_c = ((20 * (win.buildgrid.c_mine_level + 1)));
+            win.buildgrid.pc_m = ((20 * (win.buildgrid.m_mine_level + 1)));
+            win.buildgrid.pc_c = ((50 * (win.buildgrid.c_mine_level + 1)));
+            win.buildgrid.ps_m = ((100 * (win.buildgrid.stm_level + 1)));
+            win.buildgrid.ps_c = ((100 * (win.buildgrid.stc_level + 1)));
+            win.buildgrid.ps_h = ((100 * (win.buildgrid.sth_level + 1)));
+            win.buildgrid.ph_c = ((10 * (win.buildgrid.ph_level + 1)));
+            win.buildgrid.ph_h = ((10 * (win.buildgrid.ph_level + 1)));
+            win.resgrid.l_m = ((200 * (win.resgrid.l_level + 1)));
+            win.resgrid.l_c = ((200 * (win.resgrid.l_level + 1)));
+            win.resgrid.l_h = ((100 * (win.resgrid.l_level + 1)));
+            win.resgrid.sm_c = ((200 * (win.resgrid.sym_level + 1)));
+            win.resgrid.sm_h = ((200 * (win.resgrid.sym_level + 1)));
+            win.resgrid.sc_c = ((200 * (win.resgrid.syc_level + 1)));
+            win.resgrid.sc_h = ((200 * (win.resgrid.syc_level + 1)));
+            win.resgrid.sh_c = ((200 * (win.resgrid.syh_level + 1)));
+            win.resgrid.sh_h = ((200 * (win.resgrid.syh_level + 1)));
+            win.resgrid.phs_c = ((100 * (win.resgrid.phs_level + 1)));
+            win.resgrid.phs_h = ((100 * (win.resgrid.phs_level + 1)));
+            win.buildgrid.help_pm.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(win.buildgrid.pm_m, win.buildgrid.pm_c)));
+            win.buildgrid.help_pc.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(win.buildgrid.pc_m, win.buildgrid.pc_c)));
+            win.buildgrid.help_ph.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(win.buildgrid.pm_m, win.buildgrid.pc_c)));
+            win.buildgrid.help_phh.set_tooltip_text (_("""To build the next level, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(win.buildgrid.ph_c, win.buildgrid.ph_h)));
+            win.buildgrid.help_sm.set_tooltip_text (_("""To build the next level, %.0f of Mineral is needed""".printf(win.buildgrid.ps_m)));
+            win.buildgrid.help_sc.set_tooltip_text (_("""To build the next level, %.0f of Crystal is needed""".printf(win.buildgrid.ps_c)));
+            win.buildgrid.help_sh.set_tooltip_text (_("""To build the next level, %.0f of Hydrogen is needed""".printf(win.buildgrid.ps_h)));
+            win.resgrid.help_l.set_tooltip_text (_("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(win.resgrid.l_m, win.resgrid.l_c, win.resgrid.l_h)));
+            win.resgrid.help_sym.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(win.resgrid.sm_c, win.resgrid.sm_h)));
+            win.resgrid.help_syc.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(win.resgrid.sc_c, win.resgrid.sc_h)));
+            win.resgrid.help_syh.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(win.resgrid.sh_c, win.resgrid.sh_h)));
+            win.resgrid.help_phs.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(win.resgrid.phs_c, win.resgrid.phs_h)));
         }
     
         public void update_buttons () {
             // Mineral Mine button
-            if (infogrid.m_res >= (50 * (buildgrid.m_mine_level + 1)) && infogrid.c_res >= (20 * (buildgrid.m_mine_level + 1)) && buildgrid.m_mine_level < buildgrid.m_total_mine) {
-                buildgrid.button_m.sensitive = true;
+            if (win.infogrid.m_res >= (50 * (win.buildgrid.m_mine_level + 1)) && win.infogrid.c_res >= (20 * (win.buildgrid.m_mine_level + 1)) && win.buildgrid.m_mine_level < win.buildgrid.m_total_mine) {
+                win.buildgrid.button_m.sensitive = true;
             } else {
-                buildgrid.button_m.sensitive = false;
+                win.buildgrid.button_m.sensitive = false;
             }
             
             // Crystal Mine button
-            if (infogrid.m_res >= (20 * (buildgrid.c_mine_level + 1)) && infogrid.c_res >= (50 * (buildgrid.c_mine_level + 1)) && buildgrid.c_mine_level < buildgrid.c_total_mine) {
-                buildgrid.button_c.sensitive = true;
+            if (win.infogrid.m_res >= (20 * (win.buildgrid.c_mine_level + 1)) && win.infogrid.c_res >= (50 * (win.buildgrid.c_mine_level + 1)) && win.buildgrid.c_mine_level < win.buildgrid.c_total_mine) {
+                win.buildgrid.button_c.sensitive = true;
             } else {
-                buildgrid.button_c.sensitive = false;
+                win.buildgrid.button_c.sensitive = false;
             }
             
             // Hydrogen Mine button
-            if (infogrid.m_res >= (50 * (buildgrid.c_mine_level + 1)) && infogrid.c_res >= (50 * (buildgrid.c_mine_level + 1)) && buildgrid.h_mine_level < buildgrid.h_total_mine) {
-                buildgrid.button_h.sensitive = true;
+            if (win.infogrid.m_res >= (50 * (win.buildgrid.c_mine_level + 1)) && win.infogrid.c_res >= (50 * (win.buildgrid.c_mine_level + 1)) && win.buildgrid.h_mine_level < win.buildgrid.h_total_mine) {
+                win.buildgrid.button_h.sensitive = true;
             } else {
-                buildgrid.button_h.sensitive = false;
+                win.buildgrid.button_h.sensitive = false;
             }
             
             // Mineral Storage button
-            if (infogrid.m_res >= (100 * (buildgrid.stm_level + 1)) && buildgrid.stm_level < buildgrid.stm_total) {
-                buildgrid.button_stm.sensitive = true;
+            if (win.infogrid.m_res >= (100 * (win.buildgrid.stm_level + 1)) && win.buildgrid.stm_level < win.buildgrid.stm_total) {
+                win.buildgrid.button_stm.sensitive = true;
             } else {
-                buildgrid.button_stm.sensitive = false;
+                win.buildgrid.button_stm.sensitive = false;
             }
             
             // Crystal Storage button
-            if (infogrid.c_res >= (100 * (buildgrid.stc_level + 1)) && buildgrid.stc_level < buildgrid.stc_total) {
-                buildgrid.button_stc.sensitive = true;
+            if (win.infogrid.c_res >= (100 * (win.buildgrid.stc_level + 1)) && win.buildgrid.stc_level < win.buildgrid.stc_total) {
+                win.buildgrid.button_stc.sensitive = true;
             } else {
-                buildgrid.button_stc.sensitive = false;
+                win.buildgrid.button_stc.sensitive = false;
             }
             
             // Hydrogen Storage button
-            if (infogrid.h_res >= (100 * (buildgrid.sth_level + 1)) && buildgrid.sth_level < buildgrid.sth_total) {
-                buildgrid.button_sth.sensitive = true;
+            if (win.infogrid.h_res >= (100 * (win.buildgrid.sth_level + 1)) && win.buildgrid.sth_level < win.buildgrid.sth_total) {
+                win.buildgrid.button_sth.sensitive = true;
             } else {
-                buildgrid.button_sth.sensitive = false;
+                win.buildgrid.button_sth.sensitive = false;
             }
             
             // Population Housing button
-            if (infogrid.c_res >= (10 * (buildgrid.ph_level + 1)) && infogrid.m_res >= (10 * (buildgrid.ph_level + 1)) && buildgrid.ph_level < buildgrid.ph_total) {
-                buildgrid.button_ph.sensitive = true;
+            if (win.infogrid.c_res >= (10 * (win.buildgrid.ph_level + 1)) && win.infogrid.m_res >= (10 * (win.buildgrid.ph_level + 1)) && win.buildgrid.ph_level < win.buildgrid.ph_total) {
+                win.buildgrid.button_ph.sensitive = true;
             } else {
-                buildgrid.button_ph.sensitive = false;
+                win.buildgrid.button_ph.sensitive = false;
             }
             
             // Lab button
-            if (infogrid.m_res >= (200 * (resgrid.l_level + 1)) && infogrid.c_res >= (200 * (resgrid.l_level + 1)) && infogrid.h_res >= (100 * (resgrid.l_level + 1)) && resgrid.l_level < resgrid.l_total) {
-                resgrid.button_l.sensitive = true;
+            if (win.infogrid.m_res >= (200 * (win.resgrid.l_level + 1)) && win.infogrid.c_res >= (200 * (win.resgrid.l_level + 1)) && win.infogrid.h_res >= (100 * (win.resgrid.l_level + 1)) && win.resgrid.l_level < win.resgrid.l_total) {
+                win.resgrid.button_l.sensitive = true;
             } else {
-                resgrid.button_l.sensitive = false;
+                win.resgrid.button_l.sensitive = false;
             }
             
             // Mineral Synthesizer button
-            if (infogrid.c_res >= (200 * (resgrid.sym_level + 1)) && infogrid.h_res >= (200 * (resgrid.sym_level + 1)) && resgrid.l_level >= 1 && resgrid.sym_level < resgrid.sym_total) {
-                resgrid.button_sym.sensitive = true;
+            if (win.infogrid.c_res >= (200 * (win.resgrid.sym_level + 1)) && win.infogrid.h_res >= (200 * (win.resgrid.sym_level + 1)) && win.resgrid.l_level >= 1 && win.resgrid.sym_level < win.resgrid.sym_total) {
+                win.resgrid.button_sym.sensitive = true;
             } else {
-                resgrid.button_sym.sensitive = false;
+                win.resgrid.button_sym.sensitive = false;
             }
             
             // Crystal Synthesizer button
-            if (infogrid.c_res >= (200 * (resgrid.syc_level + 1)) && infogrid.h_res >= (200 * (resgrid.syc_level + 1)) && resgrid.l_level >= 2 && resgrid.syc_level < resgrid.syc_total) {
-                resgrid.button_syc.sensitive = true;
+            if (win.infogrid.c_res >= (200 * (win.resgrid.syc_level + 1)) && win.infogrid.h_res >= (200 * (win.resgrid.syc_level + 1)) && win.resgrid.l_level >= 2 && win.resgrid.syc_level < win.resgrid.syc_total) {
+                win.resgrid.button_syc.sensitive = true;
             } else {
-                resgrid.button_syc.sensitive = false;
+                win.resgrid.button_syc.sensitive = false;
             }
             
             // Hydrogen Synthesizer button
-            if (infogrid.c_res >= (200 * (resgrid.syh_level + 1)) && infogrid.h_res >= (200 * (resgrid.syc_level + 1)) && resgrid.l_level >= 3 && resgrid.syh_level < resgrid.syh_total) {
-                resgrid.button_syh.sensitive = true;
+            if (win.infogrid.c_res >= (200 * (win.resgrid.syh_level + 1)) && win.infogrid.h_res >= (200 * (win.resgrid.syc_level + 1)) && win.resgrid.l_level >= 3 && win.resgrid.syh_level < win.resgrid.syh_total) {
+                win.resgrid.button_syh.sensitive = true;
             } else {
-                resgrid.button_syh.sensitive = false;
+                win.resgrid.button_syh.sensitive = false;
             }
             
             // Population Housing Upgrade button
-            if (infogrid.c_res >= (100 * (resgrid.phs_level + 1)) && infogrid.h_res >= (100 * (resgrid.phs_level + 1)) && resgrid.l_level >= 1 && resgrid.phs_level < resgrid.phs_total) {
-                resgrid.button_phs.sensitive = true;
+            if (win.infogrid.c_res >= (100 * (win.resgrid.phs_level + 1)) && win.infogrid.h_res >= (100 * (win.resgrid.phs_level + 1)) && win.resgrid.l_level >= 1 && win.resgrid.phs_level < win.resgrid.phs_total) {
+                win.resgrid.button_phs.sensitive = true;
             } else {
-                resgrid.button_phs.sensitive = false;
+                win.resgrid.button_phs.sensitive = false;
             }
         }
 
         public void update_pb_values () {
-            infogrid.population_desc.set_label ("%0.f".printf(infogrid.ph_res));
-            infogrid.mpb.set_fraction(infogrid.m_res/infogrid.m_total);
-            infogrid.mpb.set_text ("""%.2f/%.2f""".printf(infogrid.m_res, infogrid.m_total));
-            infogrid.cpb.set_fraction(infogrid.c_res/infogrid.c_total);
-            infogrid.cpb.set_text ("""%.2f/%.2f""".printf(infogrid.c_res, infogrid.c_total));
-            infogrid.hpb.set_fraction(infogrid.h_res/infogrid.h_total);
-            infogrid.hpb.set_text ("""%.2f/%.2f""".printf(infogrid.h_res, infogrid.h_total));
+            win.infogrid.population_desc.set_label ("%0.f".printf(win.infogrid.ph_res));
+            win.infogrid.mpb.set_fraction(win.infogrid.m_res/win.infogrid.m_total);
+            win.infogrid.mpb.set_text ("""%.2f/%.2f""".printf(win.infogrid.m_res, win.infogrid.m_total));
+            win.infogrid.cpb.set_fraction(win.infogrid.c_res/win.infogrid.c_total);
+            win.infogrid.cpb.set_text ("""%.2f/%.2f""".printf(win.infogrid.c_res, win.infogrid.c_total));
+            win.infogrid.hpb.set_fraction(win.infogrid.h_res/win.infogrid.h_total);
+            win.infogrid.hpb.set_text ("""%.2f/%.2f""".printf(win.infogrid.h_res, win.infogrid.h_total));
             
-            buildgrid.mpm.set_text ("""%.0f/%.0f""".printf(buildgrid.m_mine_level, buildgrid.m_total_mine));
-            buildgrid.mpm.set_fraction (buildgrid.m_mine_level/buildgrid.m_total_mine);
-            buildgrid.cpm.set_text ("""%.0f/%.0f""".printf(buildgrid.c_mine_level, buildgrid.c_total_mine));
-            buildgrid.cpm.set_fraction (buildgrid.c_mine_level/buildgrid.c_total_mine);
-            buildgrid.hpm.set_text ("""%.0f/%.0f""".printf(buildgrid.h_mine_level, buildgrid.h_total_mine));
-            buildgrid.hpm.set_fraction (buildgrid.h_mine_level/buildgrid.h_total_mine);
-            buildgrid.stmpm.set_text ("""%.0f/%.0f""".printf(buildgrid.stm_level, buildgrid.stm_total));
-            buildgrid.stmpm.set_fraction (buildgrid.stm_level/buildgrid.stm_total);
-            buildgrid.stcpm.set_text ("""%.0f/%.0f""".printf(buildgrid.stc_level, buildgrid.stc_total));
-            buildgrid.stcpm.set_fraction (buildgrid.stc_level/buildgrid.stc_total);
-            buildgrid.sthpm.set_text ("""%.0f/%.0f""".printf(buildgrid.sth_level, buildgrid.sth_total));
-            buildgrid.sthpm.set_fraction (buildgrid.sth_level/buildgrid.sth_total);
-            buildgrid.phpm.set_text ("""%.0f/%.0f""".printf(buildgrid.ph_level, buildgrid.ph_total));
-            buildgrid.phpm.set_fraction (buildgrid.ph_level/buildgrid.ph_total);
+            win.buildgrid.mpm.set_text ("""%.0f/%.0f""".printf(win.buildgrid.m_mine_level, win.buildgrid.m_total_mine));
+            win.buildgrid.mpm.set_fraction (win.buildgrid.m_mine_level/win.buildgrid.m_total_mine);
+            win.buildgrid.cpm.set_text ("""%.0f/%.0f""".printf(win.buildgrid.c_mine_level, win.buildgrid.c_total_mine));
+            win.buildgrid.cpm.set_fraction (win.buildgrid.c_mine_level/win.buildgrid.c_total_mine);
+            win.buildgrid.hpm.set_text ("""%.0f/%.0f""".printf(win.buildgrid.h_mine_level, win.buildgrid.h_total_mine));
+            win.buildgrid.hpm.set_fraction (win.buildgrid.h_mine_level/win.buildgrid.h_total_mine);
+            win.buildgrid.stmpm.set_text ("""%.0f/%.0f""".printf(win.buildgrid.stm_level, win.buildgrid.stm_total));
+            win.buildgrid.stmpm.set_fraction (win.buildgrid.stm_level/win.buildgrid.stm_total);
+            win.buildgrid.stcpm.set_text ("""%.0f/%.0f""".printf(win.buildgrid.stc_level, win.buildgrid.stc_total));
+            win.buildgrid.stcpm.set_fraction (win.buildgrid.stc_level/win.buildgrid.stc_total);
+            win.buildgrid.sthpm.set_text ("""%.0f/%.0f""".printf(win.buildgrid.sth_level, win.buildgrid.sth_total));
+            win.buildgrid.sthpm.set_fraction (win.buildgrid.sth_level/win.buildgrid.sth_total);
+            win.buildgrid.phpm.set_text ("""%.0f/%.0f""".printf(win.buildgrid.ph_level, win.buildgrid.ph_total));
+            win.buildgrid.phpm.set_fraction (win.buildgrid.ph_level/win.buildgrid.ph_total);
             
-            resgrid.lpm.set_text ("""%.0f/%.0f""".printf(resgrid.l_level, resgrid.l_total));
-            resgrid.lpm.set_fraction (resgrid.l_level/resgrid.l_total);
-            resgrid.sympm.set_text ("""%.0f/%.0f""".printf(resgrid.sym_level, resgrid.sym_total));
-            resgrid.sympm.set_fraction (resgrid.sym_level/resgrid.sym_total);
-            resgrid.sycpm.set_text ("""%.0f/%.0f""".printf(resgrid.syc_level, resgrid.syc_total));
-            resgrid.sycpm.set_fraction (resgrid.syc_level/resgrid.syc_total);
-            resgrid.syhpm.set_text ("""%.0f/%.0f""".printf(resgrid.syh_level, resgrid.syh_total));
-            resgrid.syhpm.set_fraction (resgrid.syh_level/resgrid.syh_total);
-            resgrid.phspm.set_text ("""%.0f/%.0f""".printf(resgrid.phs_level, resgrid.phs_total));
-            resgrid.phspm.set_fraction (resgrid.phs_level/resgrid.phs_total);
+            win.resgrid.lpm.set_text ("""%.0f/%.0f""".printf(win.resgrid.l_level, win.resgrid.l_total));
+            win.resgrid.lpm.set_fraction (win.resgrid.l_level/win.resgrid.l_total);
+            win.resgrid.sympm.set_text ("""%.0f/%.0f""".printf(win.resgrid.sym_level, win.resgrid.sym_total));
+            win.resgrid.sympm.set_fraction (win.resgrid.sym_level/win.resgrid.sym_total);
+            win.resgrid.sycpm.set_text ("""%.0f/%.0f""".printf(win.resgrid.syc_level, win.resgrid.syc_total));
+            win.resgrid.sycpm.set_fraction (win.resgrid.syc_level/win.resgrid.syc_total);
+            win.resgrid.syhpm.set_text ("""%.0f/%.0f""".printf(win.resgrid.syh_level, win.resgrid.syh_total));
+            win.resgrid.syhpm.set_fraction (win.resgrid.syh_level/win.resgrid.syh_total);
+            win.resgrid.phspm.set_text ("""%.0f/%.0f""".printf(win.resgrid.phs_level, win.resgrid.phs_total));
+            win.resgrid.phspm.set_fraction (win.resgrid.phs_level/win.resgrid.phs_total);
         }
 
         public void reset_all () {
-            infogrid.m_res = 100.0;
-            infogrid.c_res = 100.0;
-            infogrid.h_res = 0.0;
-            infogrid.ph_res = 1000.0;
-            infogrid.m_total = 1000.0;
-            infogrid.c_total = 1000.0;
-            infogrid.h_total = 1000.0;
-            buildgrid.m_mine_level = 1.0;
-            buildgrid.c_mine_level = 1.0;
-            buildgrid.h_mine_level = 0.0;
-            buildgrid.stm_level = 0.0;
-            buildgrid.stc_level = 0.0;
-            buildgrid.sth_level = 0.0;
-            buildgrid.ph_level = 1.0;
-            resgrid.l_level = 0.0;
-            resgrid.phs_level = 0.0;
-            resgrid.sym_level = 0.0;
-            resgrid.syc_level = 0.0;
-            resgrid.syh_level = 0.0;
-            infogrid.planet_name = infogrid.planet_name_gen ();
-            infogrid.header.set_label (infogrid.planet_name);
-            infogrid.planet_diameter = infogrid.planet_diameter_gen ();
-            infogrid.size_diameter_desc.set_label (infogrid.planet_diameter);
-            infogrid.planet_type = infogrid.planet_type_gen ();
-            infogrid.type_of_planet_desc.set_label (infogrid.planet_type);
-            infogrid.planet_atm = infogrid.planet_atm_gen ();
-            infogrid.type_of_atm_desc.set_label (infogrid.planet_atm);
-            infogrid.population_desc.set_label ("%0.f".printf(infogrid.ph_res));
-            infogrid.mpb.set_fraction (infogrid.m_res/infogrid.m_total);
-            infogrid.cpb.set_fraction (infogrid.c_res/infogrid.c_total);
-            infogrid.hpb.set_fraction (infogrid.h_res/infogrid.h_total);
+            win.infogrid.m_res = 100.0;
+            win.infogrid.c_res = 100.0;
+            win.infogrid.h_res = 0.0;
+            win.infogrid.ph_res = 1000.0;
+            win.infogrid.m_total = 1000.0;
+            win.infogrid.c_total = 1000.0;
+            win.infogrid.h_total = 1000.0;
+            win.buildgrid.m_mine_level = 1.0;
+            win.buildgrid.c_mine_level = 1.0;
+            win.buildgrid.h_mine_level = 0.0;
+            win.buildgrid.stm_level = 0.0;
+            win.buildgrid.stc_level = 0.0;
+            win.buildgrid.sth_level = 0.0;
+            win.buildgrid.ph_level = 1.0;
+            win.resgrid.l_level = 0.0;
+            win.resgrid.phs_level = 0.0;
+            win.resgrid.sym_level = 0.0;
+            win.resgrid.syc_level = 0.0;
+            win.resgrid.syh_level = 0.0;
+            win.infogrid.planet_name = win.infogrid.planet_name_gen ();
+            win.infogrid.header.set_label (win.infogrid.planet_name);
+            win.infogrid.planet_diameter = win.infogrid.planet_diameter_gen ();
+            win.infogrid.size_diameter_desc.set_label (win.infogrid.planet_diameter);
+            win.infogrid.planet_type = win.infogrid.planet_type_gen ();
+            win.infogrid.type_of_planet_desc.set_label (win.infogrid.planet_type);
+            win.infogrid.planet_atm = win.infogrid.planet_atm_gen ();
+            win.infogrid.type_of_atm_desc.set_label (win.infogrid.planet_atm);
+            win.infogrid.population_desc.set_label ("%0.f".printf(win.infogrid.ph_res));
+            win.infogrid.mpb.set_fraction (win.infogrid.m_res/win.infogrid.m_total);
+            win.infogrid.cpb.set_fraction (win.infogrid.c_res/win.infogrid.c_total);
+            win.infogrid.hpb.set_fraction (win.infogrid.h_res/win.infogrid.h_total);
             
             update_base_values ();
         }
@@ -264,7 +258,6 @@ namespace Planitis.Services.Utils {
 
     public class ExplodyDialog : Granite.MessageDialog {
         public MainWindow win;
-        public Services.Utils.Base base_utils;
 
         public ExplodyDialog (MainWindow win) {
             Object (
@@ -274,7 +267,6 @@ namespace Planitis.Services.Utils {
             );
             
             this.win = win;
-            base_utils = new Services.Utils.Base (this.win, this.win.infogrid, this.win.buildgrid, this.win.resgrid);
             this.transient_for = this.win;
             this.modal = true;
         }
@@ -288,10 +280,10 @@ namespace Planitis.Services.Utils {
             response.connect ((response_id) => {
                 switch (response_id) {
                     case Gtk.ResponseType.OK:
-                        base_utils.reset_all ();
-                        base_utils.update_pb_values ();
-                        base_utils.update_help_tooltips ();
-                        base_utils.update_buttons ();
+                        win.base_utils.reset_all ();
+                        win.base_utils.update_pb_values ();
+                        win.base_utils.update_help_tooltips ();
+                        win.base_utils.update_buttons ();
                         this.close ();
                         break;
                     case Gtk.ResponseType.NO:
