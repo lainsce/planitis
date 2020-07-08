@@ -20,8 +20,6 @@
 namespace Planitis {
     public class Widgets.ResGrid : Gtk.Grid {
         private MainWindow win;
-        private Widgets.InfoGrid infogrid;
-        private Services.Utils.Base base_utils;
 
         public Gtk.ProgressBar lpm;
         public Gtk.ProgressBar sympm;
@@ -61,9 +59,8 @@ namespace Planitis {
         public double sh_c;
         public double sh_h;
 
-        public ResGrid (MainWindow win, Widgets.InfoGrid infogrid) {
+        public ResGrid (MainWindow win) {
             this.win = win;
-            this.infogrid = infogrid;
             this.expand = true;
             this.row_spacing = 6;
             this.column_spacing = 12;
@@ -97,14 +94,14 @@ namespace Planitis {
             help_l.tooltip_text = (_("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(l_m, l_c, l_h)));
             
             button_l.clicked.connect (() => {
-                if (infogrid.m_res >= (200 * (l_level + 1)) && infogrid.c_res >= (200 * (l_level + 1)) && infogrid.h_res >= (100 * (l_level + 1))) {
+                if (win.infogrid.m_res >= (200 * (l_level + 1)) && win.infogrid.c_res >= (200 * (l_level + 1)) && win.infogrid.h_res >= (100 * (l_level + 1))) {
                     l_level += 1;
-                    infogrid.m_res -= 200;
-                    infogrid.c_res -= 200;
-                    infogrid.h_res -= 100;
+                    win.infogrid.m_res -= 200;
+                    win.infogrid.c_res -= 200;
+                    win.infogrid.h_res -= 100;
                     lpm.set_text ("""%.0f/%.0f""".printf(l_level, l_total));
                     lpm.set_fraction (l_level/l_total);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_l.set_tooltip_text (_("""To build the next level, %.0f of Mineral, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(l_m, l_c, l_h)));
                     win.gsm.save_game ();
                 }
@@ -128,13 +125,13 @@ namespace Planitis {
             help_sym.tooltip_text = (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(sm_c, sm_h)));
             
             button_sym.clicked.connect (() => {
-                if (infogrid.c_res >= (200 * (sym_level + 1)) && infogrid.h_res >= (200 * (sym_level + 1)) && l_level >= 1 ) {
+                if (win.infogrid.c_res >= (200 * (sym_level + 1)) && win.infogrid.h_res >= (200 * (sym_level + 1)) && l_level >= 1 ) {
                     sym_level += 1;
-                    infogrid.c_res -= (200 * (sym_level + 1));
-                    infogrid.h_res -= (200 * (sym_level + 1));
+                    win.infogrid.c_res -= (200 * (sym_level + 1));
+                    win.infogrid.h_res -= (200 * (sym_level + 1));
                     sympm.set_text ("""%.0f/%.0f""".printf(sym_level, sym_total));
                     sympm.set_fraction (sym_level/sym_total);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_sym.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(sm_c, sm_h)));
                     win.gsm.save_game ();
                 }
@@ -158,13 +155,13 @@ namespace Planitis {
             help_syc.tooltip_text = (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(sc_c, sc_h)));
             
             button_syc.clicked.connect (() => {
-                if (infogrid.c_res >= (200 * (syc_level + 1)) && infogrid.h_res >= (200 * (syc_level + 1)) && l_level >= 2) {
+                if (win.infogrid.c_res >= (200 * (syc_level + 1)) && win.infogrid.h_res >= (200 * (syc_level + 1)) && l_level >= 2) {
                     syc_level += 1;
-                    infogrid.c_res -= (200 * (syc_level + 1));
-                    infogrid.h_res -= (200 * (syc_level + 1));
+                    win.infogrid.c_res -= (200 * (syc_level + 1));
+                    win.infogrid.h_res -= (200 * (syc_level + 1));
                     sycpm.set_text ("""%.0f/%.0f""".printf(syc_level, syc_total));
                     sycpm.set_fraction (syc_level/syc_total);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_syc.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 2 is needed""".printf(sc_c, sc_h)));
                     win.gsm.save_game ();
                 }
@@ -188,13 +185,13 @@ namespace Planitis {
             help_syh.tooltip_text = (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(sh_c, sh_h)));
             
             button_syh.clicked.connect (() => {
-                if (infogrid.c_res >= (200 * (syh_level + 1)) && infogrid.h_res >= (200 * (syh_level + 1)) && l_level >= 3) {
+                if (win.infogrid.c_res >= (200 * (syh_level + 1)) && win.infogrid.h_res >= (200 * (syh_level + 1)) && l_level >= 3) {
                     syh_level += 1;
-                    infogrid.c_res -= (200 * (syh_level + 1));
-                    infogrid.h_res -= (200 * (syh_level + 1));
+                    win.infogrid.c_res -= (200 * (syh_level + 1));
+                    win.infogrid.h_res -= (200 * (syh_level + 1));
                     syhpm.set_text ("""%.0f/%.0f""".printf(syh_level, syh_total));
                     syhpm.set_fraction (syh_level/syh_total);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_syh.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 3 is needed""".printf(sh_c, sh_h)));
                     win.gsm.save_game ();
                 }
@@ -218,13 +215,13 @@ namespace Planitis {
             help_phs.tooltip_text = (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(phs_c, phs_h)));
             
             button_phs.clicked.connect (() => {
-                if (infogrid.c_res >= (100 * (phs_level + 1)) && infogrid.h_res >= (100 * (phs_level + 1)) && l_level >= 1) {
+                if (win.infogrid.c_res >= (100 * (phs_level + 1)) && win.infogrid.h_res >= (100 * (phs_level + 1)) && l_level >= 1) {
                     phs_level += 1;
-                    infogrid.c_res -= (100 * (phs_level + 1));
-                    infogrid.h_res -= (100 * (phs_level + 1));
+                    win.infogrid.c_res -= (100 * (phs_level + 1));
+                    win.infogrid.h_res -= (100 * (phs_level + 1));
                     phspm.set_text ("""%.0f/%.0f""".printf(phs_level, phs_total));
                     phspm.set_fraction (phs_level/phs_total);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_phs.set_tooltip_text (_("""To research the next level, %.0f of Crystal, %.0f of Hydrogen and a Research Lab level of 1 is needed""".printf(phs_c, phs_h)));
                     win.gsm.save_game ();
                 }

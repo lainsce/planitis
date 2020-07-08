@@ -187,8 +187,8 @@ namespace Planitis {
             }
 
             infogrid = new Widgets.InfoGrid (this);
-            resgrid = new Widgets.ResGrid (this, infogrid);
-            buildgrid = new Widgets.BuildGrid (this, infogrid, resgrid);
+            resgrid = new Widgets.ResGrid (this);
+            buildgrid = new Widgets.BuildGrid (this);
             
             gsm.load_from_file ();
 
@@ -265,7 +265,14 @@ namespace Planitis {
         }
 
         public override bool delete_event (Gdk.EventAny event) {
-            base_utils.set_settings ();
+            int x, y, w, h;
+            get_position (out x, out y);
+            get_size (out w, out h);
+
+            Planitis.Application.gsettings.set_int("window-x", x);
+            Planitis.Application.gsettings.set_int("window-y", y);
+            Planitis.Application.gsettings.set_int("window-width", w);
+            Planitis.Application.gsettings.set_int("window-height", h);
             gsm.save_game ();
             return false;
         }

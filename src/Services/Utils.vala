@@ -32,7 +32,6 @@ namespace Planitis.Services.Utils {
             update_pb_values ();
             update_help_tooltips ();
             update_buttons ();
-            set_settings ();
         }
 
         public void update_help_tooltips () {
@@ -226,17 +225,6 @@ namespace Planitis.Services.Utils {
             win.infogrid.hpb.set_fraction (win.infogrid.h_res/win.infogrid.h_total);
             
             update_base_values ();
-        }
-
-        public void set_settings () {
-            int x, y, w, h;
-            win.get_position (out x, out y);
-            win.get_size (out w, out h);
-
-            Planitis.Application.gsettings.set_int("window-x", x);
-            Planitis.Application.gsettings.set_int("window-y", y);
-            Planitis.Application.gsettings.set_int("window-width", w);
-            Planitis.Application.gsettings.set_int("window-height", h);
         }
     }
 

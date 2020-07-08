@@ -20,9 +20,6 @@
 namespace Planitis {
     public class Widgets.BuildGrid : Gtk.Grid {
         private MainWindow win;
-        private Widgets.InfoGrid infogrid;
-        private Widgets.ResGrid resgrid;
-        private Services.Utils.Base base_utils;
 
         public Gtk.ProgressBar mpm;
         public Gtk.ProgressBar cpm;
@@ -71,17 +68,15 @@ namespace Planitis {
         public double ph_c;
         public double ph_h;
 
-        public BuildGrid (MainWindow win, Widgets.InfoGrid infogrid, Widgets.ResGrid resgrid) {
+        public BuildGrid (MainWindow win) {
             this.win = win;
-            this.infogrid = infogrid;
-            this.resgrid = resgrid;
             this.expand = true;
             this.row_spacing = 6;
             this.column_spacing = 12;
 
-            infogrid.m_total = (infogrid.m_total * (stm_level + 1));
-            infogrid.c_total = (infogrid.c_total * (stc_level + 1));
-            infogrid.h_total = (infogrid.h_total * (sth_level + 1));
+            win.infogrid.m_total = (win.infogrid.m_total * (stm_level + 1));
+            win.infogrid.c_total = (win.infogrid.c_total * (stc_level + 1));
+            win.infogrid.h_total = (win.infogrid.h_total * (sth_level + 1));
         }
         construct {
             var sep = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
@@ -138,39 +133,39 @@ namespace Planitis {
             help_ph.tooltip_text = (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c)));
             
             button_m.clicked.connect (() => {
-                if (infogrid.m_res >= (50 * (m_mine_level + 1)) && infogrid.c_res >= (20 * (m_mine_level + 1))) {
+                if (win.infogrid.m_res >= (50 * (m_mine_level + 1)) && win.infogrid.c_res >= (20 * (m_mine_level + 1))) {
                     m_mine_level += 1;
-                    infogrid.m_res -= (50 * (m_mine_level + 1));
-                    infogrid.c_res -= (30 * (m_mine_level + 1));
+                    win.infogrid.m_res -= (50 * (m_mine_level + 1));
+                    win.infogrid.c_res -= (30 * (m_mine_level + 1));
                     mpm.set_text ("""%.0f/%.0f""".printf(m_mine_level, m_total_mine));
                     mpm.set_fraction (m_mine_level/m_total_mine);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_pm.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c)));
                     win.gsm.save_game ();
                 }
             });
             
             button_c.clicked.connect (() => {
-                if (infogrid.m_res >= (20 * (c_mine_level + 1)) && infogrid.c_res >= (50 * (c_mine_level + 1))) {
+                if (win.infogrid.m_res >= (20 * (c_mine_level + 1)) && win.infogrid.c_res >= (50 * (c_mine_level + 1))) {
                     c_mine_level += 1;
-                    infogrid.m_res -= (20 * (c_mine_level + 1));
-                    infogrid.c_res -= (50 * (c_mine_level + 1));
+                    win.infogrid.m_res -= (20 * (c_mine_level + 1));
+                    win.infogrid.c_res -= (50 * (c_mine_level + 1));
                     cpm.set_text ("""%.0f/%.0f""".printf(c_mine_level, c_total_mine));
                     cpm.set_fraction (c_mine_level/c_total_mine);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_pc.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c)));
                     win.gsm.save_game ();
                 }
             });
             
             button_h.clicked.connect (() => {
-                if (infogrid.m_res >= (50 * (h_mine_level + 1)) && infogrid.c_res >= (50 * (h_mine_level + 1))) {
+                if (win.infogrid.m_res >= (50 * (h_mine_level + 1)) && win.infogrid.c_res >= (50 * (h_mine_level + 1))) {
                     h_mine_level += 1;
-                    infogrid.m_res -= (50 * (h_mine_level + 1));
-                    infogrid.c_res -= (50 * (h_mine_level + 1));
+                    win.infogrid.m_res -= (50 * (h_mine_level + 1));
+                    win.infogrid.c_res -= (50 * (h_mine_level + 1));
                     hpm.set_text ("""%.0f/%.0f""".printf(h_mine_level, h_total_mine));
                     hpm.set_fraction (h_mine_level/h_total_mine);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_ph.set_tooltip_text (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pc_c)));
                     win.gsm.save_game ();
                 }
@@ -220,39 +215,39 @@ namespace Planitis {
             help_sh.tooltip_text = (_("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h)));
             
             button_stm.clicked.connect (() => {
-                if (infogrid.m_res >= (100 * (stm_level + 1))) {
+                if (win.infogrid.m_res >= (100 * (stm_level + 1))) {
                     stm_level += 1;
-                    infogrid.m_total = (infogrid.m_total * (stm_level + 1));
-                    infogrid.m_res -= (100 * (stm_level + 1));
+                    win.infogrid.m_total = (win.infogrid.m_total * (stm_level + 1));
+                    win.infogrid.m_res -= (100 * (stm_level + 1));
                     stmpm.set_text ("""%.0f/%.0f""".printf(stm_level, stm_total));
                     stmpm.set_fraction (stm_level/stm_total);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_sm.set_tooltip_text (_("""To build the next level, %.0f of Mineral is needed""".printf(ps_m)));
                     win.gsm.save_game ();
                 }
             });
             
             button_stc.clicked.connect (() => {
-                if (infogrid.c_res >= (100 * (stc_level + 1))) {
+                if (win.infogrid.c_res >= (100 * (stc_level + 1))) {
                     stc_level += 1;
-                    infogrid.c_total = (infogrid.c_total * stc_level);
-                    infogrid.c_res -= (100 * (stc_level + 1));
+                    win.infogrid.c_total = (win.infogrid.c_total * stc_level);
+                    win.infogrid.c_res -= (100 * (stc_level + 1));
                     stcpm.set_text ("""%.0f/%.0f""".printf(stc_level, stc_total));
                     stcpm.set_fraction (stc_level/stc_total);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_sc.set_tooltip_text (_("""To build the next level, %.0f of Crystal is needed""".printf(ps_c)));
                     win.gsm.save_game ();
                 }
             });
             
             button_sth.clicked.connect (() => {
-                if (infogrid.h_res >= (100 * (sth_level + 1))) {
+                if (win.infogrid.h_res >= (100 * (sth_level + 1))) {
                     sth_level += 1;
-                    infogrid.h_total = (infogrid.h_total * sth_level);
-                    infogrid.h_res -= (100 * (sth_level + 1));
+                    win.infogrid.h_total = (win.infogrid.h_total * sth_level);
+                    win.infogrid.h_res -= (100 * (sth_level + 1));
                     sthpm.set_text ("""%.0f/%.0f""".printf(sth_level, sth_total));
                     sthpm.set_fraction (sth_level/sth_total);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_sh.set_tooltip_text (_("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h)));
                     win.gsm.save_game ();
                 }
@@ -274,15 +269,15 @@ namespace Planitis {
             help_phh.tooltip_text = (_("""To build the next level, %.0f of Hydrogen is needed""".printf(ps_h)));
             
             button_ph.clicked.connect (() => {
-                if (infogrid.c_res >= (10 * (ph_level + 1)) && infogrid.m_res >= (10 * (ph_level + 1))) {
+                if (win.infogrid.c_res >= (10 * (ph_level + 1)) && win.infogrid.m_res >= (10 * (ph_level + 1))) {
                     ph_level += 1;
-                    infogrid.ph_res += ((10 * resgrid.phs_level) * (ph_level + 1));
-                    infogrid.m_res -= (10 * (ph_level + 1));
-                    infogrid.c_res -= (10 * (ph_level + 1));
-                    infogrid.population_desc.label = "%0.f".printf(infogrid.ph_res);
+                    win.infogrid.ph_res += ((10 * win.resgrid.phs_level) * (ph_level + 1));
+                    win.infogrid.m_res -= (10 * (ph_level + 1));
+                    win.infogrid.c_res -= (10 * (ph_level + 1));
+                    win.infogrid.population_desc.label = "%0.f".printf(win.infogrid.ph_res);
                     phpm.set_text ("""%.0f/%.0f""".printf(ph_level, ph_total));
                     phpm.set_fraction (ph_level/ph_total);
-                    base_utils.update_base_values ();
+                    win.base_utils.update_base_values ();
                     help_phh.set_tooltip_text (_("""To build the next level, %.0f of Crystal and %.0f of Hydrogen is needed""".printf(ph_c, ph_h)));
                     win.gsm.save_game ();
                 }
