@@ -32,9 +32,9 @@
      showgrid="true"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="-58.168155"
-     inkscape:cy="3.7977841"
+     inkscape:zoom="16"
+     inkscape:cx="-1.0961446"
+     inkscape:cy="2.1852892"
      inkscape:window-x="0"
      inkscape:window-y="30"
      inkscape:window-maximized="1"
@@ -46,6 +46,34 @@
   </sodipodi:namedview>
   <defs
      id="defs13988">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient986">
+      <stop
+         style="stop-color:#d4d4d4;stop-opacity:1;"
+         offset="0"
+         id="stop982" />
+      <stop
+         style="stop-color:#abacae;stop-opacity:1"
+         offset="1"
+         id="stop984" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient976">
+      <stop
+         style="stop-color:#ffb799;stop-opacity:1"
+         offset="0"
+         id="stop972" />
+      <stop
+         id="stop980"
+         offset="0.62499994"
+         style="stop-color:#ff8754;stop-opacity:1" />
+      <stop
+         style="stop-color:#ff8551;stop-opacity:1"
+         offset="1"
+         id="stop974" />
+    </linearGradient>
     <pattern
        inkscape:isstock="true"
        inkscape:stockid="Sand (bitmap)"
@@ -908,6 +936,28 @@
          operator="atop"
          id="feComposite1094" />
     </filter>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient976"
+       id="radialGradient978"
+       cx="9"
+       cy="9"
+       fx="9"
+       fy="9"
+       r="8"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.3888798,1.2345598,-1,1.125,5.5000825,-12.236038)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient986"
+       id="radialGradient988"
+       cx="8"
+       cy="7"
+       fx="8"
+       fy="7"
+       r="4.3333333"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1538461,-1.1538461,1.1538461,1.1538461,-9.3076916,8.1538458)" />
   </defs>
   <metadata
      id="metadata13991">
@@ -934,12 +984,12 @@
      id="path3888"
      cx="6"
      cy="6"
-     style="fill:#d4d4d4;fill-opacity:1;stroke:#555761;stroke-width:0.66666663;stroke-opacity:0.53333285"
+     style="fill:url(#radialGradient988);fill-opacity:1;stroke:#555761;stroke-width:0.66666663;stroke-opacity:0.53333285"
      r="4" />
   <circle
      id="path3890"
      cx="14.25"
      cy="14.25"
-     style="fill:#ff976b;fill-opacity:1;stroke:#a62100;stroke-width:1;stroke-opacity:0.53333285"
+     style="fill:url(#radialGradient978);fill-opacity:1;stroke:#a62100;stroke-width:1;stroke-opacity:0.53333285"
      r="7.5" />
 </svg>

@@ -297,4 +297,49 @@ namespace Planitis.Services.Utils {
             });
         }
     }
+
+    public class WinnerDialog : Granite.MessageDialog {
+        public MainWindow win;
+
+        public WinnerDialog (MainWindow win) {
+            Object (
+                image_icon: new ThemedIcon ("dialog-warning"),
+                primary_text: (_("You've Built Your Ecumenopolis")),
+                secondary_text: (_("Now that this planet of yours has become the jewel of this sector, sending materials galaxy-wide and being the center of a new empire, the game ends. Warp to a different planet?"))
+            );
+            
+            this.win = win;
+            this.transient_for = this.win;
+            this.modal = true;
+        }
+        construct {
+            var save = add_button ((_("Yes, warp!")), Gtk.ResponseType.OK);
+            var save_context = save.get_style_context ();
+            save_context.add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+            save_context.add_class ("pl-destructive");
+            var cws = add_button ((_("No, lemme enjoy this.")), Gtk.ResponseType.NO);
+
+            response.connect ((response_id) => {
+                switch (response_id) {
+                    case Gtk.ResponseType.OK:
+                        win.base_utils.reset_all ();
+                        win.base_utils.update_pb_values ();
+                        win.base_utils.update_help_tooltips ();
+                        win.base_utils.update_buttons ();
+                        this.close ();
+                        break;
+                    case Gtk.ResponseType.NO:
+                        this.close ();
+                        break;
+                    case Gtk.ResponseType.CANCEL:
+                    case Gtk.ResponseType.CLOSE:
+                    case Gtk.ResponseType.DELETE_EVENT:
+                        this.close ();
+                        return;
+                    default:
+                        assert_not_reached ();
+                }
+            });
+        }
+    }
 }
