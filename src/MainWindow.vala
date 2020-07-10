@@ -228,6 +228,19 @@ namespace Planitis {
             Timeout.add_seconds (10, () => {
                 base_utils.update_base_values ();
                 gsm.save_game ();
+
+                if (
+                    buildgrid.m_mine_level == 100.0 &&
+                    buildgrid.c_mine_level == 100.0 &&
+                    buildgrid.h_mine_level == 100.0 &&
+                    resgrid.l_level == 12.0 &&
+                    resgrid.sym_level == 12.0 &&
+                    resgrid.syc_level == 12.0 &&
+                    resgrid.syh_level == 12.0 &&
+                    resgrid.phs_level == 12.0
+                ) {
+                    win_cb ();
+                }
                 return true;
             });
             
@@ -371,6 +384,11 @@ namespace Planitis {
             }
             
             var dialog = new Services.Utils.ExplodyDialog (this);
+            dialog.run ();
+        }
+
+        public void win_cb () {
+            var dialog = new Services.Utils.WinnerDialog (this);
             dialog.run ();
         }
     }

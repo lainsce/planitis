@@ -303,10 +303,13 @@ namespace Planitis.Services.Utils {
 
         public WinnerDialog (MainWindow win) {
             Object (
-                image_icon: new ThemedIcon ("dialog-warning"),
+                image_icon: new ThemedIcon ("planet-asset"),
                 primary_text: (_("You've Built Your Ecumenopolis")),
                 secondary_text: (_("Now that this planet of yours has become the jewel of this sector, sending materials galaxy-wide and being the center of a new empire, the game ends. Warp to a different planet?"))
             );
+
+            weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
+            default_theme.add_resource_path ("/com/github/lainsce/planitis");
             
             this.win = win;
             this.transient_for = this.win;
@@ -315,8 +318,8 @@ namespace Planitis.Services.Utils {
         construct {
             var save = add_button ((_("Yes, warp!")), Gtk.ResponseType.OK);
             var save_context = save.get_style_context ();
-            save_context.add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
-            save_context.add_class ("pl-destructive");
+            save_context.add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            save_context.add_class ("pl-suggested");
             var cws = add_button ((_("No, lemme enjoy this.")), Gtk.ResponseType.NO);
 
             response.connect ((response_id) => {

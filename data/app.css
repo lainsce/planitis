@@ -50,12 +50,9 @@ window.unified decoration-overlay {
 }
 .pl-destructive {
     background-color: #D07070;
-    color: #151515;
-    text-shadow: 0 1px 1px transparent;
-    -gtk-icon-shadow: 0 1px 1px transparent;
 }
-.pl-destructive:active {
-    color: #F7F7F7;
+pl-suggested {
+    background-color: #70C0FF;
 }
 
 progressbar .left {
