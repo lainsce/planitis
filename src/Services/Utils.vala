@@ -268,11 +268,12 @@ namespace Planitis.Services.Utils {
             this.modal = true;
         }
         construct {
+            var cws = add_button ((_("No, don't!")), Gtk.ResponseType.NO);
             var save = add_button ((_("Yes, destroy!")), Gtk.ResponseType.OK);
             var save_context = save.get_style_context ();
             save_context.add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
             save_context.add_class ("pl-destructive");
-            var cws = add_button ((_("No, don't!")), Gtk.ResponseType.NO);
+            
 
             response.connect ((response_id) => {
                 switch (response_id) {
@@ -352,10 +353,11 @@ namespace Planitis.Services.Utils {
             content.margin = 6;
             content.add (main_grid);
 
+            var cws = add_button ((_("No, lemme enjoy this.")), Gtk.ResponseType.NO);
+            
             var save = add_button ((_("Yes, warp!")), Gtk.ResponseType.OK);
             save.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             save.get_style_context ().add_class ("pl-suggested");
-            var cws = add_button ((_("No, lemme enjoy this.")), Gtk.ResponseType.NO);
 
             var action_area = this.get_action_area () as Gtk.Box;
             action_area.halign = Gtk.Align.CENTER;
