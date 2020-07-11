@@ -298,29 +298,67 @@ namespace Planitis.Services.Utils {
         }
     }
 
-    public class WinnerDialog : Granite.MessageDialog {
+    public class WinnerDialog : Gtk.Dialog {
         public MainWindow win;
 
         public WinnerDialog (MainWindow win) {
             Object (
-                image_icon: new ThemedIcon ("planet-asset"),
-                primary_text: (_("You've Built Your Ecumenopolis")),
-                secondary_text: (_("Now that this planet of yours has become the jewel of this sector, sending materials galaxy-wide and being the center of a new empire, the game ends. Warp to a different planet?"))
+                border_width: 6,
+                deletable: false,
+                resizable: false,
+                transient_for: win,
+                destroy_with_parent: true,
+                modal: true,
+                window_position: Gtk.WindowPosition.CENTER_ON_PARENT
             );
 
-            weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
-            default_theme.add_resource_path ("/com/github/lainsce/planitis");
-            
             this.win = win;
-            this.transient_for = this.win;
-            this.modal = true;
         }
+
         construct {
+            var image = new Gtk.Image.from_icon_name ("planet-asset", Gtk.IconSize.DIALOG) {
+                expand = true,
+                margin = 6,
+                halign = Gtk.Align.CENTER
+            };
+            image.get_style_context ().add_class ("space");
+
+            var header = new Granite.HeaderLabel (_("You've Built Your Ecumenopolis!")) {
+                hexpand = true,
+                halign = Gtk.Align.CENTER,
+                valign = Gtk.Align.CENTER
+            };
+            header.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
+
+            // Mind the /n's, it's necessary as this is a long string.
+            var label = new Gtk.Label (_("Your planet has become the crown jewel of this sector, sending\nmaterials galaxy-wide, and so the game ends.\nWarp to a different planet?")) {
+                hexpand = true,
+                halign = Gtk.Align.CENTER,
+                valign = Gtk.Align.CENTER,
+                justify = Gtk.Justification.CENTER
+            };
+
+            var main_grid = new Gtk.Grid () {
+                margin = 6,
+                row_spacing = 6,
+                column_spacing = 12
+            };
+            main_grid.attach (image, 0, 0, 1, 1);
+            main_grid.attach (header, 0, 1, 1, 1);
+            main_grid.attach (label, 0, 2, 1, 1);
+            main_grid.show_all ();
+
+            var content = this.get_content_area () as Gtk.Box;
+            content.margin = 6;
+            content.add (main_grid);
+
             var save = add_button ((_("Yes, warp!")), Gtk.ResponseType.OK);
-            var save_context = save.get_style_context ();
-            save_context.add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            save_context.add_class ("pl-suggested");
+            save.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            save.get_style_context ().add_class ("pl-suggested");
             var cws = add_button ((_("No, lemme enjoy this.")), Gtk.ResponseType.NO);
+
+            var action_area = this.get_action_area () as Gtk.Box;
+            action_area.halign = Gtk.Align.CENTER;
 
             response.connect ((response_id) => {
                 switch (response_id) {
