@@ -192,7 +192,7 @@ namespace Planitis {
             };
             explody_button.get_style_context ().add_class ("destructive-button");
             explody_button.clicked.connect (reset_cb);
-            titlebar.pack_end (explody_button);
+            titlebar.pack_start (explody_button);
             
             var main_stack = new Gtk.Stack () {
                 margin = 12
