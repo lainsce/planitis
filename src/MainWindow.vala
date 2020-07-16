@@ -81,6 +81,7 @@ namespace Planitis {
         }
 
         construct {
+            Hdy.init ();
             gsm = new Services.GameSaveManager (this);
 
             Planitis.Application.gsettings.changed.connect (() => {
