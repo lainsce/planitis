@@ -88,7 +88,8 @@ namespace Planitis {
             sep3.margin_top = 12;
             sep3.margin_bottom = 12;
             
-            var titlebar = new Granite.HeaderLabel (_("Buildings & Storage"));
+            var header = new Granite.HeaderLabel (_("Buildings & Storage"));
+            header.margin_top = 24;
             var mineral_label = new Services.Utils.Label (_("Mineral Mine:"));
             var crystal_label = new Services.Utils.Label (_("Crystal Mine:"));
             var h_label = new Services.Utils.Label (_("Hydrogen Mine:"));
@@ -283,7 +284,7 @@ namespace Planitis {
                 }
             });
             
-            this.attach (titlebar, 0, 0, 6, 1);
+            this.attach (header, 0, 0, 6, 1);
             this.attach (sep, 0, 1, 6, 1);
             this.attach (mineral_label, 0, 2, 1, 1);
             this.attach (mpm, 1, 2, 3, 1);

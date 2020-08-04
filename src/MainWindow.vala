@@ -319,8 +319,7 @@ namespace Planitis {
             sgrid.show_all ();
 
             main_frame_grid = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
-                expand = true,
-                margin_top = 24
+                expand = true
             };
             main_frame_grid.get_style_context ().add_class ("pl-window");
             main_frame_grid.add (main_stack);

@@ -55,6 +55,7 @@ namespace Planitis {
             sep2.margin_bottom = 12;
             
             header = new Granite.HeaderLabel (planet_name);
+            header.margin_top = 24;
             header.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
             header.get_style_context ().add_class ("pl-planet-name");
             var type_of_planet = new Services.Utils.Label (_("Type:"));

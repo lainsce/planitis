@@ -76,6 +76,7 @@ namespace Planitis {
             sep3.margin_bottom = 12;
             
             var header = new Granite.HeaderLabel (_("Research Lab & Technologies"));
+            header.margin_top = 24;
             var lab_label = new Services.Utils.Label (_("Research Lab:"));
             
             lpm = new Gtk.ProgressBar ();
