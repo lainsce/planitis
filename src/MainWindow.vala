@@ -24,7 +24,7 @@ namespace Planitis {
         public Services.GameSaveManager gsm;
         public bool resetted = false;
         public Hdy.Leaflet leaflet;
-        public Gtk.Grid grid;
+        public Gtk.Overlay grid;
         public Gtk.Grid sgrid;
         public Hdy.HeaderBar titlebar;
         public Hdy.HeaderBar fauxtitlebar;
@@ -144,7 +144,8 @@ namespace Planitis {
                 hexpand = true,
                 decoration_layout = ":maximize",
                 has_subtitle = false,
-                show_close_button = true
+                show_close_button = true,
+                valign = Gtk.Align.START
             };
             titlebar.set_size_request (200,45);
             titlebar.get_style_context ().add_class ("pl-toolbar");
@@ -318,14 +319,15 @@ namespace Planitis {
             sgrid.show_all ();
 
             main_frame_grid = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
-                expand = true
+                expand = true,
+                margin_top = 24
             };
             main_frame_grid.get_style_context ().add_class ("pl-window");
             main_frame_grid.add (main_stack);
             
-            grid = new Gtk.Grid ();
-            grid.attach (titlebar, 1, 0, 1, 1);
-            grid.attach (main_frame_grid, 1, 1, 1, 1);
+            grid = new Gtk.Overlay ();
+            grid.add (main_frame_grid);
+            grid.add_overlay (titlebar);
             grid.show_all ();
 
             var separator = new Gtk.Separator (Gtk.Orientation.VERTICAL);
