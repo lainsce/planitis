@@ -3,9 +3,8 @@
 @define-color accent #FF976B;
 @define-color accent_color_500 #FF976B;
 
-window.unified decoration,
-window.unified decoration-overlay {
-  border-radius: 8px;
+window.unified {
+    border-radius: 8px;
 }
 
 .destructive-button:hover {
