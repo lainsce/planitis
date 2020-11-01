@@ -42,6 +42,7 @@ window.unified {
     color: @accent;
     font-weight: 300;
     font-size: 24pt;
+    text-shadow: 0 1px 1px @text_fg_color;
 }
 .pl-destructive {
     background-color: #D07070;

@@ -138,7 +138,7 @@ namespace Planitis {
             // Ensure use of elementary theme and icons, accent color doesn't matter
             Gtk.Settings.get_default().set_property("gtk-theme-name", "io.elementary.stylesheet.blueberry");
             Gtk.Settings.get_default().set_property("gtk-icon-theme-name", "elementary");
-            
+
             titlebar = new Hdy.HeaderBar() {
                 title = "Planitis",
                 hexpand = true,
@@ -186,7 +186,7 @@ namespace Planitis {
             menu_button_style_context.add_class ("image-button");
 
             titlebar.pack_end (menu_button);
-            
+
             var explody_button = new Gtk.Button () {
                 image = new Gtk.Image.from_icon_name ("explosion-symbolic", Gtk.IconSize.BUTTON),
                 has_tooltip = true,
@@ -195,7 +195,7 @@ namespace Planitis {
             explody_button.get_style_context ().add_class ("destructive-button");
             explody_button.clicked.connect (reset_cb);
             titlebar.pack_start (explody_button);
-            
+
             var main_stack = new Gtk.Stack () {
                 margin = 12
             };
@@ -220,11 +220,11 @@ namespace Planitis {
             infogrid = new Widgets.InfoGrid (this);
             resgrid = new Widgets.ResGrid (this);
             buildgrid = new Widgets.BuildGrid (this);
-            
+
             gsm.load_from_file ();
 
             base_utils = new Services.Utils.Base (this);
-            
+
             base_utils.update_base_values ();
             gsm.save_game ();
             Timeout.add_seconds (10, () => {
@@ -245,7 +245,7 @@ namespace Planitis {
                 }
                 return true;
             });
-            
+
             main_stack.add_titled (infogrid, "info", (_("INFO")));
             main_stack.add_titled (buildgrid, "mine", (_("BUILDINGS")));
             main_stack.add_titled (resgrid, "lab", (_("RESEARCH")));
@@ -297,14 +297,15 @@ namespace Planitis {
 
             var column = new Gtk.Grid () {
                 orientation = Gtk.Orientation.VERTICAL,
-                vexpand = true
+                vexpand = true,
+                hexpand = false
             };
             column.add (planet_header);
             column.add (stats_box);
             column.add (column_header);
             column.add (main_stackswitcher);
             column.get_style_context ().add_class ("pl-column");
-            
+
             fauxtitlebar = new Hdy.HeaderBar () {
                 show_close_button = true,
                 has_subtitle = false
@@ -312,10 +313,11 @@ namespace Planitis {
             fauxtitlebar.set_size_request (200,45);
             fauxtitlebar.get_style_context ().add_class ("pl-column");
             fauxtitlebar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-            
+
             sgrid = new Gtk.Grid ();
             sgrid.attach (fauxtitlebar, 0, 0, 1, 1);
             sgrid.attach (column, 0, 1, 1, 1);
+            sgrid.set_size_request (200,-1);
             sgrid.show_all ();
 
             main_frame_grid = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
@@ -323,7 +325,7 @@ namespace Planitis {
             };
             main_frame_grid.get_style_context ().add_class ("pl-window");
             main_frame_grid.add (main_stack);
-            
+
             grid = new Gtk.Overlay ();
             grid.add (main_frame_grid);
             grid.add_overlay (titlebar);
@@ -348,7 +350,7 @@ namespace Planitis {
             leaflet.notify["folded"].connect (() => {
                 update ();
             });
-            
+
             this.add (leaflet);
             this.set_size_request (360, 435);
             this.show_all ();
@@ -378,13 +380,13 @@ namespace Planitis {
                 titlebar.set_decoration_layout (":maximize");
             }
         }
-        
+
         public void reset_cb () {
             if (resetted) {
                 base_utils.reset_all ();
                 resetted = true;
             }
-            
+
             var dialog = new Services.Utils.ExplodyDialog (this);
             dialog.run ();
         }
