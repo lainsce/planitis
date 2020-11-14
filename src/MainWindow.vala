@@ -147,45 +147,8 @@ namespace Planitis {
                 show_close_button = true,
                 valign = Gtk.Align.START
             };
-            titlebar.set_size_request (200,45);
+            titlebar.set_size_request (200,38);
             titlebar.get_style_context ().add_class ("pl-toolbar");
-
-            var dark_header = new Granite.HeaderLabel (_("Interface"));
-
-            var dark_label = new Gtk.Label (_("Dark Mode:")) {
-                halign = Gtk.Align.END
-            };
-
-            var dark_sw = new Gtk.Switch ();
-            dark_sw.halign = Gtk.Align.START;
-            dark_sw.valign = Gtk.Align.CENTER;
-            Planitis.Application.gsettings.bind ("dark-mode", dark_sw, "active", GLib.SettingsBindFlags.DEFAULT);
-
-            var menu_grid = new Gtk.Grid () {
-                margin = 12,
-                row_spacing = 6,
-                column_spacing = 12,
-                orientation = Gtk.Orientation.VERTICAL
-            };
-            menu_grid.attach (dark_header,0,0,1,1);
-            menu_grid.attach (dark_label,0,1,1,1);
-            menu_grid.attach (dark_sw,1,1,1,1);
-            menu_grid.show_all ();
-
-            var menu = new Gtk.Popover (null);
-            menu.add (menu_grid);
-
-            var menu_button = new Gtk.MenuButton () {
-                image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
-                has_tooltip = true,
-                tooltip_text = (_("Settings")),
-                popover = menu
-            };
-            var menu_button_style_context = menu_button.get_style_context ();
-            menu_button_style_context.add_class ("tt-button");
-            menu_button_style_context.add_class ("image-button");
-
-            titlebar.pack_end (menu_button);
 
             var explody_button = new Gtk.Button () {
                 image = new Gtk.Image.from_icon_name ("explosion-symbolic", Gtk.IconSize.BUTTON),
@@ -310,7 +273,7 @@ namespace Planitis {
                 show_close_button = true,
                 has_subtitle = false
             };
-            fauxtitlebar.set_size_request (200,45);
+            fauxtitlebar.set_size_request (200,38);
             fauxtitlebar.get_style_context ().add_class ("pl-column");
             fauxtitlebar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
