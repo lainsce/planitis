@@ -16,6 +16,11 @@ window.unified {
     box-shadow: none;
 }
 
+.pl-bar {
+    background: mix (@accent, @base_color, 0.95);
+    border-right: 1px solid alpha (black, 0.25);
+}
+
 .pl-toolbar .image-button {
     border-radius: 8px;
 }
@@ -27,6 +32,19 @@ window.unified {
 .pl-toolbar .image-button:focus,
 .pl-toolbar .image-button:hover {
     background: shade(@base_color, 0.95);
+}
+
+.pl-button {
+    border-radius: 8px;
+}
+
+.pl-button image {
+    padding: 0 6px;
+}
+
+.pl-button:focus,
+.pl-button:hover {
+    background: mix (@accent, @base_color, 0.66);
 }
 
 .pl-window {

@@ -29,7 +29,8 @@ namespace Planitis {
         public Hdy.HeaderBar titlebar;
         public Hdy.HeaderBar fauxtitlebar;
         public Gtk.Box main_frame_grid;
-
+        public Gtk.Button back_button;
+        public Gtk.Button next_button;
         public Gtk.Label planet_header;
         public Gtk.ProgressBar mpbs;
         public Gtk.ProgressBar cpbs;
@@ -150,26 +151,46 @@ namespace Planitis {
             titlebar.set_size_request (200,38);
             titlebar.get_style_context ().add_class ("pl-toolbar");
 
+            back_button = new Gtk.Button () {
+                has_tooltip = true,
+                image = new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.BUTTON),
+                tooltip_text = (_("See Info"))
+            };
+            titlebar.pack_start (back_button);
+            back_button.clicked.connect (() => {
+                leaflet.set_visible_child (sgrid);
+            });
+
             var explody_button = new Gtk.Button () {
                 image = new Gtk.Image.from_icon_name ("explosion-symbolic", Gtk.IconSize.BUTTON),
                 has_tooltip = true,
-                tooltip_text = (_("Reset Game"))
+                always_show_image = true,
+                tooltip_text = (_("Resets the Game")),
+                label = (_("Explode the Planet"))
             };
+            explody_button.get_style_context ().add_class ("flat");
             explody_button.get_style_context ().add_class ("destructive-button");
             explody_button.clicked.connect (reset_cb);
-            titlebar.pack_start (explody_button);
+            
+            var actionbar = new Gtk.ActionBar ();
+            actionbar.add (explody_button);
+            actionbar.get_style_context ().add_class ("pl-bar");
+            actionbar.get_style_context ().add_class ("flat");
+            actionbar.get_style_context ().add_class ("inline-toolbar");
 
             var main_stack = new Gtk.Stack () {
-                margin = 12
+                margin = 12,
+                homogeneous = false
             };
 
             var main_stackswitcher = new Gtk.StackSwitcher () {
                 orientation = Gtk.Orientation.VERTICAL,
                 valign = Gtk.Align.CENTER,
                 stack = main_stack,
-                halign = Gtk.Align.CENTER,
                 homogeneous = true,
-                margin_top = 6
+                margin_top = 6,
+                margin_start = 20,
+                margin_end = 20
             };
             main_stackswitcher.set_size_request (185,-1);
             main_stackswitcher.get_style_context ().add_class ("pl-switcher");
@@ -226,6 +247,8 @@ namespace Planitis {
             planet_header.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
 
             mpbs = new Gtk.ProgressBar () {
+                margin_start = 20,
+                margin_end = 20,
                 hexpand = true,
                 fraction = infogrid.m_res/infogrid.m_total,
                 show_text = true,
@@ -233,14 +256,16 @@ namespace Planitis {
             };
             mpbs.get_style_context ().add_class ("pl-progressbar");
             cpbs = new Gtk.ProgressBar () {
-                hexpand = true,
+                margin_start = 20,
+                margin_end = 20,
                 fraction = infogrid.c_res/infogrid.c_total,
                 show_text = true,
                 text = """Crystal: %.2f""".printf(infogrid.c_res)
             };
             cpbs.get_style_context ().add_class ("pl-progressbar");
             hpbs = new Gtk.ProgressBar () {
-                hexpand = true,
+                margin_start = 20,
+                margin_end = 20,
                 fraction = infogrid.h_res/infogrid.h_total,
                 show_text = true,
                 text = """H²: %.2f""".printf(infogrid.h_res)
@@ -251,8 +276,7 @@ namespace Planitis {
                 orientation = Gtk.Orientation.VERTICAL,
                 row_spacing = 6,
                 margin = 6,
-                valign = Gtk.Align.CENTER,
-                halign = Gtk.Align.CENTER
+                valign = Gtk.Align.CENTER
             };
             stats_box.add (mpbs);
             stats_box.add (cpbs);
@@ -273,13 +297,25 @@ namespace Planitis {
                 show_close_button = true,
                 has_subtitle = false
             };
-            fauxtitlebar.set_size_request (200,38);
+            fauxtitlebar.set_size_request (-1,38);
             fauxtitlebar.get_style_context ().add_class ("pl-column");
             fauxtitlebar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
+            next_button = new Gtk.Button () {
+                has_tooltip = true,
+                image = new Gtk.Image.from_icon_name ("go-next-symbolic", Gtk.IconSize.BUTTON),
+                tooltip_text = (_("Back to Game"))
+            };
+            fauxtitlebar.pack_end (next_button);
+            next_button.clicked.connect (() => {
+                leaflet.set_visible_child (grid);
+            });
+            next_button.get_style_context ().add_class ("pl-button");
+
             sgrid = new Gtk.Grid ();
-            sgrid.attach (fauxtitlebar, 0, 0, 1, 1);
-            sgrid.attach (column, 0, 1, 1, 1);
+            sgrid.attach (fauxtitlebar, 0, 0);
+            sgrid.attach (column, 0, 1);
+            sgrid.attach (actionbar, 0, 2);
             sgrid.set_size_request (200,-1);
             sgrid.show_all ();
 
@@ -294,19 +330,13 @@ namespace Planitis {
             grid.add_overlay (titlebar);
             grid.show_all ();
 
-            var separator = new Gtk.Separator (Gtk.Orientation.VERTICAL);
-            var separator_cx = separator.get_style_context ();
-            separator_cx.add_class ("vsep");
-
             leaflet = new Hdy.Leaflet () {
                 transition_type = Hdy.LeafletTransitionType.UNDER,
                 can_swipe_back = true
             };
             leaflet.add (sgrid);
-            leaflet.add (separator);
             leaflet.add (grid);
             leaflet.set_visible_child (grid);
-            leaflet.child_set_property (separator, "allow-visible", false);
             leaflet.show_all ();
 
             update ();
@@ -337,10 +367,20 @@ namespace Planitis {
                 // On Mobile size, so.... have to have no buttons anywhere.
                 fauxtitlebar.set_decoration_layout (":");
                 titlebar.set_decoration_layout (":");
+                back_button.visible = true;
+                back_button.no_show_all = false;
+                next_button.visible = true;
+                next_button.no_show_all = false;
+                fauxtitlebar.hexpand = true;
             } else {
                 // Else you're on Desktop size, so business as usual.
                 fauxtitlebar.set_decoration_layout ("close:");
                 titlebar.set_decoration_layout (":maximize");
+                back_button.visible = false;
+                back_button.no_show_all = true;
+                next_button.visible = false;
+                next_button.no_show_all = true;
+                fauxtitlebar.hexpand = false;
             }
         }
 
