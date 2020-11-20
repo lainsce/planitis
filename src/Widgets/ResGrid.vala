@@ -108,7 +108,7 @@ namespace Planitis {
                 }
             });
             
-            var sym_label = new Services.Utils.Label (_("Synthesizer of Minerals:"));
+            var sym_label = new Services.Utils.Label (_("Synth. of Minerals:"));
             
             sympm = new Gtk.ProgressBar ();
             sympm.hexpand = true;
@@ -138,7 +138,7 @@ namespace Planitis {
                 }
             });
             
-            var syc_label = new Services.Utils.Label (_("Synthesizer of Crystals:"));
+            var syc_label = new Services.Utils.Label (_("Synth. of Crystals:"));
             
             sycpm = new Gtk.ProgressBar ();
             sycpm.hexpand = true;
@@ -168,7 +168,7 @@ namespace Planitis {
                 }
             });
             
-            var syh_label = new Services.Utils.Label (_("Synthesizer of Hydrogen:"));
+            var syh_label = new Services.Utils.Label (_("Synth. of Hydrogen:"));
             
             syhpm = new Gtk.ProgressBar ();
             syhpm.hexpand = true;
@@ -198,7 +198,7 @@ namespace Planitis {
                 }
             });
             
-            var phs_label = new Services.Utils.Label ((_("Population Housing Upgrade:")));
+            var phs_label = new Services.Utils.Label ((_("Housing Upgrade:")));
             
             phspm = new Gtk.ProgressBar ();
             phspm.hexpand = true;

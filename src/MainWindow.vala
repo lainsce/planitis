@@ -189,8 +189,7 @@ namespace Planitis {
                 stack = main_stack,
                 homogeneous = true,
                 margin_top = 6,
-                margin_start = 20,
-                margin_end = 20
+                margin_end = 2
             };
             main_stackswitcher.set_size_request (185,-1);
             main_stackswitcher.get_style_context ().add_class ("pl-switcher");
@@ -247,8 +246,6 @@ namespace Planitis {
             planet_header.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
 
             mpbs = new Gtk.ProgressBar () {
-                margin_start = 20,
-                margin_end = 20,
                 hexpand = true,
                 fraction = infogrid.m_res/infogrid.m_total,
                 show_text = true,
@@ -256,16 +253,12 @@ namespace Planitis {
             };
             mpbs.get_style_context ().add_class ("pl-progressbar");
             cpbs = new Gtk.ProgressBar () {
-                margin_start = 20,
-                margin_end = 20,
                 fraction = infogrid.c_res/infogrid.c_total,
                 show_text = true,
                 text = """Crystal: %.2f""".printf(infogrid.c_res)
             };
             cpbs.get_style_context ().add_class ("pl-progressbar");
             hpbs = new Gtk.ProgressBar () {
-                margin_start = 20,
-                margin_end = 20,
                 fraction = infogrid.h_res/infogrid.h_total,
                 show_text = true,
                 text = """H²: %.2f""".printf(infogrid.h_res)
@@ -285,7 +278,7 @@ namespace Planitis {
             var column = new Gtk.Grid () {
                 orientation = Gtk.Orientation.VERTICAL,
                 vexpand = true,
-                hexpand = false
+                hexpand_set = true
             };
             column.add (planet_header);
             column.add (stats_box);
