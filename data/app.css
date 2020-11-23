@@ -96,7 +96,7 @@ progressbar trough {
 }
 
 .pl-progressbar trough {
-    background: mix(@accent, @base_color, 0.85);
+    background: mix(@accent, @base_color, 0.90);
     border: 1px solid shade (@accent, 0.88);
     box-shadow: none;
     background-image: none;
@@ -121,7 +121,7 @@ progressbar trough {
     background-image: none;
     margin: 0 6px;
     border-radius: 8px 8px 0 0;
-    background: mix(@accent, @base_color, 0.85);
+    background: mix(@accent, @base_color, 0.90);
 }
 .pl-switcher button:first-child {
     border-bottom: 1px solid shade (@accent, 0.88);
@@ -158,7 +158,7 @@ progressbar trough {
     border: 1px solid shade (@accent, 0.88);
 }
 .pl-column {
-    background: mix (@accent, @base_color, 0.85);
+    background: mix (@accent, @base_color, 0.90);
     border-right: 1px solid alpha (black, 0.25);
     box-shadow: none;
     padding: 6px;
