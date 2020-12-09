@@ -17,8 +17,9 @@ window.unified {
 }
 
 .pl-bar {
-    background: mix (@accent, @base_color, 0.95);
+    background: mix (@accent, @base_color, 0.99);
     border-right: 1px solid alpha (black, 0.25);
+    border-top: 1px solid alpha (black, 0.25);
 }
 
 .pl-toolbar .image-button {
@@ -50,8 +51,14 @@ window.unified {
 .pl-window {
     background-color: #F7F7F7;
 }
+.pl-window:backdrop {
+    background-color: #F0F0F0;
+}
 .pl-window-dark {
     background-color: #151515;
+}
+.pl-window-dark:backdrop {
+    background-color: #333333;
 }
 .pl-toolbar .image-button {
     background: none;
