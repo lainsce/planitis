@@ -17,9 +17,13 @@ window.unified {
 }
 
 .pl-bar {
-    background: mix (@accent, @base_color, 0.99);
+    background: mix(@accent, @base_color, 0.95);
     border-right: 1px solid alpha (black, 0.25);
     border-top: 1px solid alpha (black, 0.25);
+}
+
+.pl-bar:backdrop {
+    background: mix(@accent, shade(@base_color, 0.95), 0.95);
 }
 
 .pl-toolbar .image-button {
@@ -60,6 +64,39 @@ window.unified {
 .pl-window-dark:backdrop {
     background-color: #333333;
 }
+
+.pl-window .pl-toolbar {
+    color: #000;
+}
+
+.pl-window-dark .pl-toolbar {
+    color: #FFF;
+}
+
+.pl-window:backdrop .pl-toolbar {
+    color: #333;
+}
+
+.pl-window-dark:backdrop .pl-toolbar {
+    color: #CCC;
+}
+
+.pl-window .pl-toolbar .title {
+    color: #000;
+}
+
+.pl-window-dark .pl-toolbar .title {
+    color: #FFF;
+}
+
+.pl-window:backdrop .pl-toolbar .title {
+    color: #333;
+}
+
+.pl-window-dark:backdrop .pl-toolbar .title {
+    color: #CCC;
+}
+
 .pl-toolbar .image-button {
     background: none;
 }
