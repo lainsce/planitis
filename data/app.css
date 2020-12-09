@@ -65,35 +65,27 @@ window.unified {
     background-color: #333333;
 }
 
-.pl-window .pl-toolbar {
+.pl-toolbar .image-button,
+.pl-toolbar .title,
+.pl-toolbar .titlebutton {
     color: #000;
 }
 
-.pl-window-dark .pl-toolbar {
-    color: #FFF;
-}
-
-.pl-window:backdrop .pl-toolbar {
+.pl-toolbar:backdrop .image-button,
+.pl-toolbar:backdrop .title,
+.pl-toolbar:backdrop .titlebutton {
     color: #333;
 }
 
-.pl-window-dark:backdrop .pl-toolbar {
-    color: #CCC;
-}
-
-.pl-window .pl-toolbar .title {
-    color: #000;
-}
-
-.pl-window-dark .pl-toolbar .title {
+.pl-toolbar-dark .image-button,
+.pl-toolbar-dark .title,
+.pl-toolbar-dark .titlebutton {
     color: #FFF;
 }
 
-.pl-window:backdrop .pl-toolbar .title {
-    color: #333;
-}
-
-.pl-window-dark:backdrop .pl-toolbar .title {
+.pl-toolbar-dark:backdrop .image-button,
+.pl-toolbar-dark:backdrop .title,
+.pl-toolbar-dark:backdrop .titlebutton {
     color: #CCC;
 }
 
