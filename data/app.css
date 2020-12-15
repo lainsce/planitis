@@ -3,8 +3,12 @@
 @define-color accent #FF976B;
 @define-color accent_color_500 #FF976B;
 
-window.unified {
-    border-radius: 8px;
+window .csd:not(.popup):not(.menu) .titlebar,
+window:not(.popup):not(.menu) > decoration,
+window.unified,
+window.unified decoration,
+window.unified decoration-overlay {
+  border-radius: 8px;
 }
 
 .destructive-button:hover {
