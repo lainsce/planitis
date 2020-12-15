@@ -85,7 +85,7 @@ namespace Planitis {
             lpm.set_show_text (true);
             lpm.set_text ("""%.0f/%.0f""".printf(l_level, l_total));
             
-            button_l = new Gtk.Button.with_label (_("Build!"));
+            button_l = new Gtk.Button.with_label (_("Build"));
             button_l.valign = Gtk.Align.CENTER;
             button_l.sensitive = false;
             help_l = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
@@ -116,7 +116,7 @@ namespace Planitis {
             sympm.set_show_text (true);
             sympm.set_text ("""%.0f/%.0f""".printf(sym_level, sym_total));
             
-            button_sym = new Gtk.Button.with_label (_("Research!"));
+            button_sym = new Gtk.Button.with_label (_("Study"));
             button_sym.valign = Gtk.Align.CENTER;
             button_sym.sensitive = false;
             button_sym.vexpand = false;
@@ -146,7 +146,7 @@ namespace Planitis {
             sycpm.set_show_text (true);
             sycpm.set_text ("""%.0f/%.0f""".printf(syc_level, syc_total));
             
-            button_syc = new Gtk.Button.with_label (_("Research!"));
+            button_syc = new Gtk.Button.with_label (_("Study"));
             button_syc.valign = Gtk.Align.CENTER;
             button_syc.sensitive = false;
             button_syc.vexpand = false;
@@ -176,7 +176,7 @@ namespace Planitis {
             syhpm.set_show_text (true);
             syhpm.set_text ("""%.0f/%.0f""".printf(syh_level, syh_total));
             
-            button_syh = new Gtk.Button.with_label (_("Research!"));
+            button_syh = new Gtk.Button.with_label (_("Study"));
             button_syh.valign = Gtk.Align.CENTER;
             button_syh.sensitive = false;
             button_syh.vexpand = false;
@@ -206,7 +206,7 @@ namespace Planitis {
             phspm.set_show_text (true);
             phspm.set_text ("""%.0f/%.0f""".printf(phs_level, phs_total));
             
-            button_phs = new Gtk.Button.with_label (_("Research!"));
+            button_phs = new Gtk.Button.with_label (_("Study"));
             button_phs.valign = Gtk.Align.CENTER;
             button_phs.sensitive = false;
             button_phs.vexpand = false;

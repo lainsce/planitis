@@ -112,21 +112,21 @@ namespace Planitis {
             hpm.set_show_text (true);
             hpm.set_text ("""%.0f/%.0f""".printf(h_mine_level, h_total_mine));
             
-            button_m = new Gtk.Button.with_label (_("Build!"));
+            button_m = new Gtk.Button.with_label (_("Build"));
             button_m.sensitive = false;
             help_pm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_pm.halign = Gtk.Align.START;
             help_pm.hexpand = true;
             help_pm.tooltip_text = (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pm_m, pm_c)));
             
-            button_c = new Gtk.Button.with_label (_("Build!"));
+            button_c = new Gtk.Button.with_label (_("Build"));
             button_c.sensitive = false;
             help_pc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_pc.halign = Gtk.Align.START;
             help_pc.hexpand = true;
             help_pc.tooltip_text = (_("""To build the next level, %.0f of Mineral and %.0f of Crystal is needed""".printf(pc_m, pc_c)));
             
-            button_h = new Gtk.Button.with_label (_("Build!"));
+            button_h = new Gtk.Button.with_label (_("Build"));
             button_h.sensitive = false;
             help_ph = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_ph.halign = Gtk.Align.START;
@@ -194,21 +194,21 @@ namespace Planitis {
             sthpm.set_show_text (true);
             sthpm.set_text ("""%.0f/%.0f""".printf(sth_level, sth_total));
             
-            button_stm = new Gtk.Button.with_label (_("Build!"));
+            button_stm = new Gtk.Button.with_label (_("Build"));
             button_stm.sensitive = false;
             help_sm = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sm.halign = Gtk.Align.START;
             help_sm.hexpand = true;
             help_sm.tooltip_text = (_("""To build the next level, %.0f of Mineral is needed""".printf(ps_m)));
             
-            button_stc = new Gtk.Button.with_label (_("Build!"));
+            button_stc = new Gtk.Button.with_label (_("Build"));
             button_stc.sensitive = false;
             help_sc = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sc.halign = Gtk.Align.START;
             help_sc.hexpand = true;
             help_sc.tooltip_text = (_("""To build the next level, %.0f of Crystal is needed""".printf(ps_c)));
             
-            button_sth = new Gtk.Button.with_label (_("Build!"));
+            button_sth = new Gtk.Button.with_label (_("Build"));
             button_sth.sensitive = false;
             help_sh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_sh.halign = Gtk.Align.START;
@@ -262,7 +262,7 @@ namespace Planitis {
             phpm.set_show_text (true);
             phpm.set_text ("""%.0f/%.0f""".printf(ph_level, ph_total));
             
-            button_ph = new Gtk.Button.with_label (_("Build!"));
+            button_ph = new Gtk.Button.with_label (_("Build"));
             button_ph.sensitive = false;
             help_phh = new Gtk.Image.from_icon_name ("help-info-symbolic", Gtk.IconSize.BUTTON);
             help_phh.halign = Gtk.Align.START;
