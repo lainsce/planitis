@@ -136,9 +136,6 @@ namespace Planitis {
              }
              Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),provider2,
                                                                   Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            // Ensure use of elementary theme and icons, accent color doesn't matter
-            Gtk.Settings.get_default().set_property("gtk-theme-name", "io.elementary.stylesheet.blueberry");
-            Gtk.Settings.get_default().set_property("gtk-icon-theme-name", "elementary");
 
             titlebar = new Hdy.HeaderBar() {
                 title = "Planitis",
@@ -291,8 +288,8 @@ namespace Planitis {
                 has_subtitle = false
             };
             fauxtitlebar.set_size_request (-1,38);
-            fauxtitlebar.get_style_context ().add_class ("pl-column");
-            fauxtitlebar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+            fauxtitlebar.get_style_context ().add_class ("pl-column-bar");
+            fauxtitlebar.get_style_context ().add_class ("pl-toolbar");
 
             next_button = new Gtk.Button () {
                 has_tooltip = true,

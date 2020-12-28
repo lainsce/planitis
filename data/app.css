@@ -18,29 +18,46 @@ window.unified decoration-overlay {
 .pl-toolbar {
     background: none;
     box-shadow: none;
+    border-bottom: none;
+    margin: 0;
+}
+
+.pl-column-bar {
+    background: mix (@accent, @theme_bg_color, 0.90);
+    border-right: 1px solid alpha (black, 0.25);
+    box-shadow: none;
+    border-bottom: none;
 }
 
 .pl-bar {
-    background: mix(@accent, @base_color, 0.95);
+    background: mix(@accent, @theme_bg_color, 0.95);
     border-right: 1px solid alpha (black, 0.25);
     border-top: 1px solid alpha (black, 0.25);
+    border-radius: 0;
+}
+
+.pl-bar box {
+    border: none;
+    margin: 0;
+    padding: 0;
 }
 
 .pl-bar:backdrop {
-    background: mix(@accent, shade(@base_color, 0.95), 0.95);
+    background: mix(@accent, shade(@theme_bg_color, 0.95), 0.95);
 }
 
 .pl-toolbar .image-button {
     border-radius: 8px;
+    background: none;
 }
 
-.pl-toolbar .image-button image {
-    padding: 0 6px;
+.pl-toolbar .image-button {
+    padding: 0;
 }
 
 .pl-toolbar .image-button:focus,
 .pl-toolbar .image-button:hover {
-    background: shade(@base_color, 0.95);
+    background: shade(@theme_bg_color, 0.95);
 }
 
 .pl-button {
@@ -53,7 +70,7 @@ window.unified decoration-overlay {
 
 .pl-button:focus,
 .pl-button:hover {
-    background: mix (@accent, @base_color, 0.66);
+    background: mix (@accent, @theme_bg_color, 0.66);
 }
 
 .pl-window {
@@ -93,9 +110,6 @@ window.unified decoration-overlay {
     color: #CCC;
 }
 
-.pl-toolbar .image-button {
-    background: none;
-}
 .pl-planet-name {
     color: @accent;
     font-weight: 300;
@@ -136,7 +150,7 @@ progressbar trough {
 }
 
 .pl-progressbar trough {
-    background: mix(@accent, @base_color, 0.90);
+    background: mix(@accent, @theme_bg_color, 0.90);
     border: 1px solid shade (@accent, 0.88);
     box-shadow: none;
     background-image: none;
@@ -161,7 +175,7 @@ progressbar trough {
     background-image: none;
     margin: 0 6px;
     border-radius: 8px 8px 0 0;
-    background: mix(@accent, @base_color, 0.90);
+    background: mix(@accent, @theme_bg_color, 0.90);
 }
 .pl-switcher button:first-child {
     border-bottom: 1px solid shade (@accent, 0.88);
@@ -198,10 +212,11 @@ progressbar trough {
     border: 1px solid shade (@accent, 0.88);
 }
 .pl-column {
-    background: mix (@accent, @base_color, 0.90);
+    background: mix (@accent, @theme_bg_color, 0.90);
     border-right: 1px solid alpha (black, 0.25);
     box-shadow: none;
     padding: 6px;
+    border-bottom: none;
 }
 .title {
     font-weight: 700;
